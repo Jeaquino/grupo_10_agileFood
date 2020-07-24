@@ -38,8 +38,8 @@ Carrito de compras
 Formulario de registro
 Formulario de carga de producto
 
-Paleta de colores:
+Paleta de colores: Negro (#000000), Amarillo (#FBD104), Naranja (#F45200), Violeta (#8D3276), Celeste (#0575B1), Verde (#0D9200), Blanco (FFFFFF) 
 
-Fuentes: Open Sans, Calibri
+Fuentes: Open Sans, OpenType, Helvetica
 
 Logo: Se encuentra en la carpeta Desing
