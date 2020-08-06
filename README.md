@@ -1,6 +1,6 @@
 # 10_-_agileFood
 
-Primer Sprint (23/07)
+Primer Sprint (24/07)
 
 Integrantes:
 
