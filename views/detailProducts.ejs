@@ -1,0 +1,28 @@
+<%- include("./partials/head.ejs") %> 
+<%- include("./partials/header.ejs") %>
+<div class=container>
+    <div class = "row productos">
+        <div class="titulo col-12">
+            <h1><%-product.name%></h1>
+        </div>
+        <div class="col-12 col-lg-8">
+            <div class="contenido">
+                <figure class=" contenido col-12 col-lg-8">
+                    <img src="/images/productos/<%- product.image %> " alt="">
+                </figure>
+                <article class="col-lg-4">
+                    <h3><%-product.description%></h3>
+                    <div class="botones">
+                        <button class="col-5">Agregar a Carrito</button>
+                        <button class="col-5">Comprar</button>
+                    </div>
+                </article>
+                <h3>Ademas te recomendamos</h3>
+                <%-   %> 
+            </div>
+        </div>  
+    </div>
+
+
+</div> 
+<%- include("./partials/footer.ejs") %> 
