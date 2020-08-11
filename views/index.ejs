@@ -1,6 +1,48 @@
 <%- include("./partials/head.ejs") %> 
 <%- include("./partials/header.ejs") %>
-<div class="contenedor">
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6 caja2">
+            <form method="POST" action="">
+                <div>
+                    <label for="">Producto</label>
+                    <input type="text" name="producto" id="" placeholder="Ingrese nombre del producto">
+                </div>
+                <div>
+                    <label for="">Precio</label>
+                    <input type="text" name="precio" id="precio" placeholder="Ingrese el valor del producto">
+                </div>
+                <h4>Asignele una categoria</h4>
+                <select name="categoria" id="">
+                    <option value="">Pizza</option>
+                    <option value="">Empanadas</option>
+                    <option value="">Sandwich`s</option>
+                    <option value="">Tartas</option>
+                    <option value="">Bebidas</option>
+                </select>
 
+                <h4>Detalle del producto</h4>
+                    <textarea name="detalle" id="" cols="20" rows="2"></textarea>
+                
+                <div class="botones">
+                    <button type="submit" class="btEnviar">Subir Imagen</button>
+                </div>
+
+                <div>
+                    <button type="reset" class="btResetear">Cargar producto</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-12 col-md-6 caja1">
+            <article>
+                <h3>Vista Previa</h3>
+                <img src="/images/logo2.png" alt="Logo Agile Food">
+                <h3>precio></h3>
+            </article>
+        </div>
+
+        
+    </div>
 </div> 
 <%- include("./partials/footer.ejs") %> 
