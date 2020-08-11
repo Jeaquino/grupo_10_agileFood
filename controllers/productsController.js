@@ -20,7 +20,7 @@ module.exports = {
 
         res.render('detailProducts', { 
             title: productoElegido.name,
-            product: productoElegido,
+            producto: productoElegido,
             css:"detailProducts"  
         });
     }
