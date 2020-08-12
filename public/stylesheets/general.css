@@ -1,0 +1,32 @@
+/*
+imports*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/*
+variasbles
+*/
+:root{
+--color-amarillo:#FBD104;
+--color-negro:#000000;
+--color-naranja:#F45200;
+--color-violeta:#8D3276;
+--color-verde:#0D9200;
+--color-celeste:#0575B1;
+--color-blanco:#FFFFFF;
+}
+
+/*
+General
+*/
+
+*{
+box-sizing: border-box;
+margin: 0;
+}
+
+body{
+font-family: Open Sans, Open type, Helvetica;
+font-weight: 300;
+background-color: var(--color-negro);
+}
