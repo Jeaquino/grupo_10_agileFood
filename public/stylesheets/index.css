@@ -29,3 +29,9 @@ article p{
 article h3{
     color: var(--color-blanco);
 }
+
+article button{
+    height: 40px;
+    text-transform: capitalize;
+    text-align: justify;
+}

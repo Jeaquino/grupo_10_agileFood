@@ -15,17 +15,17 @@
 .titulo h1 {
     text-align: left;
     font-size: 24px;
-    color: var(--color-grisOscuro);
+    color: var(--color-blanco);
     padding-top: 10px;
 }
 
 .contenido {
-    background-color: black;
+    background-color: white;
     margin-bottom: 30px;
     border-radius: 5px;
     padding: 2  px;
     text-align: center;
-    color: white;
+    color:var(--color-grisOscuro);
 }
 
 
@@ -58,14 +58,15 @@ article .botones{
 
 article button{
     color:white;
-    background-color:var(--color-amarillo);
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 10px;
     padding: 30px;
     margin-top: 20px;
     border-radius: 5px;
     border: none;
+    height: 100px;
+    text-align: justify;
 }
 
 
