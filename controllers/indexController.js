@@ -8,23 +8,23 @@ home:function(req, res, next) {
     let mostrar;
     let catalogo;
 
-    dbProduct.forEach(producto => {
+  /*   dbProduct.forEach(producto => {
         if (!categorias.includes(producto.category)){
             categorias.push(producto.category)
         }
     })
-
-    categorias.forEach(categoria => {
+*/
+  /*  categorias.forEach(categoria => {
         catalogo.push(dbProducts.filter(producto => {
             return producto.category == categoria
         }))
     })
-
+*/
     res.render('index', { 
         title: "Agile Food",
         css:"index",
-        categorias: categorias,
-        catalogo: catalogo,  
+    //    categorias: categorias,
+    //    catalogo: catalogo,  
     });
     }
 }
