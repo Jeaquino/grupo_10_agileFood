@@ -1,0 +1,36 @@
+.footer{
+padding: 10px;
+background-color: var(--color-grisOscuro);
+}
+
+.footer article{
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+flex-direction: column;
+text-align: center;
+}
+
+.footer article i{
+font-size: 35px;
+color: var(--color-celeste);
+margin: 10px 0;
+}
+
+.footer article h4{
+color: var(--color-grisClaro);
+margin: 20px 0;
+}
+
+.footer article p{
+color: var(--color-grisClaro);
+margin: 20px 0;
+}
+
+.copyright{
+border-top: 1px solid var(--color-grisClaro);
+border-bottom: 1px solid var(--color-grisClaro);
+padding: 10px 0;
+color: var(--color-grisClaro);
+text-align: center;
+}
