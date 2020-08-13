@@ -6,9 +6,11 @@
     display: flex;
     flex-wrap: wrap;
     text-align: center;
+    background-color: var(--color-grisClaro);
 }
 .note{
 border: 1px solid white;
+background-color: var(--color-grisClaro);
 }
 
 .productos img{
