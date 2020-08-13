@@ -58,7 +58,7 @@ article .botones{
 article .botones{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     text-align: center;
 }
 
@@ -67,11 +67,11 @@ article button{
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 10px;
-    padding: 30px;
+    padding: 10x;
     margin-top: 20px;
     border-radius: 5px;
     border: none;
-    height: 100px;
+    height: 70px;
     text-align: center;
 }
 
@@ -79,9 +79,8 @@ article button{
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;  
+    justify-content: start;
     align-items: center;
-    text-align: center;
 }
 
 .cantidad h2 {
@@ -91,14 +90,14 @@ article button{
 .recomendaciones{
     display: flex;
     flex-wrap: wrap;
-    background-color: var(--color-verde);
+    background-color: var(--color-celeste);
     text-align: center;
 }
 
 .recomendaciones article{
     background-color: white;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border-radius: 10px;
     border: none;
     justify-content: center;
@@ -131,7 +130,7 @@ FOOTER
 
     article h1{
         font-size: 2.8rem;
-    }   
+    }
 
 }
 
@@ -172,5 +171,8 @@ FOOTER
         padding: 20;    
         margin-bottom: 100px;
     }
-    
+
+    .recomendaciones h3{
+        font-size: 2rem;
+    }
 }
