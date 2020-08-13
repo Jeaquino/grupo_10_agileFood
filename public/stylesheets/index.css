@@ -35,3 +35,26 @@ article button{
     text-transform: capitalize;
     text-align: justify;
 }
+
+@media(min-width:768px) {
+    /*header form input {
+        width: 92%;
+    }*/
+
+    header ul li {
+        justify-content: space-between;
+        padding-right: 12px;
+    }
+    
+    header ul.usuario li:last-child {
+        padding-right: 0;
+    }
+
+    article h3{
+        font-size: 1.5rem;
+    }
+
+    article h1{
+        font-size: 2.8rem;
+    }
+}

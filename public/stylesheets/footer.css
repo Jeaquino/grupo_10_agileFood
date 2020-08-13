@@ -34,3 +34,23 @@ padding: 10px 0;
 color: var(--color-grisClaro);
 text-align: center;
 }
+
+@media(min-width:768px) {
+
+footer article {
+    border: none;
+}
+footer article h4 {
+    font-size: 1.3rem;
+}
+footer article p {
+    font-size: 0.9rem;
+}
+footer .copyright {
+    font-size: 1rem;
+    text-align: right;
+    border-top: 1px solid var(--color-grisClaro);
+    border-bottom: none;
+}
+
+}

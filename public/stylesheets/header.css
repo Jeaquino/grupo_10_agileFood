@@ -75,16 +75,25 @@ header nav ul{
 display: flex;
 flex-wrap: wrap;
 flex-direction: row;
-margin-top: 30px;
 }
 
 header ul li{
 list-style: none;
 }
 
+header nav ul li{
+padding: 0 20px;
+}
+
 header ul li a{
 color: black;
 text-decoration: none;
+}
+
+.user{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .user ul{
@@ -93,3 +102,31 @@ flex-wrap: wrap;
 align-items: flex-end;
 justify-content: end;
 }
+
+.user li{
+    margin-left: 15px;
+
+
+}
+
+@media(min-width:768px) {
+    /*header form input {
+        width: 92%;
+    }*/
+
+    header ul li {
+        justify-content: space-between;
+        padding-right: 12px;
+    }
+    header ul.usuario li:last-child {
+        padding-right: 0;
+    }
+}
+
+
+@media(min-width:1024px) {
+    header nav ul li{
+        padding: 0 2.5rem;
+        }
+
+    }
