@@ -6,7 +6,7 @@ module.exports = {
 
     res.render('formularioregistro', { 
         title: "Registro",
-        css:"style",  
+        css:"formarioregistro",  
     });
     }
 }

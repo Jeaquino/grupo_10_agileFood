@@ -1,12 +1,48 @@
 @import "general.css";
 @import "header.css";
 @import "footer.css";
+
+.contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto auto;
+}
 .mtx {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+    justify-content: left;
+    align-items: left;
+    align-content: left;
     color: white;
+    margin: 20px auto;
+    padding: 0 40px;
+    border-right: 1px solid snow;
+    border-left: 1px solid snow;
+}
+
+.mtx div{
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 0;
+    margin-left: 0;
+}
+
+.mtx label{
+    color: white;
+    text-align: left;
+    margin-right: 10px;
+    margin-left: 0px;
+    padding: 0px;
+}
+
+@media(min-width:768px) {
+    .mtx label{
+        color: white;
+        text-align: left;
+        margin-right: 10px;
+        margin-left: 0px;
+    }
+
 }
