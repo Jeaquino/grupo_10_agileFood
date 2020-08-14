@@ -90,7 +90,7 @@ article button{
 .recomendaciones{
     display: flex;
     flex-wrap: wrap;
-    background-color: var(--color-celeste);
+    background-color: var(--color-rojo);
     text-align: center;
 }
 

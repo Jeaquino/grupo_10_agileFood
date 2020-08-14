@@ -9,11 +9,13 @@ flex-wrap: wrap;
 align-items: center;
 flex-direction: column;
 text-align: center;
+color: white;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .footer article i{
-font-size: 35px;
-color: var(--color-celeste);
+font-size: 60px;
+color: var(--color-rojo);
 margin: 10px 0;
 }
 
@@ -28,7 +30,7 @@ margin: 20px 0;
 }
 
 .footer img {
-    width: 50%;
+    width: 20%;
     }
 
 .footer ul{
@@ -44,7 +46,7 @@ margin: 20px 0;
 }
 
 .footer a{
-    color: var(--color-celeste);
+    color: var(--color-rojo);
 }
 
 .copyright{
