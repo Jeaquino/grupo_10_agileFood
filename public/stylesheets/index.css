@@ -2,20 +2,27 @@
 @import "header.css";
 @import "footer.css";
 
+.carousel{
+    display: none;
+}
+
 .productos{
     display: flex;
     flex-wrap: wrap;
     text-align: center;
     background-color: var(--color-grisClaro);
+    align-items: center;
+    justify-content: center;
 }
 .note{
-border: 1px solid white;
-background-color: var(--color-grisClaro);
+margin: 20px 0;
+background-color: var(--color-blanco);
+border-radius: 5px;
 }
 
 .productos img{
     width:90%;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 article h2{
@@ -27,34 +34,20 @@ article p{
 }
 
 article h3{
-    color: var(--color-blanco);
+    color: var(--color-amarillo);
 }
 
-article button{
-    height: 40px;
-    text-transform: capitalize;
-    text-align: justify;
-}
 
 @media(min-width:768px) {
     /*header form input {
         width: 92%;
     }*/
 
-    header ul li {
-        justify-content: space-between;
-        padding-right: 12px;
-    }
-    
-    header ul.usuario li:last-child {
-        padding-right: 0;
+    .carousel{
+        display: block;
     }
 
-    article h3{
-        font-size: 1.5rem;
-    }
-
-    article h1{
-        font-size: 2.8rem;
+    .carousel img{
+        height: 450px;
     }
 }
