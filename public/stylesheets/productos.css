@@ -1,0 +1,13 @@
+@import "general.css";
+@import "header.css";
+@import "footer.css";
+
+.productos figure{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.productos figure img{
+    width: 85%;
+    height: 140px;
+}

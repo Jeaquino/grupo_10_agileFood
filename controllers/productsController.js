@@ -2,10 +2,6 @@ const dbProduct = require("../data/database");
 
 module.exports = {
 
-    listar: function(req,res){
-        res.send(dbProduct)    //muestro información de prueba
-    },
-
     detail:function(req, res, next) {
 
         let id = req.params.id;
@@ -27,6 +23,34 @@ module.exports = {
             producto: productoElegido,
             recomendaciones: recomendaciones,
             css:"detailProducts"  
+        });
+    },
+
+    productos:function(req, res, next) {
+
+        let categorias = [];
+        let productos = [];
+        let seccion; 
+
+        dbProduct.forEach(producto => {
+            if (!categorias.includes(producto.category)){
+                categorias.push(producto.category)
+            }
+        })
+
+
+        categorias.forEach(categoria => {
+            seccion = dbProduct.filter(producto =>{
+                return producto.category == categoria
+            })
+            productos.push(seccion);
+        })
+
+        res.render('Productos', { 
+            title: "Productos",
+            categorias:categorias,
+            productos:productos,
+            css:"Productos",  
         });
     }
 }

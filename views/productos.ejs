@@ -1,0 +1,59 @@
+<%- include("./partials/head.ejs") %> 
+<%- include("./partials/header.ejs") %>
+<!--SECCIONES: PRODUCTOS-->
+
+    <!--caja contendedora de bootstrap con padding superior e inferior de 5 (escala de boostrap)-->
+    <div class="container py-5">
+
+        <!--SECCIÓN: PRODUCTOS ULTIMA VISITA-->
+        <section>
+
+            <!--caja que contiene todos los productos de la ultima visita-->
+            <div class="row productos">
+
+                <!--caja que contiene el titulo de la sección-->
+
+                <% productos.forEach(element => { %>
+                    <% let i = 2;%>
+                    <div class="titulo col-12">
+                        <h2><%- categorias[i]%></h2>
+                    </div>
+
+                    <% element.forEach(producto => { %>  
+
+                <!--caja de la grilla de bootstrap-->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <!--caja que muestra la información del producto-->
+                    <div class="contenido">
+
+                        <!--ETIQUETA SEMANTICA-->
+                        <figure>
+                            <img src="images/productos/<%- producto.image %>  " alt=" ">
+                        </figure>
+
+                        <!--informacion-->
+                        <article>
+                            <!--precio-->
+                            <h2>$<%- producto.price %></h2>
+                            <!--descuento-->
+                            <span><%- producto.discount %>% OFF</span>
+                            <!--nombre del producto ??-->
+                            <p><%- producto.name %></p>
+                            <!--icono de envío-->
+                            <i class="fas fa-truck truck"></i>
+                        </article>
+
+                        <!--finaliza contenido-->
+                    </div>
+                    <!--finaliza caja de grilla de boostrap-->
+                </div>
+                <% })  %>
+                <% i++%>
+            <% })  %>                 
+                <!--finaliza el div.row-->
+            </div>
+
+            <!--FINALIZA SECCIÓN ULTIMA VISITA-->
+        </section>
+    </div>
+<%- include("./partials/footer.ejs") %> 
