@@ -1,0 +1,12 @@
+@import "general.css";
+@import "header.css";
+@import "footer.css";
+.mtx {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    color: white;
+}
