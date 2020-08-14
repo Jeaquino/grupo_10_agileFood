@@ -1,0 +1,17 @@
+@import "general.css";
+@import "header.css";
+@import "footer.css";
+
+.cajaBase{
+    background-color: var(--color-blanco);
+    display: flex;
+}
+.cajaProducto{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 5px;
+    height: 200px;
+    }
+
+

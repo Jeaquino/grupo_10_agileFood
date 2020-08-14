@@ -18,9 +18,14 @@ module.exports = {
             }
         })
 
+        let recomendaciones = dbProduct.filter(producto => {
+            return producto.category == productoElegido.category 
+        })
+
         res.render('detailProducts', { 
             title: productoElegido.name,
             producto: productoElegido,
+            recomendaciones: recomendaciones,
             css:"detailProducts"  
         });
     }
