@@ -14,9 +14,8 @@
                 <!--caja que contiene el titulo de la sección-->
 
                 <% productos.forEach(element => { %>
-                    <% let i = 2;%>
                     <div class="titulo col-12">
-                        <h2><%- categorias[i]%></h2>
+                        <h2><%- categorias[0]%></h2>
                     </div>
 
                     <% element.forEach(producto => { %>  
@@ -48,7 +47,6 @@
                     <!--finaliza caja de grilla de boostrap-->
                 </div>
                 <% })  %>
-                <% i++%>
             <% })  %>                 
                 <!--finaliza el div.row-->
             </div>

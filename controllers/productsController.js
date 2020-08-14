@@ -30,7 +30,7 @@ module.exports = {
 
         let categorias = [];
         let productos = [];
-        let seccion; 
+        let seccion;
 
         dbProduct.forEach(producto => {
             if (!categorias.includes(producto.category)){

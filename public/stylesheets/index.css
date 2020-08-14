@@ -76,29 +76,43 @@ article h3{
 .card-text{
     margin: 0;
     padding: 0;
+    font-size: 12px;
+}
+
+.locacion{
+    display: none;
+    border: 2px solid snow;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .text{
-    background-image: url("/images/fondo.jpg");
-    width: 100%;
+    background-image: url("/images/fondo4.jpg");
+    background-size: 140%;
+    opacity: 0.95;
     margin: 0;
+    padding: 0;
+}
+.text div{
+    margin: 10px 0;
     padding: 0;
 }
 
 .text h3{
-color: var(--color-rojo);
+color: var(--color-amarillo);
+font-weight: bold;
+margin-left: 5px;
 }
 
 .text h5{
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    margin-left: 5px;
     }
 
 .text p{
-    font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
     margin: 0;
     padding: 0;
+    margin-left: 5px;
 }
 
 .mapa{
@@ -130,4 +144,18 @@ color: var(--color-rojo);
     .productos{
         display: none;
     }
+
+    .locacion{
+        display: block;
+    }
+}
+@media(min-width:1024px) {
+    .text h5{
+        margin-bottom: 30px;
+        }
+    
+    .text div{
+        margin: 20px 0;
+    }
+
 }

@@ -69,14 +69,6 @@ text-align: center;
 
 @media(min-width:768px) {
     
-    footer .seccion{
-        border-left: 1px solid var(--color-gris);
-    }
-
-    footer .seccion:first-child{
-        border-left: none;
-    }
-
 footer article {
     border:none
 }
@@ -104,4 +96,14 @@ footer .copyright {
     font-size: 10px;
 }
 
+.footer img {
+    width: 45%;
+    }
+}
+
+@media(min-width:1024px) {
+    .footer img {
+        width: 40%;
+        }
+    }   
 }

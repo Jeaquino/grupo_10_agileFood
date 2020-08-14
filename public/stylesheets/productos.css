@@ -26,9 +26,29 @@
     border-radius: 5px;
     text-align: center;
     justify-content: center;
+    margin: 10px 0;
+}
+
+article span{
+    color: var(--color-amarillo);
+}
+
+article i{
+    color: var(--color-celeste);
 }
 
 .productos figure img{
     width: 85%;
     height: 140px;
+}
+
+@media(min-width:768px) {
+    .text h5{
+        margin-bottom: 30px;
+        }
+    
+    .text div{
+        margin: 20px 0;
+    }
+
 }
