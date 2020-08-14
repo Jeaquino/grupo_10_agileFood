@@ -1,15 +1,17 @@
 <%- include("./partials/head.ejs") %>
     <%- include("./partials/header.ejs") %>
         <div class="contenedor">
-            <form>
+            <form class="mtx">
                 <div>
                     <label for="">Producto</label>
                     <input type="text">
                 </div>
+                <br>
                 <div>
                     <label for="">Precio</label>
                     <input type="number">
                 </div>
+                <br>
                 <div>
                     <label for="">Categoria</label>
                     <select>
@@ -19,7 +21,7 @@
                         <option>Tartas</option>
                     </select>
                 </div>
-
+                <br>
                 <div class="form-group">
                     <label for="exampleFormControlSelect2">Clasificacion</label>
                     <select multiple class="form-control" id="exampleFormControlSelect2">
@@ -34,18 +36,21 @@
                     <label for="">Cantidad</label>
                     <input type="number">
                 </div>
-
+                <br>
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Detalle del producto</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
+                <br>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Example file input</label>
                     <input type="file" class="form-control-file" id="exampleFormControlFile1">
                 </div>
-
-
+                <br>
+                <button type="button" class="btn btn-dark">Subir Producto</button>
+                <br>
+                <input class="btn btn-primary" type="reset" value="Reset">
             </form>
         </div>
         <%- include("./partials/footer.ejs") %>
