@@ -1,0 +1,136 @@
+@import "general.css";
+@import "header.css";
+@import "footer.css";
+
+.articulo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    border-bottom: 1px solid snow;
+    margin: 10px 0;
+}
+
+.detalles{
+    margin: 0;
+    padding: 0;
+}
+
+.articulo img{
+margin: 0;
+padding: 0;
+width: 100%;
+height: 70px;
+}
+
+.articulo h3{
+    margin: 0 0px;
+    margin-left: 5px;
+    font-size: 10px;
+    color: snow;
+    padding: 0;
+}
+
+.articulo h2{
+    margin: 0;
+    margin-left: 10px;
+    font-size: 10px;
+    color: snow;
+    padding: 0;
+}
+
+.articulo .botones{
+    margin: 0;
+    padding: 0;
+}
+
+select{
+    padding: 0;
+    width: 50%;
+}
+
+.total{
+    display: flex;
+    flex-wrap: wrap;
+    color: snow;
+    justify-content: space-around;
+    align-items: center;
+}
+
+button{
+    font-size: 8px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn1{
+    background-color: var(--color-verde);
+    padding: 0;
+}
+
+.btn2{
+    background-color: var(--color-rojo);
+    color: snow;
+    
+}
+
+@media(min-width:768px) {
+    
+    .articulo h2{
+        text-align: right;
+        font-size: 16px;
+    }
+
+    .articulo h3{
+        font-size: 12px;
+    }
+
+    .articulo img{
+        height: 100px;
+    }
+        
+    button{
+    font-size: 12px;
+    padding: 10px;
+    }
+
+    .btn1{
+        padding: 10px;
+    }
+
+    .footer{
+        margin-top: 10px;
+    }
+
+}
+
+@media(min-width:1024px) {
+
+    .articulo h2{
+        text-align: right;
+        font-size: 20px;
+    }
+
+    .articulo h3{
+        font-size: 16px;
+    }
+
+    .articulo img{
+        height: 150px;
+    }
+        
+    button{
+    font-size: 16px;
+    padding: 10px;
+    }  
+
+    .footer{
+        margin-top: 20px;
+    }
+
+}
+

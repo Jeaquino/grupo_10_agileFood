@@ -10,6 +10,7 @@ var productsRouter = require("./routes/products");
 var carritoDeCompraRouter = require('./routes/carritoDeCompra')
 var loginRouter = require('./routes/login');
 var registroRouter = require('./routes/formularioregistro');
+var carritoDeComprasRouter = require('./routes/carritoDeCompras');
 var app = express();
 
 // view engine setup
@@ -28,6 +29,7 @@ app.use('/login', loginRouter);
 app.use('/products', productsRouter);
 app.use('/registroproductos', registroRouter);
 app.use('/carrito', carritoDeCompraRouter);
+app.use('/carritoDeCompras', carritoDeComprasRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

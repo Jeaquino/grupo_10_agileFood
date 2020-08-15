@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/carritoDeCompraController');
+const controller = require('../controllers/carritoDeComprasControllers');
 
-router.get('/', controller.index);
+router.get('/', controller.detail);
 
 module.exports = router;
