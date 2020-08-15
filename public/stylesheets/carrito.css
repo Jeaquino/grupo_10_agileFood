@@ -2,16 +2,26 @@
 @import "header.css";
 @import "footer.css";
 
-.cajaBase{
-    background-color: var(--color-blanco);
-    display: flex;
-}
 .cajaProducto{
+    background-color: white;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+.producto{
+    display: block;
+}
+.precio{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
-    padding: 5px;
-    height: 200px;
-    }
-
-
+}
+p{
+    font-size: 10px;
+}
+.boton{
+    background-color: white;
+}
+.total{
+    display: flex;
+    flex-wrap: wrap;
+}
