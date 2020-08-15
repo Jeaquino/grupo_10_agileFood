@@ -17,13 +17,14 @@
                             <a href="http://localhost:3001/products/<%- producto.id %>" ><img src="images/productos/<%- producto.image %>  " alt=" "></a>
                         </figure>
                         <article>
-                            $<%- i = (producto.id/4); %>
+                            <% i = (producto.id/4); %>
+                            <h5>$<%-producto.price%></h5>
                             <!--precio-->
-                            <h2>$<%- producto.price %></h2>
+                            <h2>$<%-producto.price-((producto.price*producto.discount)/100)%></h2>
                             <!--descuento-->
-                            <span><%- producto.discount %>% OFF</span>
+                            <span><%-producto.discount %>% OFF</span>
                             <!--nombre del producto ??-->
-                            <p><%- producto.name %></p>
+                            <p><%-producto.name%></p>
                         </article>
                     </div>
                 </div>

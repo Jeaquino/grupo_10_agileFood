@@ -3,6 +3,7 @@
 @import "footer.css";
 
 .carousel{
+    margin-top: 20px;
     display: none;
 }
 

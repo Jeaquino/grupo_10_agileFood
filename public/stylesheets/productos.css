@@ -33,6 +33,14 @@ article span{
     color: var(--color-amarillo);
 }
 
+
+article h5{
+    color: var(--color-rojo);
+    text-decoration: line-through;
+    font-style: italic;
+    
+}
+
 article i{
     color: var(--color-celeste);
 }

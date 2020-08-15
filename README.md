@@ -43,3 +43,12 @@ Paleta de colores: Negro (#000000), Amarillo (#FBD104), Naranja (#F45200), Viole
 Fuentes: Open Sans, OpenType, Helvetica
 
 Logo: Se encuentra en la carpeta Desing
+
+***Segundo Sprint***
+
+Fecha de entrega 14/8
+
+Las conclusiones obtenidas despues de realizar la actividad de starfish, como importante destacar que las propuestas deben plasmarse en recursos donde permancezcan de forma ordena y se puedan generar hilos de los topicos(trello). Debemos Mejorar el uso de las herramientas que tenemos a disposición para lograr dialogos más fluidos para desarollo del proyecto. Se debe mantener una buena administración de los tiempos, enfocarnos en el objetivo y dejar como un extra tareas que no sean escenciales.
+
+tablero de trabajo: https://trello.com/b/6ZkXWTMr/10-agile-food%F0%9F%8D%B1e-commerce
+
