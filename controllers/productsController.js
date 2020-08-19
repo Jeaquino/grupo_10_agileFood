@@ -43,7 +43,8 @@ module.exports = {
             seccion = dbProduct.filter(producto =>{
                 return producto.category == categoria
             })
-            productos.push(seccion);
+            productos.push({categoria:seccion[0].category,
+                productos:seccion});
         })
 
         res.render('Productos', { 

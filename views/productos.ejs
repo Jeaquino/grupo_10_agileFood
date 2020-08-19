@@ -8,16 +8,15 @@
                 <% let i = 0; %> 
                 <% productos.forEach(element => { %>
                     <div class="titulo col-12">
-                        <h2><%-categorias[i]%></h2>
+                        <h2><%-element.categoria%></h2>
                     </div>
-                    <% element.forEach(producto => { %>  
+                    <% element.productos.forEach(producto => { %>  
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="contenido">
                         <figure>
                             <a href="http://localhost:3001/products/<%- producto.id %>" ><img src="images/productos/<%- producto.image %>  " alt=" "></a>
                         </figure>
                         <article>
-                            <% i = (producto.id/4); %>
                             <h5>$<%-producto.price%></h5>
                             <!--precio-->
                             <h2>$<%-producto.price-((producto.price*producto.discount)/100)%></h2>
