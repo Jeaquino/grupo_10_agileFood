@@ -1,0 +1,43 @@
+@import "general.css";
+@import "header.css";
+@import "footer.css";
+
+.container{
+    margin: 20px auto;
+    border: 3px solid var(--color-amarillo);
+    width: 400px;
+    text-align: center;
+    background-color: snow;
+}
+
+.login{
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.login div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.login button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: snow;
+    background-color: var(--color-amarillo);
+}
+
+
+.login img{
+    width: 20%;
+    height: 20%;
+    background-color: snow;
+    border-radius: 50%;
+    border: 5px solid var(--color-amarillo);
+}
+
+

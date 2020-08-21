@@ -6,6 +6,14 @@ module.exports = {
 
         res.render('login', { 
             css:"style",
+            title:"Registro"  
+        });
+    },
+
+    login:function(req, res, next) {
+
+        res.render('prueba', { 
+            css:"prueba",
             title:"Login"  
         });
     }
