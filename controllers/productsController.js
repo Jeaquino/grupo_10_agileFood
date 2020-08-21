@@ -2,7 +2,7 @@ const dbProduct = require("../data/database");
 
 module.exports = {
 
-    detail:function(req, res, next) {
+    detalle:function(req, res, next) {
 
         let id = req.params.id;
 
@@ -43,7 +43,7 @@ module.exports = {
             seccion = dbProduct.filter(producto =>{
                 return producto.category == categoria
             })
-            productos.push({categoria:seccion[0].category,
+            productos.push({categoria:categoria,
                 productos:seccion});
         })
 
@@ -53,5 +53,22 @@ module.exports = {
             productos:productos,
             css:"Productos",  
         });
-    }
+    },
+
+    agregar:function(req, res, next) {
+
+        res.render('formularioAgregarProducto', { 
+            title: "Agregar producto",
+            css:"formarioregistro",  
+        });
+    },
+
+    carrito:function(req, res, next) {
+
+        res.render('carritoDeCompras', { 
+            css:"carritoDeCompras",
+            title:"carrito de compras"  
+        });
+    },
+
 }
