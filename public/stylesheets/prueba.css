@@ -5,7 +5,6 @@
 .container{
     margin: 20px auto;
     border: 3px solid var(--color-amarillo);
-    width: 400px;
     text-align: center;
     background-color: snow;
 }
@@ -17,6 +16,14 @@
     text-align: center;
     align-items: center;
     justify-content: center;
+}
+
+.login img{
+    width: 20%;
+    height: 20%;
+    background-color: snow;
+    border-radius: 50%;
+    border: 5px solid var(--color-amarillo);
 }
 
 .login div{
@@ -32,12 +39,10 @@
 }
 
 
-.login img{
-    width: 20%;
-    height: 20%;
-    background-color: snow;
-    border-radius: 50%;
-    border: 5px solid var(--color-amarillo);
+
+@media(min-width:768px) {
+    .container{
+        width: 400px;
+    }
+
 }
-
-
