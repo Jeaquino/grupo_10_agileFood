@@ -1,59 +1,26 @@
 <%- include("./partials/head.ejs") %>
-    <%- include("./partials/header.ejs") %>
-
-        <section class="contact-box d-flex row">
-
-            <div class="row no-gutters">
-                <div class="col-xl-5 col-lg-12 register-bg">
-                    <div class="position-absolute testiomonial p-4">
-
-                        <h3 class="font-weight-bold text-light">Recibe tu comida rapido.</h3>
-
-                        <p class="lead text-light">Completa tu formulario.</p>
-                    </div>
-                    <div class="mt-5">
-                        <img src="/images/Logo.jpg" alt="imagen de logo agile foot" width="300">
-                    </div>
-                </div>
-                <div class="col-xl-7 col-lg-12 d-flex">
-                    <div class="container align-self-center p-6">
-                        <h1 class="font-weight-bold mb-3">Crea tu cuenta gratis</h1>
-                        <div class="form-group">
-                            <button class="btn btn-outline-dark d-inline-block text-light mr-2 mb-3 width-100"><i class="fab fa-google"></i> Google </button>
-                            <button class="btn btn-outline-dark d-inline-block text-light mb-3 width-100"><i class="fab fa-facebook-square"></i> Facebook</button>
-                        </div>
-                        <p class="text-muted mb-5">Ingresa tus datos.</p>
-
-                        <form>
-                            <div class="form-row mb-2">
-                                <div class="form-group col-md-6">
-                                    <label class="font-weight-bold">Nombre <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" placeholder="Tu nombre">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="font-weight-bold">Apellido <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" placeholder="Tu apellido">
-                                </div>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label class="font-weight-bold">Correo electrónico <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" placeholder="Ingresa tu correo electrónico">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label class="font-weight-bold">Contraseña <span class="text-danger">*</span></label>
-                                <input type="password" class="form-control" placeholder="Ingresa una contraseña">
-                            </div>
-                            <div class="form-group mb-5">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox">
-                                    <label class="form-check-label text-muted">Al seleccionar esta casilla aceptas nuestro aviso de privacidad y los términos y condiciones</label>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary width-100">Regístrate</button>
-                        </form>
-
-                    </div>
-                </div>
+<%- include("./partials/header.ejs") %>
+<div class="container">
+    <div class="row login">
+        <div class="col-12">
+            <img src="/images/login.png" alt="">
+        </div>
+        <form action="">
+            <div class="form-group">
+                <label for="">Usuario</label>
+                <input type="text" class="form-control" id="" placeholder="Ingrese su usuario " name="user">
             </div>
-        </section>
-        <%- include("./partials/footer.ejs") %>
+            <div class="form-group">
+                <label for="">Contraseña</label>
+                <input type="text" class="form-control" id="" placeholder="Ingrese Contraseña" name="password">
+            </div>
+            <button class="col-12">Login</button>
+            <div>
+                <a class="col-12" href="http://localhost:3001/users/registrarme">Registrarme</a>
+                <a class="col-12" href="http://localhost:3001/users/login">Olvido su contraseña?</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<%- include("./partials/footer.ejs") %>

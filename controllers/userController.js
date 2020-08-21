@@ -4,7 +4,7 @@ module.exports = {
 
     registro:function(req, res, next) {
 
-        res.render('login', { 
+        res.render('registroUsuario', { 
             css:"style",
             title:"Registro"  
         });
@@ -12,8 +12,8 @@ module.exports = {
 
     login:function(req, res, next) {
 
-        res.render('prueba', { 
-            css:"prueba",
+        res.render('login', { 
+            css:"login",
             title:"Login"  
         });
     }
