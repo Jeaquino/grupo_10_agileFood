@@ -30,7 +30,7 @@ module.exports = {
         });
 
         let usuario = {
-            id: 2,
+            id: ultimoId +1 ,
             nombre: req.body.nomnbre,
             apellido: req.body.apellido,
             domicilio: req.body.calle + " " + req.body.enumeracion + " " + req.body.detalle,
@@ -43,6 +43,6 @@ module.exports = {
 
         dbUser.push(usuario);
         fs.writeFileSync("./data/users.json",JSON.stringify(dbUser))
-        res.send(usuario)
+        res.redirect("/")
     }
 }
