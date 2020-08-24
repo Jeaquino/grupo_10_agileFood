@@ -5,6 +5,9 @@
   "price": 150,
   "discount": 10,
   "category": "Hamburguesa",
+  "classification":"Mas vendidos",
+  "score":4.5,
+  "stock":14,
   "description": "Hamburguesa doble carne, doble queso.",
   "image": "img-hamburguesa-cheddar.jpg"
  },
@@ -14,6 +17,9 @@
   "price": 180,
   "discount": 15,
   "category": "Hamburguesa",
+  "classification":"Recomendacion del cheff",
+  "score":4.0,
+  "stock":10,
   "description": "Hamburguesa con Bacon y queso cremoso, acompañado de finas hiervas",
   "image": "img-hamburguesa-bacon.jpg"
  },
@@ -23,124 +29,166 @@
   "price": 120,
   "discount": 5,
   "category": "Hamburguesa",
+  "classification":"Oferta del dia",
+  "score":3.0,
+  "stock":11,
   "description": "Hamburguesa lechuga, tomate y queso.",
   "image": "img-hamburguesa-simple.jpg"
  },
  {
   "id": 4,
   "name": "Hamburguesa con Huevo",
-  "description": "Hamburguesa lechuga, tomate y huevo.",
   "price": 130,
   "discount": 10,
-  "image": "img-hamburguesa-huevo.jpg",
-  "category": "Hamburguesa"
+  "category": "Hamburguesa",
+  "classification":"Oferta del dia",
+  "score":3.5,
+  "stock":16,
+  "description": "Hamburguesa lechuga, tomate y huevo.",
+  "image": "img-hamburguesa-huevo.jpg"
  },
  {
   "id": 5,
   "name": "Pizza muzarella",
-  "description": "Pizza Salsa de tomate, muzzarella, condimentos y aceitunas.",
   "price": 250,
   "discount": 5,
-  "image": "img-pizza-muzarella.jpg",
-  "category": "Pizza"
+  "category": "Pizza",
+  "classification":"Oferta del dia",
+  "score":3.0,
+  "stock":10,
+  "description": "Pizza Salsa de tomate, muzzarella, condimentos y aceitunas.",
+  "image": "img-pizza-muzarella.jpg"
  },
  {
   "id": 6,
   "name": "Pizza Fugazzeta",
-  "description": "Cebolla salteada, muzzarella, queso gratinado, condimentos y aceitunas.",
   "price": 270,
   "discount": 10,
-  "image": "img-pizza-fugazzeta.jpg",
-  "category": "Pizza"
+  "category": "Pizza",
+  "classification":"Oferta del dia",
+  "score":3.5,
+  "stock":20,
+  "description": "Cebolla salteada, muzzarella, queso gratinado, condimentos y aceitunas.",
+  "image": "img-pizza-fugazzeta.jpg"
  },
  {
   "id": 7,
   "name": "Pizza Jamón con Morrón",
-  "description": "Salsa de tomate, muzzarella, jamón, morrones, condimentos y aceitunas.",
   "price": 300,
   "discount": 15,
-  "image": "img-pizza-jamon-y-morrones.jpg",
-  "category": "Pizza"
+  "category": "Pizza",
+  "classification":"Oferta del dia",
+  "score":4.0,
+  "stock":18,
+  "description": "Salsa de tomate, muzzarella, jamón, morrones, condimentos y aceitunas.",
+  "image": "img-pizza-jamon-y-morrones.jpg"
  },
  {
   "id": 8,
   "name": "Pizza Napolitana",
-  "description": "Salsa de tomate, muzzarella, rodajas de tomate, queso gratinado, condimentos y aceitunas.",
   "price": 280,
   "discount": 10,
-  "image": "img-pizza-napolitana.jpg",
-  "category": "Pizza"
+  "category": "Pizza",
+  "classification":"Oferta del dia",
+  "score":3.5,
+  "stock":20,
+  "description": "Salsa de tomate, muzzarella, rodajas de tomate, queso gratinado, condimentos y aceitunas.",
+  "image": "img-pizza-napolitana.jpg"
  },
  {
   "id": 9,
   "name": "Empanada de Jamón y Queso",
-  "description": "Jamón cocido con suave queso muzzarella seleccionado",
   "price": 45,
   "discount": 5,
-  "image": "img-empanada-jamon-y-queso.jpg",
-  "category": "Empanadas"
+  "category": "Empanadas",
+  "classification":"Oferta del dia",
+  "score":4.5,
+  "stock":96,
+  "description": "Jamón cocido con suave queso muzzarella seleccionado",
+  "image": "img-empanada-jamon-y-queso.jpg"
  },
  {
     "id": 10,
     "name": "Carne cortada al cuchillo",
-    "description": "Corte de cudrada magro cortada a cuchillo, cebolla, mórron, huevo duro y un toque de sabor salteño",
     "price": 55,
     "discount": 10,
-    "image": "img-empanada-carne-cuchillo.jpg",
-    "category": "Empanadas"
+    "category": "Empanadas",
+    "classification":"Oferta del dia",
+    "score":4.7,
+    "stock":30,
+    "description": "Corte de cudrada magro cortada a cuchillo, cebolla, mórron, huevo duro y un toque de sabor salteño",
+    "image": "img-empanada-carne-cuchillo.jpg"
    },
    {
     "id": 11,
     "name": "Empanada de Pollo",
-    "description": "Corte de pechuga cocinado a fuego lento, huevo duro, cebolla caramelizada y un toque de salsas a base de especias.",
     "price": 45,
     "discount": 5,
-    "image": "img-empanada-pollo.jpg",
-    "category": "Empanadas"
+    "category": "Empanadas",
+    "classification":"Oferta del dia",
+    "score":4.0,
+    "stock":60,
+    "description": "Corte de pechuga cocinado a fuego lento, huevo duro, cebolla caramelizada y un toque de salsas a base de especias.",
+    "image": "img-empanada-pollo.jpg"
    },
    {
     "id": 12,
     "name": "Empanada de Choclo",
-    "description": "Deliciosa mezcla entre choclo entero seleccionado, choclo cremoso, nuez moscada y exquisito queso muzzarella.",
     "price": 50,
     "discount": 5,
-    "image": "img-empanada-choclo.jpg",
-    "category": "Empanadas"
+    "category": "Empanadas",
+    "classification":"Sector Saludable",
+    "score":3.5,
+    "stock":48,
+    "description": "Deliciosa mezcla entre choclo entero seleccionado, choclo cremoso, nuez moscada y exquisito queso muzzarella.",
+    "image": "img-empanada-choclo.jpg"
    },
  {
   "id": 13,
   "name": "Tarta de Jamon y Queso",
-  "description": "Quiche de muzarella y cubos de jamon cocido",
   "price": 300,
   "discount": 5,
-  "image": "img-tarta-jamon-y-queso.jpg",
-  "category": "Tartas"
+  "category": "Tartas",
+  "classification":"Oferta del dia",
+  "score":4.2,
+  "stock":18,
+  "description": "Quiche de muzarella y cubos de jamon cocido",
+  "image": "img-tarta-jamon-y-queso.jpg"
  },
  {
   "id": 14,
   "name": "Tarta de choclo",
-  "description": "Quiche de humita salteña",
   "price": 320,
   "discount": 5,
-  "image": "img-tarta-choclo.jpg",
-  "category": "Tartas"
+  "category": "Tartas",
+  "classification":"Sector Saludable",
+  "score":3.5,
+  "stock":16,
+  "description": "Quiche de humita salteña",
+  "image": "img-tarta-choclo.jpg"
  },
  {
     "id": 15,
     "name": "Tarta de Pollo",
-    "description": "Quiche de pollo y muzarella",
     "price": 300,
     "discount": 5,
-    "image": "img-tarta-de-pollo.jpg",
-    "category": "Tartas"
+    "category": "Tartas",
+    "classification":"Oferta del dia",
+    "score":4.0,
+    "stock":20,
+    "description": "Quiche de pollo y muzarella",
+    "image": "img-tarta-de-pollo.jpg"
    },
  {
   "id": 16,
   "name": "Tarta de Espinaca y Zapallo",
-  "description": "Quiche de espinaca salteadas con cebolla y capa de pure de calabaza",
   "price": 340,
   "discount": 10,
-  "image": "img-tarta-espinaca-zapallo.jpg",
-  "category": "Tartas"
+  "category": "Tartas",
+  "classification":"Sector Saludable",
+  "score":4.7,
+  "stock":22,
+  "description": "Quiche de espinaca salteadas con cebolla y capa de pure de calabaza",
+  "image": "img-tarta-espinaca-zapallo.jpg"
  }
 ]

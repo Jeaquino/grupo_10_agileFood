@@ -39,9 +39,33 @@
                                 <label class="font-weight-bold">Correo electrónico <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" placeholder="Ingresa tu correo electrónico" name="email">
                             </div>
-                            <div class="form-group mb-3">
-                                <label class="font-weight-bold">Contraseña <span class="text-danger">*</span></label>
-                                <input type="password" class="form-control" placeholder="Ingresa una contraseña" name="contraseña">
+                            <div class="form-row mb-4">
+                                <div class="form-group col-md-6">
+                                    <label class="font-weight-bold">Domicilio <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" placeholder="calle" name="calle">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label class="font-weight-bold">Enumeración <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" placeholder="altura" name="enumeracion">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label class="font-weight-bold">Piso/dpto <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" placeholder="detalle" name="aclaracion">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label class="font-weight-bold">Localidad <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" placeholder="localidad" name="localidad">
+                                </div>
+                            </div>
+                            <div class="form-row mb-2">
+                                <div class="form-group col-md-6">
+                                    <label class="font-weight-bold">Contraseña <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" placeholder="Ingrese una contraseña debe tener minimo 8 caracteres" name="contraseña">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="font-weight-bold">Verificación de contraseña <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" placeholder="Reitere su contraseña" name="verificacion">
+                                </div>
                             </div>
                             <div class="form-group mb-5">
                                 <div class="form-check">
@@ -49,6 +73,7 @@
                                     <label class="form-check-label text-muted">Al seleccionar esta casilla aceptas nuestro aviso de privacidad y los términos y condiciones</label>
                                 </div>
                             </div>
+
                             <button class="btn btn-primary width-100">Regístrate</button>
                         </form>
 
