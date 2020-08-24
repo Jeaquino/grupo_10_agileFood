@@ -1,4 +1,5 @@
-const dbProduct = require("../data/database");
+const bcrypt = require("brypt");
+const dbUser = require("../data/userDataBase");
 
 module.exports = {
 
@@ -16,5 +17,23 @@ module.exports = {
             css:"login",
             title:"Login"  
         });
+    },
+
+    crear:function(req, res, next) {
+
+        let usuario = {
+            id: 1,
+            nombre: req.body.nomnbre,
+            apellido: req.body.apellido,
+            domicilio: req.body.dirección,
+            Localidad:req.body.localidad,
+            email: req.body.email,
+            contraseña: bcrypt.hashSync(req.body.contraseña,10), //encripto la contraseña
+            categoria: req.body.categoty,
+            image:"image/" + id
+        }
+
+        dbUser.push(usuario);
+        res.redirect("/")
     }
 }

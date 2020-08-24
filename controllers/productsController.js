@@ -71,4 +71,19 @@ module.exports = {
         });
     },
 
+    crear:function(req, res, next) {
+
+        let product = {
+            id: 1,
+            name: req.body.name,
+            price: req.body.price,
+            discount: req.body.discount,
+            category:req.body.category,
+            description: req.body.description,
+            image:"image/" + id
+        }
+        dbProduct.push(product);
+        res.redirect("/")
+    }
+
 }
