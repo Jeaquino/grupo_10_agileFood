@@ -1,4 +1,4 @@
-const bcrypt = require("brypt");
+const bcrypt = require("bcrypt");
 const dbUser = require("../data/userDataBase");
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
             title:"Login"  
         });
     },
-
+/*
     crear:function(req, res, next) {
 
         let usuario = {
@@ -35,5 +35,5 @@ module.exports = {
 
         dbUser.push(usuario);
         res.redirect("/")
-    }
+    }*/
 }
