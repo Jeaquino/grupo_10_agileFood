@@ -1,13 +1,1 @@
-[
-    {
-     "id": 1,
-     "nombre": "Julian",
-     "apellido": "Aquino",
-     "domicilio": "Olegario Victor Andrade 976",
-     "Localidad":"Bella Vista",
-     "email": "julian.eduardo.aquino@gmail.com",
-     "contraseña": "jaquino",
-     "categoria": "administrador",
-     "image": "img-1.jpg"
-    }
-]
+[{"id":1,"nombre":"Julian","apellido":"Aquino","domicilio":"Olegario Victor Andrade 976","Localidad":"Bella Vista","email":"julian.eduardo.aquino@gmail.com","contraseña":"jaquino","categoria":"administrador","image":"img-1.jpg"},{"id":2,"apellido":"m","domicilio":"  undefined","Localidad":"","email":"","contraseña":"$2b$10$oOMTcEtzw3ru.JHmN9folen74UMtUP5IkmYHKiORXNc7V018Fwj0i","image":"image/undefined.jpg"}]
