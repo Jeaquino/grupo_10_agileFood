@@ -33,12 +33,13 @@ module.exports = {
             id: ultimoId +1 ,
             nombre: req.body.nomnbre,
             apellido: req.body.apellido,
-            domicilio: req.body.calle + " " + req.body.enumeracion + " " + req.body.detalle,
+            domicilio: req.body.calle + " " + req.body.numero,
+            detalle: req.body.detalle,
             Localidad:req.body.localidad,
             email: req.body.email,
             contraseña: bcrypt.hashSync(req.body.contraseña,10), //encripto la contraseña
             categoria: req.body.categoty,
-            image:"image/" + req.body.nomnbre + ".jpg"
+            image:"",
         }
 
         dbUser.push(usuario);

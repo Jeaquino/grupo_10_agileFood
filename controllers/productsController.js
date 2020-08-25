@@ -1,4 +1,5 @@
 const dbProduct = require("../data/database");
+const fs = require("fs");
 
 module.exports = {
 
@@ -75,15 +76,19 @@ module.exports = {
 
         let product = {
             id: 1,
-            name: req.body.name,
-            price: req.body.price,
+            name: req.body.nombre,
+            price: req.body.precio,
             discount: req.body.discount,
-            category:req.body.category,
+            category:req.body.categoria,
+            classification:req.body.clasificacion,
+            score:[],
+            stock:req.body.stock,
             description: req.body.description,
-            image:"image/" + id
+            image:"image/" + req.body.nombre + ".jpg" 
         }
         dbProduct.push(product);
-        res.redirect("/")
+        fs.writeFileSync("./data/productsDataBase.json",JSON.stringify(dbProduct))
+        res.redirect("/products")
     }
 
 }

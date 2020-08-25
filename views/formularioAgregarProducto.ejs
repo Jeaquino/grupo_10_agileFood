@@ -1,20 +1,20 @@
 <%- include("./partials/head.ejs") %>
     <%- include("./partials/header.ejs") %>
         <div class="contenedor">
-            <form class="mtx">
+            <form class="mtx" method="POST" action="/products/create">
                 <div>
                     <label class="col-3" for="">Producto</label>
-                    <input type="text">
+                    <input type="text" placeholder="Ingrese el nombre del producto" name="nombre" value="">
                 </div>
                 <br>
                 <div>
                     <label class="col-3" for="">Precio</label>
-                    <input type="number">
+                    <input type="number" placeholder="Ingrese precio del producto" name="precio" value="">
                 </div>
                 <br>
                 <div>
                     <label class="col-3 col-md-3" for="">Categoria</label>
-                    <select class="col-8">
+                    <select class="col-8" name="categoria" value="">
                         <option>empanadas</option>
                         <option>hamburgesa</option>
                         <option>pizzas</option>
@@ -24,7 +24,7 @@
                 <br>
                 <div class="form-group">
                     <label class="col-3" for="exampleFormControlSelect2">Clasificacion</label>
-                    <select multiple class="form-control" id="exampleFormControlSelect2">
+                    <select multiple class="form-control" id="exampleFormControlSelect2" name="clasificacion" value="">
                         <option>Oferta del dia</option>
                         <option>Mas vendidos</option>
                         <option>Sector Saludable</option>
@@ -34,13 +34,13 @@
                 </div>
                 <div>
                     <label class="col-3" for="">Cantidad</label>
-                    <input type="number">
+                    <input type="number" placeholder="Ingrese stock disponible" name="stock" value="">
                 </div>
                 <br>
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Detalle del producto</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Ingrese descripcion del producto" name="descripcion" value="" rows="3"></textarea>
                 </div>
                 <br>
                 <div class="form-group">
@@ -48,7 +48,7 @@
                     <input type="file" class="form-control-file" id="exampleFormControlFile1">
                 </div>
                 <br>
-                <button type="button" class="btn btn-dark">Subir Producto</button>
+                <button class="btn btn-dark">Subir Producto</button>
                 <br>
                 <input class="btn btn-primary" type="reset" value="Reset">
             </form>
