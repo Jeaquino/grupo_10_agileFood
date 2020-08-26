@@ -6,8 +6,8 @@ router.get("/", controller.productos)  // utilizo el metodo listar de productsCo
 router.get("/create", controller.agregar)  // utilizo el metodo agregar de productsController
 router.post("/create", controller.crear)  // utilizo el metodo crear de productsController
 router.get("/cart", controller.carrito)  // utilizo el metodo carrito de productsController
-/*router.get("/edit/:id", controller.edit)  // utilizo el metodo carrito de productsController*/
 router.get("/:id", controller.detalle)  // utilizo el metodo detalle de productsController
-/*router.get("/:id/edit", controller.editar)  // utilizo el metodo editar de productsController
-*/
+router.get("/edit/:id", controller.form)  // utilizo el metodo carrito de productsController
+router.post("/edit", controller.edit)  // utilizo el metodo carrito de productsController*/
+
 module.exports = router;

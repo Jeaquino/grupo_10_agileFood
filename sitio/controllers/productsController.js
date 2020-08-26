@@ -60,7 +60,7 @@ module.exports = {
 
         res.render('formularioAgregarProducto', { 
             title: "Agregar producto",
-            css:"formarioregistro",  
+            css:"formularioAgregarProducto",  
         });
     },
 
@@ -89,6 +89,38 @@ module.exports = {
         dbProduct.push(product);
         fs.writeFileSync("./data/productsDataBase.json",JSON.stringify(dbProduct))
         res.redirect("/products")
-    }
+    },
+
+    form:function(req, res, next) {
+
+        let id = req.params.id
+
+        let product; 
+        dbProduct.forEach( producto => {
+            if(producto.id == id){
+                product = producto
+            }
+        })
+        res.render("formularioEditarProducto",{producto: product,title:"Modificar producto", css:"formularioAgregarProducto"})             
+    },
+
+    edit:function(req, res, next) {
+
+        let product = {
+            id: 1,
+            name: req.body.nombre,
+            price: req.body.precio,
+            discount: req.body.discount,
+            category:req.body.categoria,
+            classification:req.body.clasificacion,
+            score:[],
+            stock:req.body.stock,
+            description: req.body.description,
+            image:"image/" + req.body.nombre + ".jpg" 
+        }
+        dbProduct.push(product);
+        fs.writeFileSync("./data/productsDataBase.json",JSON.stringify(dbProduct))
+        res.redirect("/products")
+    },
 
 }
