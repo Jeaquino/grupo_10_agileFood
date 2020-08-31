@@ -111,22 +111,26 @@ module.exports = {
     },
 
     edit:function(req, res, next) {
+        let idProducto = req.params.id;
 
-        let product = {
-            id: 1,
-            name: req.body.nombre,
-            price: req.body.precio,
-            discount: req.body.discount,
-            category: req.body.categoria,
-            classification:req.body.clasificacion,
-            score:[],
-            stock:req.body.stock,
-            description: req.body.description,
-            image:"image/" + req.body.nombre + ".jpg" 
-        }
-        dbProduct.push(product);
-        fs.writeFileSync("./data/productsDataBase.json",JSON.stringify(dbProduct))
+        dbProduct.forEach(producto=>{
+            if(producto.id == idProducto){
+            producto.id = idProducto;
+            producto.name = req.body.nombre;
+            producto.price = req.body.precio;
+            producto.discount = req.body.discount;
+            producto.category = req.body.categoria;
+            producto.classification = req.body.clasificacion;
+            producto.score = [];
+            producto.stock = req.body.stock;
+            producto.description = req.body.description;
+            producto.image = (req.files[0]) ? req.files[0].filename : producto.image
+            }
+        })
+        
+        fs.writeFileSync(path.join(__dirname, "../data/productsDataBase.json"),JSON.stringify(dbProduct))
         res.redirect("/products")
+        
     },
 
 }
