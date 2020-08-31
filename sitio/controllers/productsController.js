@@ -1,5 +1,6 @@
 const dbProduct = require("../data/database");
 const fs = require("fs");
+const path = require('path');
 
 module.exports = {
 
@@ -73,9 +74,14 @@ module.exports = {
     },
 
     crear:function(req, res, next) {
-
+        let ultimoId = 1; 
+        dbProduct.forEach(producto => {
+            if (producto.id > ultimoId){
+                ultimoId = producto.id;
+            }  
+        });
         let product = {
-            id: 1,
+            id: ultimoId +1,
             name: req.body.nombre,
             price: req.body.precio,
             discount: req.body.discount,
@@ -83,11 +89,11 @@ module.exports = {
             classification:req.body.clasificacion,
             score:[],
             stock:req.body.stock,
-            description: req.body.description,
-            image:"image/" + req.body.nombre + ".jpg" 
+            description: req.body.descripcion,
+            image: (req.files[0])?req.files[0].filename:"default-image.png"
         }
         dbProduct.push(product);
-        fs.writeFileSync("./data/productsDataBase.json",JSON.stringify(dbProduct))
+        fs.writeFileSync(path.join(__dirname, "..", "data", "productsDataBase.json"),JSON.stringify(dbProduct),'utf-8')
         res.redirect("/products")
     },
 
@@ -111,7 +117,7 @@ module.exports = {
             name: req.body.nombre,
             price: req.body.precio,
             discount: req.body.discount,
-            category:req.body.categoria,
+            category: req.body.categoria,
             classification:req.body.clasificacion,
             score:[],
             stock:req.body.stock,
