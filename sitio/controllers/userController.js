@@ -16,7 +16,7 @@ module.exports = {
 
         res.render('login', { 
             css:"login",
-            title:"Login"  
+            title:"Inicio de sesion"  
         });
     },
 

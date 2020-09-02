@@ -1,7 +1,7 @@
 <%- include("./partials/head.ejs") %>
 <%- include("./partials/header.ejs") %>
 <div class="contenedor">
-    <form class="mtx" action="/products/edit_method)PUT method="POST">
+    <form class="mtx" action="/products/edit/<%-producto.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
     <div>
         <label class="col-3" for="">Edición de <%-producto.name%></label>
         <input type="text" placeholder="Ingrese el nombre del producto" name="nombre" value="<%-producto.name%>">
@@ -13,9 +13,14 @@
     </div>
     <br>
     <div>
+        <label class="col-3" for="">Descuento</label>
+        <input type="number" placeholder="Ingrese descuento del producto" name="discount" value="<%-producto.discount%>">
+    </div>
+    <br>
+    <div>
         <label class="col-3 col-md-3" for="">Categoria</label>
         <select class="col-8" name="categoria" value="<%-producto.category%>">
-            <option>empanadas</option>
+            <option>Empanadas</option>
             <option>hamburgesa</option>
             <option>pizzas</option>
             <option>Tartas</option>
@@ -44,8 +49,8 @@
     </div>
     <br>
     <div class="form-group">
-        <label for="exampleFormControlFile1">Example file input</label>
-        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        <label for="exampleFormControlFile1">Seleccione una imagen</label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
     </div>
     <br>
     <button class="btn btn-dark">Subir Producto</button>

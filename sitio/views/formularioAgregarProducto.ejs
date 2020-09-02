@@ -1,7 +1,7 @@
 <%- include("./partials/head.ejs") %>
     <%- include("./partials/header.ejs") %>
         <div class="contenedor">
-            <form class="mtx" method="POST" action="/products/create">
+            <form class="mtx" method="POST" action="/products/create" enctype="multipart/form-data">
                 <div>
                     <label class="col-3" for="">Producto</label>
                     <input type="text" placeholder="Ingrese el nombre del producto" name="nombre" value="">
@@ -13,11 +13,16 @@
                 </div>
                 <br>
                 <div>
+                    <label class="col-3" for="">Descuento</label>
+                    <input type="number" placeholder="Ingrese descuento del producto" name="discount" value="">
+                </div>
+                <br>
+                <div>
                     <label class="col-3 col-md-3" for="">Categoria</label>
                     <select class="col-8" name="categoria" value="">
-                        <option>empanadas</option>
-                        <option>hamburgesa</option>
-                        <option>pizzas</option>
+                        <option>Empanadas</option>
+                        <option>Hamburguesa</option>
+                        <option>Pizza</option>
                         <option>Tartas</option>
                     </select>
                 </div>
@@ -44,11 +49,11 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="exampleFormControlFile1">Example file input</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <label for="exampleFormControlFile1">Seleccione una imagen</label>
+                    <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
                 </div>
                 <br>
-                <button class="btn btn-dark">Subir Producto</button>
+                <button type="submit" class="btn btn-dark">Subir Producto</button>
                 <br>
                 <input class="btn btn-primary" type="reset" value="Reset">
             </form>
