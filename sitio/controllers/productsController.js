@@ -119,7 +119,7 @@ module.exports = {
             image:"image/" + req.body.nombre + ".jpg" 
         }
         dbProduct.push(product);
-        fs.writeFileSync("./data/productsDataBase.json",JSON.stringify(dbProduct))
+        fs.writeFileSync(path.join( dirname, ".","data","productsDataBase.json"),JSON.stringify(dbProduct))
         res.redirect("/products")
     },
 
