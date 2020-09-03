@@ -2,14 +2,20 @@
 @import "header.css";
 @import "footer.css";
 
-.contact-box{
+.contact-box {
   margin: auto auto;
 }
 
-.contact-box img{
+.contact-box img {
   margin-top: 40px;
 }
 
-.footer{
+.footer {
   margin-top: 20px;
+}
+
+@media(min-width:768px) {
+  img {
+    width: 100%;
+  }
 }

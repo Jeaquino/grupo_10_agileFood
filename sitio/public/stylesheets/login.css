@@ -15,11 +15,11 @@ div{
     flex-wrap: wrap;
     align-items: left;
     justify-content: left;
-    text-align: left;
+    text-align: center;
 }
 
 .ladoA img{
-    width: 200%;
+    width: 100%;
 }
 
 .ladoB{
@@ -50,9 +50,11 @@ button{
 
 
 @media(min-width:768px) {
-    .login img{
-        width: 100%;
-        height: 100%;
-        background-color: snow;
+    .ladoA img{
+        width: 250%;
+    }
+
+    .ladoA{
+        text-align: left;
     }
 }

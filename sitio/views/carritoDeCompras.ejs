@@ -1,126 +1,144 @@
-<%- include("./partials/head.ejs") %> 
+<%- include("./partials/head.ejs") %>
 <%- include("./partials/header.ejs") %>
 <!--Carrito-->
 <div class="container">
-    <div class="row articulo titulo">
+    <div class="row articulo d-flex justify-content-left">
         <div class="col-3"></div>
-        <div class="detalles col-3">
-            <h3>Detalle</h3>
+        <div class="subtitulo col-2 col-md-3">
+            <h2>Detalle</h2>
         </div>
-        <div class="botones col-4">
+        <div class="col-4 subtitulo">
             <h2>Cantidad</h2>
         </div>
-        <h2>Subtotal</h2>
+        <div class="col-2 subtitulo">
+            <h2>Subtotal</h2>
+        </div>
     </div>
     <div class="row articulo">
         <img class="col-3" src="/images/productos/img-tarta-choclo.jpg" alt="">
-        <div class="detalles col-3">
+        <div class="detalles col-2 col-md-3">
             <h3>Tarta de Choclo</h3>
         </div>
-        <div class="botones col-4">
+        <div class="col-3 col-md-2">
             <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                    <option selected>cantidad</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="5">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="5">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
         </div>
-        <h2 class="col-1">$180</h2>
+        <div class="col-2">
+            <button>Eliminar producto</button>
+        </div>
+        <h2 class="col-1">$140</h2>
     </div>
     <div class="row articulo">
         <img class="col-3" src="/images/productos/img-tarta-de-pollo.jpg" alt="">
-        <div class="detalles col-3">
+        <div class="detalles col-2 col-md-3">
             <h3>Tarta de Pollo</h3>
         </div>
-        <div class="botones col-4">
+        <div class="col-3 col-md-2">
             <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                    <option selected>cantidad</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="5">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="5">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <button>Eliminar producto</button>
+        </div>
+        <h2 class="col-1">$130</h2>
+    </div>
+    <div class="row articulo">
+        <img class="col-3" src="/images/productos/img-tarta-jamon-y-queso.jpg" alt="">
+        <div class="detalles col-2 col-md-3">
+            <h3>Tarta de Jamón y queso</h3>
+        </div>
+        <div class="col-3 col-md-2">
+            <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="5">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <button>Eliminar producto</button>
         </div>
         <h2 class="col-1">$150</h2>
     </div>
     <div class="row articulo">
-            <img class="col-3" src="/images/productos/img-tarta-jamon-y-queso.jpg" alt="">
-            <div class="detalles col-3">
-                <h3>Tarta de Jamón y queso</h3>
-            </div>
-            <div class="botones col-4">
-                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                        <option selected>cantidad</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="5">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                    </select>
-            </div>
-            <h2 class="col-1">$167</h2>
-    </div>
-    <div class="row articulo">
         <img class="col-3" src="/images/productos/img-tarta-espinaca-zapallo.jpg" alt="">
-        <div class="detalles col-3">
+        <div class="detalles col-2 col-md-3">
             <h3>Tarta de Espica y Zapallo</h3>
         </div>
-        <div class="botones col-4">
+        <div class="col-3 col-md-2">
             <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                    <option selected>cantidad</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="5">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="5">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
         </div>
-        <h2 class="col-1">$140</h2>
+        <div class="col-2">
+            <button>Eliminar producto</button>
+        </div>
+        <h2 class="col-1">$120</h2>
     </div>
     <div class="row total">
-        <button class="col-2 btn1">Efectuar Pago</button>
-        <button class="col-2 btn2">Vaciar carro</button>
-        <div class="col-3">
-            <h3>Total</h3>
+        <button class="col-3 btn1">Seguir comprando</button>
+        <button class="col-3 btn2">Vaciar carro</button>
+        <div class="col-2">
+            <h2>Total</h2>
         </div>
-        <h2>$637</h2>
+        <div class="col-2">
+            <h2>$540</h2>
+        </div>
+        <button class="pago col-10 btn btn-success" type="submit" value="submit">finalizar compra</button>
     </div>
+</div>
 </div>
 
 
-<%- include("./partials/footer.ejs") %> 
+<%- include("./partials/footer.ejs") %>
