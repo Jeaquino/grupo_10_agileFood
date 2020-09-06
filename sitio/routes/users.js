@@ -5,6 +5,6 @@ const controller = require("../controllers/userController")
 router.get("/", controller.login)  // utilizo el metodo listar de productsController
 router.get("/registrarme", controller.registro)  // utilizo el metodo listar de productsController
 router.post("/registrarme", controller.crear)  // utilizo el metodo listar de productsController
-
+router.get('/Administrador', controller.productosAdmin)
 
 module.exports = router;

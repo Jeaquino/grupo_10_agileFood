@@ -1,0 +1,57 @@
+@import "general.css";
+@import "header.css";
+@import "footer.css";
+
+.nombreAdmin{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.admin{
+    color: white;
+}
+
+
+.titulo{
+    border-bottom: 1px solid var(--color-amarillo);
+    margin: 20px 0 ;
+}
+
+.titulo h2{
+    color: white;
+}
+
+.productos figure img{
+    width: 85%;
+    height: 140px;
+}
+
+.productos figure{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    align-items: flex-end;
+    justify-content: center;
+}
+.contenido{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+@media(min-width:768px) {
+    .text h5{
+        margin-bottom: 30px;
+        }
+    
+    .text div{
+        margin: 20px 0;
+    }
+
+}

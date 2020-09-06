@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const dbUser = require("../data/userDataBase");
+const dbProduct = require("../data/database");
 const fs = require("fs");
 
 module.exports = {
@@ -45,5 +46,30 @@ module.exports = {
         dbUser.push(usuario);
         fs.writeFileSync("./data/users.json",JSON.stringify(dbUser))
         res.redirect("/")
+    },
+    productosAdmin : (req,res, next)=>{
+        let categorias = [];
+        let productos = [];
+        let seccion;
+
+        dbProduct.forEach(producto => {
+            if (!categorias.includes(producto.category)){
+                categorias.push(producto.category)
+            }
+        })
+
+
+        categorias.forEach(categoria => {
+            seccion = dbProduct.filter(producto =>{
+                return producto.category == categoria
+            })
+            productos.push({categoria:categoria,
+                productos:seccion});
+        })
+        res.render('productosAdministrador',{
+            css : "productosAdmin",
+            title: "Productos Administrador",
+            productos:productos,
+        })
     }
 }
