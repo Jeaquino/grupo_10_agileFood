@@ -25,5 +25,6 @@ router.get("/cart", controller.carrito)  // utilizo el metodo carrito de product
 router.get("/:id", controller.detalle)  // utilizo el metodo detalle de productsController
 router.get("/edit/:id", controller.form)  // utilizo el metodo form de productsController
 router.put("/edit/:id",upload.any(), controller.edit)  // utilizo el metodo edit de productsController
+router.delete('/delete/:id',controller.eliminar); //utilizo el metodo eliminar de productsController
 
 module.exports = router;
