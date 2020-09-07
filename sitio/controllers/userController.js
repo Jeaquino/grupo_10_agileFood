@@ -21,6 +21,18 @@ module.exports = {
         });
     },
 
+/* verificarLogin: function (req,res,next){
+        let errors = validationResult(req);
+        if (errors.isEmpty()){
+            let usersJSON = fs.readFileSync("dbUsuarios.json")
+
+        }
+        else{
+            return res.render("login",{errors: errors.erros})
+        }
+
+    },*/
+
     crear:function(req, res, next) {
         
         let ultimoId = 0; 

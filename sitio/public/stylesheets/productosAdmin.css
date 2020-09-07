@@ -7,6 +7,7 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 20px;
+
 }
 
 .admin{
@@ -15,12 +16,17 @@
 
 
 .titulo{
-    border-bottom: 1px solid var(--color-amarillo);
+    border-bottom: 1px solid snow;
     margin: 20px 0 ;
 }
 
 .titulo h2{
     color: white;
+}
+
+.productos{
+    background-color: #F79315;
+    border-radius: 10px;
 }
 
 .productos figure img{
