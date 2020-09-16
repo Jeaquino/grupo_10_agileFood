@@ -4,7 +4,7 @@ const dbProduct = require("../data/database"); //base de datos de productos
 const fs = require("fs"); //se requiere file system
 module.exports = {
 
-    registro: function(req, res, next) {
+    registro: function(req, res, next) { //_3_me renderiza a la pagina_registroUsuario_
 
         res.render('registroUsuario', {
             css: "style",

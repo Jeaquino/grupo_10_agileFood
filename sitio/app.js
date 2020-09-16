@@ -25,7 +25,7 @@ app.use(methodOverride("_method"))
 app.use(session({ secret: "agileFood" }));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter); /*entri point de usuarios de ahi partimos */
+app.use('/users', usersRouter); /*entri point de usuarios de ahi partimos_1_esto me lleva al enrutador userRouter*/
 app.use('/products', productsRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
