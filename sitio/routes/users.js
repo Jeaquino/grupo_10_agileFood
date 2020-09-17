@@ -9,7 +9,7 @@ router.get("/", controller.login) // utilizo el metodo listar de productsControl
     /*router.post("/", check("email").isEmail().whitMessage("Email invalido"), check("password").isLength({min:8}).whitMessage("La contraseña debe tener al menos 8 caracteres"), controller.verificarLogin)  // utilizo el metodo listar de productsController*/
 router.get("/registrarme", controller.registro) // utilizo el metodo listar de productsController_2_renderiza en userControlller
 router.post("/registrarme", controller.crear, registerValidator, controller.processRegister); // utilizo el metodo listar de productsController_4_//agrego nuevo
-
+//voy a user controller
 router.get('/Administrador', controller.productosAdmin)
 
 router.get("/login", controller.login); //agregue nuevo
