@@ -24,7 +24,7 @@
                         </div>
                         <p class="text-muted mb-5">Ingresa tus datos.</p>
                         <!--el formulario tiene que bajar por POST siempre que recopile informacion sencible tiene que viajar por POST. en todo caso si los otro formularios reciban un archivo tiene que tener el enctype="multilpar/form-data-->
-                        <form method="POST" action="/users/registrarme">
+                        <form method="POST" action="/users/registrarme" enctype="multipart/form-data">
                             <div class="form-row mb-2">
                                 <div class="form-group col-md-6">
                                     <label class="font-weight-bold">Nombre <span class="text-danger">*</span></label>
@@ -67,6 +67,10 @@
                                     class="text-danger">*</span></label>
                                     <input type="password" class="form-control" placeholder="Reitere su contraseña" name="verificacion" value="">
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">Seleccione una imagen</label>
+                                <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
                             </div>
                             <div class="form-group mb-5">
                                 <div class="form-check">

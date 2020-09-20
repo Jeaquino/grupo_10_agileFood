@@ -22,6 +22,7 @@ body("email") //checkeo el email
     let usuario = dbUsuario.filter(user => { //filtro la base de datos y asigno resultado a la variable
         return user.email == value //aplico la condicion si cohincide el email que el usuario ingreso en el input con el que esta registrado con anterioridad
     })
+    //Se debe cambiar el metodo de busqueda o la consulta de la codición. Filter te devuelve un array de los resultados que coninciden con el paramatro buscado, y estas consultando el valor booleana de la variable usuario, y usuario es un array o null, por lo tanto esa consulta siempre va a arrojar false.
     if (usuario == false) {
         return true
     } else {
@@ -33,17 +34,16 @@ body("email") //checkeo el email
 check("pass")
 .isLength({
     min: 6,
-    max: 10
+    max: 12
 })
 .withMessage("la contraseña debe tener  entre 6 y 12 caracteres ok"),
 
 body("pass2")
-.custom(function(value, { req })) {
-    if (value != req.body.pass) {
+.custom(function(value,{ req }){
+    if (value != req.body.pass){
         return false
     }
-}
-return true
+    return true
 })
 .withMessage("las contraseñas no cohinciden porfavor ingrersa de nuevo")
 ]
