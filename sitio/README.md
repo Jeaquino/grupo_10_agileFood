@@ -52,3 +52,26 @@ Las conclusiones obtenidas despues de realizar la actividad de starfish, como im
 
 tablero de trabajo: https://trello.com/b/6ZkXWTMr/10-agile-food%F0%9F%8D%B1e-commerce
 
+## Bienvedido al repositorio de Agile Food!:fa-git-square:
+
+**LA ENTREGA DEL SPRINT 4 "MIDDLEWARES Y AUTENTICACIÒN" ES EL LUNES 21 DE SEPTIEMBRE DEL 2020**
+
+Se implementa en este spring: un sitio dinámico utilizando EJS como motor de plantillas, un CRUD
+de productos funcionando perfectamente con una fuente de datos basada en JSON.
+:fa-user-plus:
+&#49;. Fuente de datos de usuarios: Indispensable para darle vida a los formularios de registro,
+login y a la página de perfil ademas se podra guardar para cada usuario en un JSON.
+(Proximamente se hara una base de datos en MySQL:fa-database:)
+Objetivo
+Durante este periodo de sprint se complieron
+● El flujo de registro, login y logout de usuarios
+● Recordar al usuario para que pueda ingresar sin volverse a logear
+● Rutas accesibles sólo por huéspedes (visitantes sin login)
+● Rutas accesible sólo por usuarios (que hicieron login)
+##### En esta retropestiva se pudo notar que:
+
+1. Comenzar a hacer:
+:fa-video-camera: Mas reuniones de meet, se valora de igual manera el incremento de comunicacion por vias internas, se recomienda el uso de trello.
+2. Hacer más: :fa-mobile: adaptaciones en el ccs a pulir.:fa-css3:
+3. Continuar haciendo: :fa-user-secret: investigar , seguir comunicandonos como equipo :fa-users:
+Se editaron cambios en el proyecto antes mencionado ,vamos por buen camino :fa-thumbs-up:
