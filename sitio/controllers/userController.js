@@ -14,7 +14,8 @@ module.exports = {
 
         res.render('registroUsuario', {
             css: "style",
-            title: "Registro"
+            title: "Registro",
+            usuario: req.session.usuario
         });
     },
 
@@ -40,7 +41,7 @@ module.exports = {
         if (errors.isEmpty()) {
             let nuevosUsuarios = {
                 id: ultimoId + 1,
-                nombre: req.body.nomnbre,
+                nombre: req.body.nombre,
                 apellido: req.body.apellido,
                 domicilio: req.body.calle + " " + req.body.numero,
                 detalle: req.body.detalle,
@@ -58,7 +59,8 @@ module.exports = {
                 css: "style",
                 title: "Registro",
                 errors: errors.mapped(),
-                inputs: req.body
+                inputs: req.body,
+                usuario: req.session.usuario
             })
         }
     },
@@ -72,7 +74,7 @@ module.exports = {
                         id: usuario.id,
                         nick: usuario.nombre + " " + usuario.apellido,
                         email: usuario.email,
-                        avatar: usuario.avatar
+                        avatar: usuario.image
                     }
                 }
             });
@@ -104,7 +106,6 @@ module.exports = {
             }
         })
 
-
         categorias.forEach(categoria => {
             seccion = dbProduct.filter(producto => {
                 return producto.category == categoria
@@ -114,10 +115,12 @@ module.exports = {
                 productos: seccion
             });
         })
+
         res.render('productosAdministrador', {
             css: "productosAdmin",
             title: "Productos Administrador",
             productos: productos,
+            usuario: req.session.usuario
         })
     },
 
