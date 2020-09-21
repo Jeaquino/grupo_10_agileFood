@@ -41,8 +41,11 @@ check("numero")
 .isLength({
     min: 1
 })
-.isNumeric()
 .withMessage("Ingrese la enumeración de su domicilio"),
+check("numero")
+
+.isNumeric()
+.withMessage("solo se aceptan números"),
 
 check("localidad") //checkeo el apellido
 .isLength({
@@ -55,8 +58,11 @@ check("contraseña")
     min: 8,
     max: 18
 })
+.withMessage("debe ingresar una contraseña 6 y 12 caracteres"),
+
+check("contraseña")
 .isAlphanumeric()
-.withMessage("la contraseña debe tener  entre 6 y 12 caracteres, solo se aceptan valores alphanumericos"),
+.withMessage("Solo se aceptan valores alphanumericos"),
 
 body("verificacion")
 .custom(function(value,{ req }){
@@ -65,6 +71,12 @@ body("verificacion")
     }
     return true
 })
-.withMessage("las contraseñas no cohinciden porfavor intente nuevamente")
+.withMessage("las contraseñas no cohinciden porfavor intente nuevamente"),
+
+check("aceptacion")
+.isLength({
+    min: 1
+})
+.withMessage("Debe aceptar nuestras condiciones"),
 ]
 /*salen errorres  */
