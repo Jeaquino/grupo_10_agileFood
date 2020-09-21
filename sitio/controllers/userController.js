@@ -22,7 +22,8 @@ module.exports = {
 
         res.render('login', {
             css: "login",
-            title: "Inicio de sesion"
+            title: "Inicio de sesion",
+            usuario: req.session.usuario
         });
     },
     /*agregue nuevoo proceso de registro  */
@@ -126,7 +127,8 @@ module.exports = {
             res.cookie('userAgileFood', '', {
                 maxAge: -1
             })
-        } 
+        }
+        console.log(typeof usuario) 
         return res.redirect('/')
     }
 }
