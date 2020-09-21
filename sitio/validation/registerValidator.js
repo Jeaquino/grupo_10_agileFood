@@ -1,5 +1,5 @@
 const { check, validatorResult, body } = require("express-validator");
-const userDataBase = require("../data/userDataBase");
+const dbUsuario = require("../data/userDataBase");
 /*aca solicito express validator lo requiero de esta forma con la _base de datos_propiamente dicha 
 se exporta un array de validaciones _aca abajo_ cada una de ellas*/
 module.exports = [
@@ -7,13 +7,13 @@ check("nombre") //checkeo el nombre
 .isLength({
     min: 1
 })
-.withMessage("debes ingresar un nombre real y verdadero"),
+.withMessage("debes ingresar un nombre real, no se aceptan simbolos, ni números"),
 
 check("apellido") //checkeo el apellido
 .isLength({
     min: 1
 })
-.withMessage("debes ingresar un apellido real y verdadero"),
+.withMessage("debes ingresar un apellido real, no se aceptan simbolos, ni números "),
 
 body("email") //checkeo el email
 .custom(function(value) {
@@ -29,22 +29,42 @@ body("email") //checkeo el email
         return false
     }
 })
-.withMessage("Este email ya esta registrado con exito!!!"),
+.withMessage("Este mail ya se encuentre registrado, por favor utilice otro"),
 
-check("pass")
+check("calle") //checkeo el apellido
 .isLength({
-    min: 6,
-    max: 12
+    min: 1
 })
-.withMessage("la contraseña debe tener  entre 6 y 12 caracteres ok"),
+.withMessage("Ingrese el nombre de la calle, solo el nombre"),
 
-body("pass2")
+check("numero")
+.isLength({
+    min: 1
+})
+.isNumeric()
+.withMessage("Ingrese la enumeración de su domicilio"),
+
+check("localidad") //checkeo el apellido
+.isLength({
+    min: 1
+})
+.withMessage("Ingrese su localidad, solo el nombre"),
+
+check("contraseña")
+.isLength({
+    min: 8,
+    max: 18
+})
+.isAlphanumeric()
+.withMessage("la contraseña debe tener  entre 6 y 12 caracteres, solo se aceptan valores alphanumericos"),
+
+body("verificacion")
 .custom(function(value,{ req }){
-    if (value != req.body.pass){
+    if (value != req.body.contraseña){
         return false
     }
     return true
 })
-.withMessage("las contraseñas no cohinciden porfavor ingrersa de nuevo")
+.withMessage("las contraseñas no cohinciden porfavor intente nuevamente")
 ]
 /*salen errorres  */

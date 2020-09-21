@@ -76,8 +76,8 @@ module.exports = {
                 }
             });
             if (req.body.recordar) {
-                res.cookie('userMercadoLiebre', req.session.usuario, {
-                    maxAge: 1000 * 60 * 2
+                res.cookie('userAgileFood', req.session.usuario, {
+                    maxAge: 1000 * 60 * 60
                 })
             }
             res.redirect('/')

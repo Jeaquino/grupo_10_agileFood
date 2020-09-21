@@ -1,3 +1,4 @@
+
 <%- include("./partials/head.ejs") %>
     <%- include("./partials/header.ejs") %>
 
@@ -27,26 +28,42 @@
                         <form method="POST" action="/users/registrarme" enctype="multipart/form-data">
                             <div class="form-row mb-2">
                                 <div class="form-group col-md-6">
+                                    
                                     <label class="font-weight-bold">Nombre <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" placeholder="Tu nombre" name="nombre" value="">
+                                    <input type="text" 
+                                    class="form-control <%= (typeof inputs != 'undefined' && typeof errors.nombre == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.nombre)?"is-invalid": ""  %>" 
+                                    id="nombre"  name="nombre"  value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:'' %>" placeholder="Tu nombre"/>
+                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.nombre)?errors.nombre.msg: "" %> </small>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="font-weight-bold">Apellido <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" placeholder="Tu apellido" name="apellido" value="">
+                                    <input type="text" 
+                                    class="form-control <%= (typeof inputs != 'undefined' && typeof errors.apellido == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.apellido)?"is-invalid": ""  %>" 
+                                    id="apellido"  name="apellido"  value="<%= (typeof inputs != 'undefined' && inputs.apellido)?inputs.apellido:'' %>" placeholder="Tu apellido"/>
+                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.apellido)?errors.apellido.msg: "" %> </small>
                                 </div>
                             </div>
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">Correo electrónico <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" placeholder="Ingresa tu correo electrónico" name="email" value="">
+                                <input type="email" 
+                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.email == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.email)?"is-invalid": ""  %>" 
+                                    id="email"  name="email"  value="<%= (typeof inputs != 'undefined' && inputs.email)?inputs.email:'' %>" placeholder="Tu e-mail"/>
+                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.email)?errors.email.msg: "" %> </small>
                             </div>
                             <div class="form-row mb-4">
                                 <div class="form-group col-md-6">
                                     <label class="font-weight-bold">Domicilio <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" placeholder="calle" name="calle" value="">
+                                    <input type="text" 
+                                    class="form-control <%= (typeof inputs != 'undefined' && typeof errors.calle == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.calle)?"is-invalid": ""  %>" 
+                                    id="calle"  name="calle"  value="<%= (typeof inputs != 'undefined' && inputs.calle)?inputs.calle:'' %>" placeholder="Tu calle"/>
+                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.calle)?errors.calle.msg: "" %> </small>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label class="font-weight-bold">Número <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" placeholder="altura" name="numero" value="">
+                                    <input type="text" 
+                                    class="form-control <%= (typeof inputs != 'undefined' && typeof errors.numero == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.numero)?"is-invalid": ""  %>" 
+                                    id="numero"  name="numero"  value="<%= (typeof inputs != 'undefined' && inputs.numero)?inputs.numero:'' %>" placeholder="Enumeración"/>
+                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.numero)?errors.numero.msg: "" %> </small>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label class="font-weight-bold">Piso/dpto <span class="text-danger">*</span></label>
@@ -54,18 +71,27 @@
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label class="font-weight-bold">Localidad <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" placeholder="localidad" name="localidad" value="">
+                                    <input type="text" 
+                                    class="form-control <%= (typeof inputs != 'undefined' && typeof errors.localidad == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.localidad)?"is-invalid": ""  %>" 
+                                    id="localidad"  name="localidad"  value="<%= (typeof inputs != 'undefined' && inputs.localidad)?inputs.localidad:'' %>" placeholder="Tu localidad"/>
+                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.localidad)?errors.localidad.msg: "" %> </small>
                                 </div>
                             </div>
                             <div class="form-row mb-2">
                                 <div class="form-group col-md-6">
                                     <label class="font-weight-bold">Contraseña <span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" placeholder="Ingrese una contraseña debe tener minimo 8 caracteres" name="contraseña" value="">
+                                    <input type="password" 
+                                    class="form-control <%= (typeof inputs != 'undefined' && typeof errors.contraseña == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.constraseña)?"is-invalid": ""  %>" 
+                                    id="contraseña"  name="contraseña"  value="<%= (typeof inputs != 'undefined' && inputs.contraseña)?inputs.contraseña:'' %>" placeholder="Debe tener min de 8 caracteres y un maximo de 18, solo se aceptan valores alphanumericos"/>
+                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.contraseña)?errors.contraseña.msg: "" %> </small>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="font-weight-bold">Verificación de contraseña <span
                                     class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" placeholder="Reitere su contraseña" name="verificacion" value="">
+                                    <input type="password"
+                                    class="form-control <%= (typeof inputs != 'undefined' && typeof errors.verificacion == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.verificacion)?"is-invalid": ""  %>" 
+                                    id="verificacion"  name="verificacion"  value="<%= (typeof inputs != 'undefined' && inputs.verificacion)?inputs.verificacion:'' %>" placeholder="Reitere su contraseña"/>
+                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.verificacion)?errors.verificacion.msg: "" %> </small> 
                                 </div>
                             </div>
                             <div class="form-group">
