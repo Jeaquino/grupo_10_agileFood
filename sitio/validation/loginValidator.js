@@ -7,10 +7,10 @@ module.exports = [
     .isEmail()
     .withMessage('Ingrese un email válido'),
 
-    check('pass')
-    .isLength(8,16)
+    check('password')
+    .isLength(8,18)
     .isAlphanumeric()
-    .withMessage('Debes ingresar una contraseña, debe poseer valores alfanuméricos, un minimo de 6 caracteres y un maximo de 16'),
+    .withMessage('Debes ingresar una contraseña, debe poseer valores alfanuméricos, un minimo de 6 caracteres y un maximo de 18'),
 
     body('email')
     .custom(function(value){
@@ -26,7 +26,7 @@ module.exports = [
     })
     .withMessage('El usuario no está registrado'), //mensaje de error
 
-    body('pass')
+    body('password')
     .custom((value,{req})=>{
         let result = true;
         dbUsuarios.forEach(user => {
