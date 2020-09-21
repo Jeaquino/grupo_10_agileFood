@@ -3,6 +3,7 @@ const router = express.Router();
 
 const multer = require('multer');
 const path = require('path');
+const sessionUserCheck = require("../middlewares/sessionUserCheck");
 
 
 let storage = multer.diskStorage({
@@ -21,7 +22,7 @@ const controller = require("../controllers/productsController");
 router.get("/", controller.productos)  // utilizo el metodo listar de productsController
 router.get("/create", controller.agregar)  // utilizo el metodo agregar de productsController
 router.post("/create", upload.any(), controller.crear)  // utilizo el metodo crear de productsController
-router.get("/cart", controller.carrito)  // utilizo el metodo carrito de productsController
+router.get("/cart", sessionUserCheck, controller.carrito)  // utilizo el metodo carrito de productsController
 router.get("/:id", controller.detalle)  // utilizo el metodo detalle de productsController
 router.get("/edit/:id", controller.form)  // utilizo el metodo form de productsController
 router.put("/edit/:id",upload.any(), controller.edit)  // utilizo el metodo edit de productsController

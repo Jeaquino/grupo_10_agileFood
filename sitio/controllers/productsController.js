@@ -24,7 +24,8 @@ module.exports = {
             title: productoElegido.name,
             producto: productoElegido,
             recomendaciones: recomendaciones,
-            css:"detailProducts"  
+            css:"detailProducts",
+            usuario: req.session.usuario  
         });
     },
 
@@ -53,7 +54,8 @@ module.exports = {
             title: "Productos",
             categorias:categorias,
             productos:productos,
-            css:"Productos",  
+            css:"Productos",
+            usuario: req.session.usuario  
         });
     },
 
@@ -61,7 +63,8 @@ module.exports = {
 
         res.render('formularioAgregarProducto', { 
             title: "Agregar producto",
-            css:"formularioAgregarProducto",  
+            css:"formularioAgregarProducto",
+            usuario: req.session.usuario  
         });
     },
 
@@ -69,7 +72,8 @@ module.exports = {
 
         res.render('carritoDeCompras', { 
             css:"carritoDeCompras",
-            title:"carrito de compras"  
+            title:"carrito de compras",
+            usuario: req.session.usuario  
         });
     },
 
@@ -107,7 +111,10 @@ module.exports = {
                 product = producto
             }
         })
-        res.render("formularioEditarProducto",{producto: product,title:"Modificar producto", css:"formularioAgregarProducto"})             
+        res.render("formularioEditarProducto",
+        {producto: product,title:"Modificar producto", 
+        css:"formularioAgregarProducto",
+        usuario: req.session.usuario})             
     },
 
     edit:function(req, res, next) {
