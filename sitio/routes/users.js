@@ -16,6 +16,6 @@ router.post("/registrarme", upImagePerfil.any(), registerValidator, controller.p
 
 router.get('/Administrador',sessionUserCheck, controller.productosAdmin)
 
-//router.get("/logout", controller.logout); //agregue nuevo
+router.get('/logout',controller.logout);
 
 module.exports = router;

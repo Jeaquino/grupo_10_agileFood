@@ -92,34 +92,6 @@ module.exports = {
         }
     },
 
-    crear: function (req, res, next) {
-
-        let ultimoId = 0;
-        if (dbUser.lenght() > 0) {
-            dbUser.forEach(user => {
-                if (user.id > ultimoId) {
-                    ultimoId = user.id;
-                }
-            })
-        }
-
-        let usuario = {
-            id: ultimoId + 1,
-            nombre: req.body.nomnbre,
-            apellido: req.body.apellido,
-            domicilio: req.body.calle + " " + req.body.numero,
-            detalle: req.body.detalle,
-            Localidad: req.body.localidad,
-            email: req.body.email,
-            contraseña: bcrypt.hashSync(req.body.contraseña, 10), //encripto la contraseña
-            categoria: req.body.categoty,
-            image: "",
-        }
-
-        dbUser.push(usuario);
-        fs.writeFileSync("./data/users.json", JSON.stringify(dbUser))
-        res.redirect("/")
-    },
     productosAdmin: (req, res, next) => {
         let categorias = [];
         let productos = [];
@@ -146,5 +118,15 @@ module.exports = {
             title: "Productos Administrador",
             productos: productos,
         })
+    },
+
+    logout:function (req, res) {
+        req.session.destroy();
+        if (req.cookies.userAgileFood) {
+            res.cookie('userAgileFood', '', {
+                maxAge: -1
+            })
+        } 
+        return res.redirect('/')
     }
 }

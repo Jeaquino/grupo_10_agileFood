@@ -14,15 +14,23 @@
         <div class="col-12">
             <div class="user">
                 <ul class="user">
-                    <li><a href="http://localhost:3001/products/cart"><span class="badge badge-pill badge-info">0</span><i class="fas fa-shopping-basket"></i>Mi pedido</a>
+                    <li><a href="http://localhost:3001/products/cart"><span
+                                class="badge badge-pill badge-info">0</span><i
+                                class="fas fa-shopping-basket"></i>Mipedido</a></li>
+                    <% if (typeof usuario == undefined){ %>
                     <li><a href="http://localhost:3001/users"><i class="fas fa-user-circle"></i>Login</a></li>
+                    <% } else { %>
+                    <li><a href="http://localhost:3001/users/logout"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</a></li>%>
+                    <% } %>
                 </ul>
             </div>
         </div>
         <div>
             <nav class="navbar-expand-md">
                 <!--boton de hamburguesa-->
-                <button class="navbar-toggler burger" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars "></i></button>
+                <button class="navbar-toggler burger" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation"><i class="fas fa-bars "></i></button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="menu navbar-nav d-flex justify-content-between" style="width: 100%;">
                         <li><a href="http://localhost:3001/products">Nuestra carta</a></li>

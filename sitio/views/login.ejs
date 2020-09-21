@@ -2,11 +2,11 @@
 <%- include("./partials/header.ejs") %>
 
 <div class="container">
-    <div class="row fondo" >
+    <div class="row fondo">
         <div class="titulo col-12">
             <h2><%- title %> </h2>
         </div>
-        <div class="col-12 col-md-6 ladoA" >
+        <div class="col-12 col-md-6 ladoA">
             <div class=" logo col-12 col-md-5 col-lg-6 col-xl-5 d-flex justify-content-center">
                 <figure>
                     <img src="/images/logo.png" alt="logo">
@@ -21,16 +21,29 @@
             <form action="/users" method="POST">
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="text" class="form-control" id="" placeholder="Ingrese su email " name="email">
+                    <input type="email"
+                        class="form-control <%= (typeof inputs != 'undefined' && typeof errors.email == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.email)?"is-invalid": ""  %>"
+                        id="email" name="email"
+                        value="<%= (typeof inputs != 'undefined' && inputs.email)?inputs.email:'' %>"
+                        placeholder="Tu e-mail" />
+                    <small
+                        class="text-danger"><%= (typeof errors != 'undefined' && errors.email)?errors.email.msg: "" %>
+                    </small>
                 </div>
                 <div class="form-group">
                     <label for="">Contraseña</label>
-                    <input type="password" class="form-control" id="" placeholder="Ingrese Contraseña" name="password">
+                    <input type="password"
+                        class="form-control <%= (typeof inputs != 'undefined' && typeof errors.contraseña == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.constraseña)?"is-invalid": ""  %>"
+                        id="contraseña" name="contraseña"
+                        value="<%= (typeof inputs != 'undefined' && inputs.contraseña)?inputs.contraseña:'' %>"
+                        placeholder="Debe tener min de 8 caracteres y un maximo de 18, solo se aceptan valores alphanumericos" />
+                    <small
+                        class="text-danger"><%= (typeof errors != 'undefined' && errors.contraseña)?errors.contraseña.msg: "" %>
+                    </small>
                 </div>
                 <button class="col-12" type="submit">Login</button>
                 <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1"
-                        name="recordar">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="recordar">
                     <label class="form-check-label" for="exampleCheck1">Recordarme</label>
                 </div>
                 <div>
