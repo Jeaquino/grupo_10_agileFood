@@ -1,47 +1,47 @@
 module.exports = (sequelize,dataTypes) => {
-    let alias = "Usuarios";
+    let alias = "Domicilios";
     let cols = {
-        idProducto:{
+        idDomicilio:{
             type: dataTypes.INTEGER,
             primaryKey: true,
             autoIncremet: true
         },
-        nombre:{
-            type: dataTypes.STRING
-        },
-        precio:{
-            type: dataTypes.DECIMAL
-        },
-        descuento:{
+        idUsuario:{
             type: dataTypes.INTEGER
         },
-        categoria:{
-            type: dataTypes.STRING
-        },
-        clasificacion:{
-            type: dataTypes.STRING
-        },
-        puntaje:{
+        calle:{
             type: dataTypes.DECIMAL
         },
-        stock:{
+        altura:{
             type: dataTypes.INTEGER
+        },
+        departamento:{
+            type: dataTypes.STRING
+        },
+        localidad:{
+            type: dataTypes.STRING
+        },
+        provincia:{
+            type: dataTypes.STRING
+        },
+        pais:{
+            type: dataTypes.STRING
         },
         descripcion:{
             type: dataTypes.STRING
         },
-        imagen:{
-            type: dataTypes.STRING
+        codigoPostal:{
+            type: dataTypes.INTEGER
         },
     };
 
     let config = {
-        tableName: "Usuarios",
+        tableName: "Domicilios",
         timestamps: false
     }
 
-    const Usuario = sequelize.define(alias,cols,config)
+    const Domicilio = sequelize.define(alias,cols,config)
 
-    return Usuario
+    return Domcilio
 
 }

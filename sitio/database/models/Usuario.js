@@ -1,7 +1,7 @@
 module.exports = (sequelize,dataTypes) => {
     let alias = "Usuarios";
     let cols = {
-        id:{
+        idUsuario:{
             type: dataTypes.INTEGER,
             primaryKey: true,
             autoIncremet: true
@@ -12,11 +12,8 @@ module.exports = (sequelize,dataTypes) => {
         apellido:{
             type: dataTypes.STRING
         },
-        domicilio:{
-            type: dataTypes.STRING
-        },
-        localidad:{
-            type: dataTypes.STRING
+        dni:{
+            type: dataTypes.INTEGER
         },
         email:{
             type: dataTypes.STRING
@@ -24,8 +21,14 @@ module.exports = (sequelize,dataTypes) => {
         constraseña:{
             type: dataTypes.STRING
         },
-        admin:{
-            type: dataTypes.BOOLEAN
+        idDomicilio:{
+            type: dataTypes.INTEGER
+        },
+        categoria:{
+            type: dataTypes.STRING
+        },
+        imagen:{
+            type: dataTypes.STRING
         },
     };
     let config = {

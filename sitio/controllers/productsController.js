@@ -1,4 +1,6 @@
 const dbProduct = require("../data/database");
+const db = require("../data/database/models");
+const sequelize = db.sequelize;
 const fs = require("fs");
 const path = require('path');
 
