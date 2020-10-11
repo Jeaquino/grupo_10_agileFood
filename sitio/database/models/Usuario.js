@@ -1,5 +1,5 @@
 module.exports = (sequelize,dataTypes) => {
-    let alias = "Usuarios";
+    let alias = "usuarios";
     let cols = {
         idUsuario:{
             type: dataTypes.INTEGER,
@@ -7,28 +7,28 @@ module.exports = (sequelize,dataTypes) => {
             autoIncremet: true
         },
         nombre:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
         apellido:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
         dni:{
-            type: dataTypes.INTEGER
+            type: dataTypes.INTEGER(8)
         },
         email:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
         constraseña:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
         idDomicilio:{
             type: dataTypes.INTEGER
         },
         categoria:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
         imagen:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
     };
     let config = {
@@ -37,6 +37,23 @@ module.exports = (sequelize,dataTypes) => {
     }
 
     const Usuario = sequelize.define(alias,cols,config)
+
+    Usuario.associate = function(models) {
+
+        Usuario.belongsToMany(models.productos, {
+            as: 'producto',
+            through: "carrito",
+            foreignKey: "idUsuario",
+            otherKey: "idProducto",
+            timestamps: false
+        })
+
+    /*  Usuario.belongsTo(models.domicilios, {
+            as: "Direccion",
+            ForeignKey: "idUsuario",
+        })*/
+    }
+        
 
     return Usuario
 

@@ -1,11 +1,10 @@
 const dbUser = require("../data/userDataBase"); //base de datos de usuarios
 const dbProduct = require("../data/database"); //base de datos de productos
+const db = require('../database/models');// requiero la base de datos de mysql
 
 const bcrypt = require("bcrypt"); //se requiere encriptado
 const fs = require("fs"); //se requiere file system---
-const {
-    validationResult
-} = require("express-validator");
+const {validationResult} = require("express-validator");
 const path = require("path")
 
 module.exports = {
@@ -30,31 +29,28 @@ module.exports = {
     /*agregue nuevoo proceso de registro  */
     processRegister: function (req, res) {
         let errors = validationResult(req);
-        let ultimoId = 0;
-
-        dbUser.forEach(user => {
-            if (user.id > ultimoId) {
-                ultimoId = user.id;
-            }
-        })
 
         if (errors.isEmpty()) {
-            let nuevosUsuarios = {
-                id: ultimoId + 1,
-                nombre: req.body.nombre,
-                apellido: req.body.apellido,
-                domicilio: req.body.calle + " " + req.body.numero,
-                detalle: req.body.detalle,
-                Localidad: req.body.localidad,
-                email: req.body.email,
+            db.Usuarios.create({
+                idUsuario:"1",
+                nombre: req.body.nombre.trim(),
+                apellido: req.body.apellido.trim(),
+                dni: "35335894",
+                email: req.body.email.trim(),
                 contraseña: bcrypt.hashSync(req.body.contraseña, 10), //encripto la contraseña
-                image: (req.files[0])?req.files[0].filename:"default-image.png",
-                rol: "user"
-            }
-            dbUser.push(nuevosUsuarios);
-            fs.writeFileSync(path.join(__dirname, '..', 'data', 'userDataBase.json'), JSON.stringify(dbUser), 'utf-8');
-            return res.redirect('/users/');
-        } else {
+                idDomicilio:"1",
+                categoria:"1",
+                imagen: (req.files[0])?req.files[0].filename:"default-image.png",
+            })
+            .then(result => {
+                console.log(result)
+                res.redirect('/users/');
+            })
+            .catch(error => {
+                res.send(error)
+            }) 
+        } 
+        else {
             res.render("registroUsuario", {
                 css: "style",
                 title: "Registro",

@@ -1,2 +1,1 @@
-ALTER TABLE DOMICILIOS
-DROP CODIGO POSTAL  
+select * from usuarios
