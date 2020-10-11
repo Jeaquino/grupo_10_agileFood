@@ -42,13 +42,13 @@ module.exports = (sequelize,dataTypes) => {
 
     const Domicilio = sequelize.define(alias,cols,config)
 
-    /*Domicilio.associate = function(models) {
+    Domicilio.associate = function(models) {
 
-        Domicilio.belongsToMany(models.usuarios, {
-            as: "Direccion",
+        Domicilio.belongsTo(models.usuarios, {
+            as: "direccion",
             ForeignKey: "idUsuario",
         })
-    }*/
+    }
 
     return Domicilio
 

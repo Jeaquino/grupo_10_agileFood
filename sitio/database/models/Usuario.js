@@ -48,10 +48,10 @@ module.exports = (sequelize,dataTypes) => {
             timestamps: false
         })
 
-    /*  Usuario.belongsTo(models.domicilios, {
-            as: "Direccion",
+        Usuario.hasMany(models.domicilios, {
+            as: "domicilio",
             ForeignKey: "idUsuario",
-        })*/
+        })
     }
         
 
