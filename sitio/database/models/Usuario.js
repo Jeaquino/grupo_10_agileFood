@@ -4,22 +4,27 @@ module.exports = (sequelize,dataTypes) => {
         idUsuario:{
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoIncremet: true
+            autoIncremet: true,
+            allowNull:false,
         },
         nombre:{
-            type: dataTypes.STRING(100)
+            type: dataTypes.STRING(100),
+            allowNull:false,
         },
         apellido:{
-            type: dataTypes.STRING(100)
+            type: dataTypes.STRING(100),
+            allowNull:false,
         },
         dni:{
             type: dataTypes.INTEGER(8)
         },
         email:{
-            type: dataTypes.STRING(100)
+            type: dataTypes.STRING(100),
+            allowNull:false,
+            unique:true
         },
         constraseña:{
-            type: dataTypes.STRING(100)
+            type: dataTypes.STRING(100),
         },
         idDomicilio:{
             type: dataTypes.INTEGER

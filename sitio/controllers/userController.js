@@ -1,6 +1,6 @@
 const dbUser = require("../data/userDataBase"); //base de datos de usuarios
 const dbProduct = require("../data/database"); //base de datos de productos
-const db = require('../database/models');// requiero la base de datos de mysql
+const db = require('../database/models'); // requiero la base de datos de mysql
 
 const bcrypt = require("bcrypt"); //se requiere encriptado
 const fs = require("fs"); //se requiere file system---
@@ -31,26 +31,22 @@ module.exports = {
         let errors = validationResult(req);
 
         if (errors.isEmpty()) {
-            db.Usuarios.create({
-                idUsuario:"1",
-                nombre: req.body.nombre.trim(),
-                apellido: req.body.apellido.trim(),
-                dni: "35335894",
-                email: req.body.email.trim(),
-                contraseña: bcrypt.hashSync(req.body.contraseña, 10), //encripto la contraseña
-                idDomicilio:"1",
-                categoria:"1",
-                imagen: (req.files[0])?req.files[0].filename:"default-image.png",
-            })
-            .then(result => {
-                console.log(result)
-                res.redirect('/users/');
-            })
-            .catch(error => {
-                res.send(error)
-            }) 
-        } 
-        else {
+            db.usuarios.create({
+                    idUsuario:1,
+                    nombre: req.body.nombre.trim(),
+                    apellido: req.body.apellido.trim(),
+                    email: req.body.email.trim(),
+                    contraseña: bcrypt.hashSync(req.body.contraseña, 10), //encripto la contraseña
+                    imagen: (req.files[0]) ? req.files[0].filename : "default-image.png",
+                })
+                .then(result => {
+                    console.log(result)
+                    res.redirect('/users/');
+                })
+                .catch(error => {
+                    res.send(error)
+                })
+        } else {
             res.render("registroUsuario", {
                 css: "style",
                 title: "Registro",
@@ -120,14 +116,14 @@ module.exports = {
         })
     },
 
-    logout:function (req, res) {
+    logout: function (req, res) {
         req.session.destroy();
         if (req.cookies.userAgileFood) {
             res.cookie('userAgileFood', '', {
                 maxAge: -1
             })
         }
-        console.log(typeof usuario) 
+        console.log(typeof usuario)
         return res.redirect('/')
     }
 }
