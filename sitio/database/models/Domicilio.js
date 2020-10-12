@@ -6,31 +6,31 @@ module.exports = (sequelize,dataTypes) => {
             primaryKey: true,
             autoIncremet: true
         },
-        idUsuario:{
-            type: dataTypes.INTEGER
-        },
         calle:{
-            type: dataTypes.DECIMAL
+            type: dataTypes.INTEGER(8)
         },
         altura:{
-            type: dataTypes.INTEGER
+            type: dataTypes.INTEGER(100)
         },
         departamento:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
         localidad:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
         provincia:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
         pais:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
         descripcion:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
         codigoPostal:{
+            type: dataTypes.INTEGER(8)
+        },
+        idUsuario:{
             type: dataTypes.INTEGER
         },
     };
@@ -45,7 +45,7 @@ module.exports = (sequelize,dataTypes) => {
     Domicilio.associate = function(models) {
 
         Domicilio.belongsTo(models.usuarios, {
-            as: "direccion",
+            as: "domicilio",
             ForeignKey: "idUsuario",
         })
     }

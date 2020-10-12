@@ -68,7 +68,7 @@ ENGINE = InnoDB;
 -- Table `agilefood`.`usuarios`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `agilefood`.`usuarios` (
-  `idUsuario` INT GENERATED ALWAYS AS () VIRTUAL,
+  `idUsuario` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
   `apellido` VARCHAR(100) NOT NULL,
   `dni` INT(8) NULL,

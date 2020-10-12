@@ -7,31 +7,31 @@ module.exports = (sequelize,dataTypes) => {
             autoIncremet: true
         },
         nombre:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
         precio:{
-            type: dataTypes.DECIMAL
+            type: dataTypes.DECIMAL(10,2)
         },
         descuento:{
             type: dataTypes.INTEGER
         },
         categoria:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
         clasificacion:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
         puntaje:{
-            type: dataTypes.DECIMAL
+            type: dataTypes.DECIMAL(2,2)
         },
         stock:{
             type: dataTypes.INTEGER
         },
         descripcion:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(300)
         },
         imagen:{
-            type: dataTypes.STRING
+            type: dataTypes.STRING(100)
         },
     };
 
@@ -46,7 +46,7 @@ module.exports = (sequelize,dataTypes) => {
 
         Producto.belongsToMany(models.usuarios, {
             as: 'usuarios',
-            through: "carrito",
+            through: "usuario_producto",
             foreignKey: "idProducto",
             otherKey: "idUsuario",
             timestamps: false
