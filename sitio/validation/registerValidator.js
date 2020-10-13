@@ -53,20 +53,20 @@ check("localidad") //checkeo el apellido
 })
 .withMessage("Ingrese su localidad, solo el nombre"),
 
-check("contraseña")
+check("contrasena")
 .isLength({
     min: 8,
     max: 18
 })
 .withMessage("debe ingresar una contraseña 6 y 12 caracteres"),
 
-check("contraseña")
+check("contrasena")
 .isAlphanumeric()
 .withMessage("Solo se aceptan valores alphanumericos"),
 
 body("verificacion")
 .custom(function(value,{ req }){
-    if (value != req.body.contraseña){
+    if (value != req.body.contrasena){
         return false
     }
     return true

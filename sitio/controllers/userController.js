@@ -4,7 +4,9 @@ const db = require('../database/models'); // requiero la base de datos de mysql
 
 const bcrypt = require("bcrypt"); //se requiere encriptado
 const fs = require("fs"); //se requiere file system---
-const {validationResult} = require("express-validator");
+const {
+    validationResult
+} = require("express-validator");
 const path = require("path")
 
 module.exports = {
@@ -32,21 +34,21 @@ module.exports = {
 
         if (errors.isEmpty()) {
             db.usuarios.create({
-                nombre: req.body.nombre.trim(),
-                apellido: req.body.apellido.trim(),
-                email: req.body.email.trim(),
-                contrasena: bcrypt.hashSync(req.body.contraseña, 10), //encripto la contraseña
-                imagen: (req.files[0]) ? req.files[0].filename : "default-image.png",
-            })
-            .then(user => {
-                /*db.domicilios.create({
-                    calle:req.body.calle.trim(),
-                    altura:req.body.numero.trim(),
-                    departamento:req.body.aclaracion.trim(),
-                    localidad:req.body.localidad.trim(),
-                    idUsuario: db.usuarios.idUsuario
-                })*/
-                    console.log(user)
+                    nombre: req.body.nombre.trim(),
+                    apellido: req.body.apellido.trim(),
+                    email: req.body.email.trim(),
+                    contrasena: bcrypt.hashSync(req.body.contrasena, 10),
+                    imagen: (req.files[0]) ? req.files[0].filename : "default-image.png",
+                })
+                .then(user => {
+                    db.domicilios.create({
+                        calle: req.body.calle.trim(),
+                        altura: req.body.numero.trim(),
+                        departamento: req.body.aclaracion.trim(),
+                        localidad: req.body.localidad.trim(),
+                        idUsuario: user.null
+                    })
+                    console.log(user, user.null)
                     res.redirect('/users/');
                 })
                 .catch(error => {
@@ -66,34 +68,41 @@ module.exports = {
     verificarLogin: function (req, res, next) {
         let errors = validationResult(req);
         if (errors.isEmpty()) {
-            dbUser.forEach(usuario => {
-                if (usuario.email == req.body.email) {
+            db.usuarios.findOne({
+                    where: {
+                        email: req.body.email
+                    }
+                })
+                .then(usuario => {
                     req.session.usuario = {
-                        id: usuario.id,
+                        id: usuario.idUsuario,
                         nick: usuario.nombre + " " + usuario.apellido,
                         email: usuario.email,
-                        avatar: usuario.image
+                        avatar: usuario.imagen
                     }
-                }
-            });
-            if (req.body.recordar) {
-                res.cookie('userAgileFood', req.session.usuario, {
-                    maxAge: 1000 * 60 * 60
+                    if (req.body.recordar) {
+                        res.cookie('userAgileFood', req.session.usuario, {
+                            maxAge: 1000 * 60 * 60
+                        })
+                    }
+                    return res.redirect('/')
                 })
-            }
-            res.redirect('/')
-        } else {
-            res.render('login', {
-                title: "inicio de sesion",
-                css: "login",
-                errors: errors.mapped(),
-                inputs: req.body,
-                usuario: req.session.usuario
-            })
-        }
-    },
+                .catch(error => {
+                    res.send(error)
+                })
+}
+else {
+    res.render('login', {
+        title: "inicio de sesion",
+        css: "login",
+        errors: errors.mapped(),
+        inputs: req.body,
+        usuario: req.session.usuario
+    })
+}
+},
 
-    productosAdmin: (req, res, next) => {
+productosAdmin: (req, res, next) => {
         let categorias = [];
         let productos = [];
         let seccion;

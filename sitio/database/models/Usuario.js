@@ -1,13 +1,11 @@
 module.exports = (sequelize,dataTypes) => {
     let alias = "usuarios";
     let cols = {
-        id:{
+        idUsuario:{
             type: dataTypes.INTEGER(11),
-            allowNull:false,
+            allowNull:true,
             autoIncremet: true,
             primaryKey: true,
-            unique: true,
-            field: "id" 
         },
         nombre:{
             type: dataTypes.STRING(100),
@@ -37,9 +35,8 @@ module.exports = (sequelize,dataTypes) => {
             allowNull:false,
             unique:true
         },
-        constrasena:{
+        contrasena:{
             type: dataTypes.STRING(100),
-            allowNull:false,
         },
         idDomicilio:{
             type: dataTypes.INTEGER(11)
@@ -63,14 +60,14 @@ module.exports = (sequelize,dataTypes) => {
         Usuario.belongsToMany(models.productos, {
             as: 'producto',
             through: "carritos",
-            foreignKey: "id",
+            foreignKey: "idUsuario",
             otherKey: "idProducto",
             timestamps: false
         })
 
         Usuario.hasMany(models.domicilios, {
             as: "domicilio",
-            ForeignKey: "id",
+            ForeignKey: "idUsuario",
         })
     }
         
