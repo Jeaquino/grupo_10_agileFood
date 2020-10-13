@@ -1,5 +1,5 @@
 const { check, validatorResult, body } = require("express-validator");
-const dbUsuario = require("../data/userDataBase");
+const db = require('../database/models')
 /*aca solicito express validator lo requiero de esta forma con la _base de datos_propiamente dicha 
 se exporta un array de validaciones _aca abajo_ cada una de ellas*/
 module.exports = [
@@ -17,19 +17,17 @@ check("apellido") //checkeo el apellido
 
 body("email") //checkeo el email
 .custom(function(value) {
-    console.log(value)
-
-    let usuario = dbUsuario.filter(user => { //filtro la base de datos y asigno resultado a la variable
-        return user.email == value //aplico la condicion si cohincide el email que el usuario ingreso en el input con el que esta registrado con anterioridad
+    return db.usuarios.findOne({
+        where:{
+            email:value
+        }
     })
-    //Se debe cambiar el metodo de busqueda o la consulta de la codición. Filter te devuelve un array de los resultados que coninciden con el paramatro buscado, y estas consultando el valor booleana de la variable usuario, y usuario es un array o null, por lo tanto esa consulta siempre va a arrojar false.
-    if (usuario == false) {
-        return true
-    } else {
-        return false
-    }
-})
-.withMessage("Este mail ya se encuentre registrado, por favor utilice otro"),
+    .then(usuario => {
+        if(usuario){
+            return Promise.reject("el email ya se encuentra registado")
+        }
+    }) 
+}),
 
 check("calle") //checkeo el apellido
 .isLength({
