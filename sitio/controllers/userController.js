@@ -42,14 +42,22 @@ module.exports = {
                 })
                 .then(user => {
                     db.domicilios.create({
-                        calle: req.body.calle.trim(),
-                        altura: req.body.numero.trim(),
-                        departamento: req.body.aclaracion.trim(),
-                        localidad: req.body.localidad.trim(),
-                        idUsuario: user.null
-                    })
-                    console.log(user, user.null)
-                    res.redirect('/users/');
+                            calle: req.body.calle.trim(),
+                            altura: req.body.numero.trim(),
+                            departamento: req.body.aclaracion.trim(),
+                            localidad: req.body.localidad.trim(),
+                            idUsuario: user.null
+                        })
+                        .then(domicilio => {
+                            db.usuarios.update({
+                                idDomicilio: domicilio.null
+                            }, {
+                                where: {
+                                    idUsuario: domicilio.dataValues.idUsuario
+                                }
+                            })
+                        })
+                    res.redirect('/users');
                 })
                 .catch(error => {
                     res.send(error)
@@ -90,19 +98,18 @@ module.exports = {
                 .catch(error => {
                     res.send(error)
                 })
-}
-else {
-    res.render('login', {
-        title: "inicio de sesion",
-        css: "login",
-        errors: errors.mapped(),
-        inputs: req.body,
-        usuario: req.session.usuario
-    })
-}
-},
+        } else {
+            res.render('login', {
+                title: "inicio de sesion",
+                css: "login",
+                errors: errors.mapped(),
+                inputs: req.body,
+                usuario: req.session.usuario
+            })
+        }
+    },
 
-productosAdmin: (req, res, next) => {
+    productosAdmin: (req, res, next) => {
         let categorias = [];
         let productos = [];
         let seccion;
