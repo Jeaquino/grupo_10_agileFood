@@ -32,15 +32,21 @@ module.exports = {
 
         if (errors.isEmpty()) {
             db.usuarios.create({
-                    idUsuario:1,
-                    nombre: req.body.nombre.trim(),
-                    apellido: req.body.apellido.trim(),
-                    email: req.body.email.trim(),
-                    contraseña: bcrypt.hashSync(req.body.contraseña, 10), //encripto la contraseña
-                    imagen: (req.files[0]) ? req.files[0].filename : "default-image.png",
-                })
-                .then(result => {
-                    console.log(result)
+                nombre: req.body.nombre.trim(),
+                apellido: req.body.apellido.trim(),
+                email: req.body.email.trim(),
+                contrasena: bcrypt.hashSync(req.body.contraseña, 10), //encripto la contraseña
+                imagen: (req.files[0]) ? req.files[0].filename : "default-image.png",
+            })
+            .then(user => {
+                /*db.domicilios.create({
+                    calle:req.body.calle.trim(),
+                    altura:req.body.numero.trim(),
+                    departamento:req.body.aclaracion.trim(),
+                    localidad:req.body.localidad.trim(),
+                    idUsuario: db.usuarios.idUsuario
+                })*/
+                    console.log(user)
                     res.redirect('/users/');
                 })
                 .catch(error => {

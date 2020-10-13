@@ -1,19 +1,33 @@
 module.exports = (sequelize,dataTypes) => {
     let alias = "usuarios";
     let cols = {
-        idUsuario:{
-            type: dataTypes.INTEGER,
-            primaryKey: true,
-            autoIncremet: true,
+        id:{
+            type: dataTypes.INTEGER(11),
             allowNull:false,
+            autoIncremet: true,
+            primaryKey: true,
+            unique: true,
+            field: "id" 
         },
         nombre:{
             type: dataTypes.STRING(100),
             allowNull:false,
+            validate: {
+                isAlpha:{
+                    args:true,
+                    msg:"Por más que seas eleven de stranger things, escribe tu nombre con letras no numeros"
+                }
+            }
         },
         apellido:{
             type: dataTypes.STRING(100),
             allowNull:false,
+            validate: {
+                isAlpha:{
+                    args:true,
+                    msg:"Por más que seas un experimento y tengas un codigo de barras, escribe tu apellido con letras, no uses numeros"
+                }
+            }
         },
         dni:{
             type: dataTypes.INTEGER(8)
@@ -23,11 +37,12 @@ module.exports = (sequelize,dataTypes) => {
             allowNull:false,
             unique:true
         },
-        constraseña:{
+        constrasena:{
             type: dataTypes.STRING(100),
+            allowNull:false,
         },
         idDomicilio:{
-            type: dataTypes.INTEGER
+            type: dataTypes.INTEGER(11)
         },
         categoria:{
             type: dataTypes.STRING(100)
@@ -48,14 +63,14 @@ module.exports = (sequelize,dataTypes) => {
         Usuario.belongsToMany(models.productos, {
             as: 'producto',
             through: "carritos",
-            foreignKey: "idUsuario",
+            foreignKey: "id",
             otherKey: "idProducto",
             timestamps: false
         })
 
         Usuario.hasMany(models.domicilios, {
             as: "domicilio",
-            ForeignKey: "idUsuario",
+            ForeignKey: "id",
         })
     }
         
