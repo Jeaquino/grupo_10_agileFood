@@ -72,11 +72,20 @@ module.exports = {
 
     agregar: function (req, res, next) {
 
-        res.render('formularioAgregarProducto', {
-            title: "Agregar producto",
-            css: "formularioAgregarProducto",
-            usuario: req.session.usuario
-        });
+        const db = require("../database/models");
+        db.categorias.findAll()
+            .then(send => {
+                console.log(send)
+                res.render('formularioAgregarProducto', {
+                    title: "Agregar producto",
+                    css: "formularioAgregarProducto",
+                    usuario: req.session.usuario,
+                    categorias: send
+                })
+            })
+            .catch(error => {
+                res.send(error)
+            });
     },
 
     carrito: function (req, res, next) {
@@ -93,22 +102,28 @@ module.exports = {
         let errores = validationResult(req);
 
         if (errores.isEmpty()) {
+
             db.productos.create({
-                name: req.body.nombre,
-                precio: req.body.precio,
-                descuento: req.body.descuento,
-                categoria: req.body.categoria,
-                clasificacion: req.body.clasificacion,
-                stock: req.body.stock,
-                descripcion: req.body.descripcion,
-                imagen: (req.files[0]) ? req.files[0].filename : "default-image.png"
-            })
-            .then(producto => {
-                console.log(producto)
-                res.redirect("/products")
-            })
-            .catch(errror => {
-                res.send(error)
+                    nombre: req.body.nombre.trim(),
+                    precio: req.body.precio.trim(),
+                    descuento: req.body.descuento.trim(),
+                    idCategoria: req.body.categoria.trim(),
+                    clasificacion: req.body.clasificacion.trim(),
+                    stock: req.body.stock.trim(),
+                    descripcion: req.body.descripcion.trim(),
+                    imagen: (req.files[0]) ? req.files[0].filename : "default-image.png"
+                })
+                .then(res.redirect("/products"))
+                .catch(error => {
+                    res.send(error)
+                })
+        } else {
+            res.render("formularioAgregarProducto", {
+                css: "formularioAgregarProducto",
+                title: "Agregar producto",
+                errors: errors.mapped(),
+                inputs: req.body,
+                usuario: req.session.usuario
             })
         }
     },
