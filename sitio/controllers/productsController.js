@@ -17,16 +17,20 @@ module.exports = {
 
         let id = req.params.id;
 
-        let productoElegido;
+        let productoElegido = db.productos.findOne({
+                where: {
+                    idProducto: id
+                }
+            })
+            .catch(error => {
+                console.log(productoElegido)
+                res.send(error)
+            })
 
-        dbProduct.forEach(producto => {
-            if (producto.id == id) {
-                productoElegido = producto
+        let recomendaciones = db.productos.findAll({
+            where: {
+                idCategoria: productoElegido.dataValues.idCategoria
             }
-        })
-
-        let recomendaciones = dbProduct.filter(producto => {
-            return producto.category == productoElegido.category
         })
 
         res.render('detailProducts', {
@@ -40,34 +44,38 @@ module.exports = {
 
     productos: function (req, res, next) {
 
-        let categorias = [];
-        let productos = [];
-        let seccion;
-
-        dbProduct.forEach(producto => {
-            if (!categorias.includes(producto.category)) {
-                categorias.push(producto.category)
-            }
-        })
-
-
-        categorias.forEach(categoria => {
-            seccion = dbProduct.filter(producto => {
-                return producto.category == categoria
+        let categorias;
+        db.categorias.findAll({
+                attributes: ["nombre"]
             })
-            productos.push({
-                categoria: categoria,
-                productos: seccion
-            });
-        })
+            .then(elementos => {
+                categorias = elementos
+            })
+            .catch(error => {
+                res.send(error)
+            })
 
-        res.render('Productos', {
-            title: "Productos",
-            categorias: categorias,
-            productos: productos,
-            css: "Productos",
-            usuario: req.session.usuario
-        });
+        let productos;
+
+        db.productos.findAll({
+                include: [{
+                    association: "categorias"
+                }]
+            })
+            .then(elementos => {
+                productos = elementos
+                res.render('Productos', {
+                    title: "Productos",
+                    categorias: categorias,
+                    productos: productos,
+                    css: "Productos",
+                    usuario: req.session.usuario
+                })
+            })
+            .catch(error => {
+                res.send(error)
+            })
+
     },
 
     agregar: function (req, res, next) {

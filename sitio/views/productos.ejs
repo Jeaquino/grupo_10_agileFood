@@ -1,34 +1,38 @@
-<%- include("./partials/head.ejs") %> 
+<%- include("./partials/head.ejs") %>
 <%- include("./partials/header.ejs") %>
 <!--SECCIONES: PRODUCTOS-->
 
-    <div class="container py-5">
-        <section>
-            <div class="row productos">
-                <% productos.forEach(element => { %>
-                    <div class="titulo col-12">
-                        <h2><%-element.categoria%></h2>
-                    </div>
-                    <% element.productos.forEach(producto => { %>  
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="contenido">
-                        <figure class="col-12">
-                            <a href="http://localhost:3001/products/<%- producto.id %>" ><img src="images/productos/<%- producto.image %>  " alt=" "></a>
-                        </figure>
-                        <article>
-                            <h5>$<%-producto.price%></h5>
-                            <!--precio-->
-                            <h2>$<%-producto.price-((producto.price*producto.discount)/100)%></h2>
-                            <!--descuento-->
-                            <span><%-producto.discount %>% OFF</span>
-                            <!--nombre del producto ??-->
-                            <p><%-producto.name%></p>
-                        </article>
-                    </div>
+<div class="container py-5">
+    <section>
+        <div class="row productos">
+            <% categorias.forEach(categoria => { %>
+                <div class="titulo col-12">
+                    <h2><%= categoria.dataValues.nombre %></h2>
                 </div>
-                <% })  %>
-            <% })  %>                 
-            </div>
-        </section>
-    </div>
-<%- include("./partials/footer.ejs") %> 
+                <% productos.forEach(producto => { %>
+                    <% if(categoria.dataValues.nombre == producto.dataValues.categorias.nombre) {%> 
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="contenido">
+                                <figure class="col-12">
+                                    <a href="http://localhost:3001/products/<%= producto.dataValues.idProducto %>"><img
+                                    src="images/productos/<%= producto.dataValues.imagen %>  "
+                                    alt="<%= producto.dataValues.descripcion %>"></a>
+                                </figure>
+                                <article>
+                                    <h5>$<%=producto.dataValues.precio%></h5>
+                                    <!--precio-->
+                                    <h2>$<%-producto.dataValues.precio-((producto.dataValues.precio*producto.dataValues.descuento)/100)%>
+                                    </h2>
+                                    <!--descuento-->
+                                    <span><%=producto.dataValues.descuento%>% OFF</span>
+                                    <!--nombre del producto ??-->
+                                    <p><%=producto.dataValues.nombre%></p>
+                            </div>
+                        </div>
+                    <%}%>
+                <%})%>  
+            <%})%>
+        </div>
+    </section>
+</div>
+<%- include("./partials/footer.ejs") %>

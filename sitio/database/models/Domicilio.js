@@ -45,7 +45,7 @@ module.exports = (sequelize,dataTypes) => {
     Domicilio.associate = function(models) {
 
         Domicilio.belongsTo(models.usuarios, {
-            as: "domicilio",
+            as: "usuarios",
             ForeignKey: "idUsuario",
         })
     }
