@@ -3,17 +3,17 @@
 <div class=container>
     <div class = "row productos">
         <div class="titulo col-12">
-            <h1><%-producto.name%></h1>
+            <h1><%=producto.dataValues.nombre%></h1>
         </div>
         <div class="col-12">
             <div class="contenido">
                 <figure class=" contenido col-12 col-lg-8">
-                    <img src="/images/productos/<%- producto.image %> " alt="">
+                    <img src="/images/productos/<%- producto.dataValues.imagen %> " alt="">
                 </figure>
                 <article class="col-12 col-lg-4">
-                    <h5><%-producto.description%></h5>
+                    <h5><%-producto.dataValues.descripcion%></h5>
                     <div class="cantidad col-12">
-                        <h2 class="col-4 col-md-2 col-lg-5">$<%-producto.price%></h2>
+                        <h2 class="col-4 col-md-2 col-lg-5">$<%-producto.dataValues.precio%></h2>
                         <form class="col-8 col-md-3 col-lg-7">
                             <div class="form-row align-items-center">
                                 <div class="col-auto my-1">
@@ -50,12 +50,12 @@
                 <div class="row recomendaciones">
                     <h3 class="col-12">Ademas te recomendamos</h3>
                     <% recomendaciones.forEach(recomendacion => { %>
-                        <% if(recomendacion!=producto){%> 
+                        <% if(recomendacion.dataValues.idProducto!=producto.dataValues.idProducto){%> 
                         <div class="col-12 col-md-4">
                             <article>
-                                <h3><%-recomendacion.name%></h3>
-                                <a href="http://localhost:3001/products/<%-recomendacion.id%>"><img src="/images/productos/<%-recomendacion.image%>" alt=""></a>
-                                <h2>$<%-recomendacion.price%></h2>
+                                <h3><%-recomendacion.dataValues.nombre%></h3>
+                                <a href="http://localhost:3001/products/<%-recomendacion.dataValues.idProducto%>"><img src="/images/productos/<%-recomendacion.dataValues.imagen%>" alt=""></a>
+                                <h2>$<%-recomendacion.dataValues.precio%></h2>
                             </article>
                         </div>
                         <% } %> 

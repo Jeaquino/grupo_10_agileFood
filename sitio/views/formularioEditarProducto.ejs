@@ -1,25 +1,25 @@
 <%- include("./partials/head.ejs") %>
 <%- include("./partials/header.ejs") %>
 <div class="contenedor">
-    <form class="mtx" action="/products/edit/<%-producto.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+    <form class="mtx" action="/products/edit/<%-producto.dataValues.idProducto%>?_method=PUT" method="POST" enctype="multipart/form-data">
     <div>
-        <label class="col-3" for="">Edición de <%-producto.name%></label>
-        <input type="text" placeholder="Ingrese el nombre del producto" name="nombre" value="<%-producto.name%>">
+        <label class="col-3" for="">Edición de <%-producto.dataValues.nombre%></label>
+        <input type="text" placeholder="Ingrese el nombre del producto" name="nombre" value="<%-producto.dataValues.nombre%>">
     </div>
     <br>
     <div>
         <label class="col-3" for="">Precio</label>
-        <input type="number" placeholder="Ingrese precio del producto" name="precio" value="<%-producto.price%>">
+        <input type="number" placeholder="Ingrese precio del producto" name="precio" value="<%-producto.dataValues.precio%>">
     </div>
     <br>
     <div>
         <label class="col-3" for="">Descuento</label>
-        <input type="number" placeholder="Ingrese descuento del producto" name="discount" value="<%-producto.discount%>">
+        <input type="number" placeholder="Ingrese descuento del producto" name="discount" value="<%-producto.dataValues.descuento%>">
     </div>
     <br>
     <div>
         <label class="col-3 col-md-3" for="">Categoria</label>
-        <select class="col-8" name="categoria" value="<%-producto.category%>">
+        <select class="col-8" name="categoria" value="<%-producto.dataValues.categoria%>">
             <option>Empanadas</option>
             <option>hamburgesa</option>
             <option>pizzas</option>
@@ -29,7 +29,7 @@
     <br>
     <div class="form-group">
         <label class="col-3" for="exampleFormControlSelect2">Clasificacion</label>
-        <select multiple class="form-control" id="exampleFormControlSelect2" name="clasificacion" value="<%-producto.classification%>">
+        <select multiple class="form-control" id="exampleFormControlSelect2" name="clasificacion" value="<%-producto.dataValues.clasificacion%>">
             <option>Oferta del dia</option>
             <option>Mas vendidos</option>
             <option>Sector Saludable</option>
@@ -39,13 +39,13 @@
     </div>
     <div>
         <label class="col-3" for="">Cantidad</label>
-        <input type="number" placeholder="Ingrese stock disponible" name="stock" value="<%-producto.stock%>">
+        <input type="number" placeholder="Ingrese stock disponible" name="stock" value="<%-producto.dataValues.stock%>">
     </div>
     <br>
 
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Detalle del producto</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="<%-producto.description%>" name="descripcion" value="<%-producto.description%>" rows="3"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="<%-producto.dataValues.descripcion%>" name="descripcion" value="<%-producto.dataValues.descripcion%>" rows="3"></textarea>
     </div>
     <br>
     <div class="form-group">

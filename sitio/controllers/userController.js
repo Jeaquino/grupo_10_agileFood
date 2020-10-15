@@ -108,32 +108,37 @@ module.exports = {
     },
 
     productosAdmin: (req, res, next) => {
-        let categorias = [];
-        let productos = [];
-        let seccion;
-
-        dbProduct.forEach(producto => {
-            if (!categorias.includes(producto.category)) {
-                categorias.push(producto.category)
-            }
-        })
-
-        categorias.forEach(categoria => {
-            seccion = dbProduct.filter(producto => {
-                return producto.category == categoria
+        let categorias;
+        db.categorias.findAll({
+                attributes: ["nombre"]
             })
-            productos.push({
-                categoria: categoria,
-                productos: seccion
-            });
-        })
+            .then(elementos => {
+                categorias = elementos
+            })
+            .catch(error => {
+                res.send(error)
+            })
 
-        res.render('productosAdministrador', {
-            css: "productosAdmin",
-            title: "Productos Administrador",
-            productos: productos,
-            usuario: req.session.usuario
-        })
+        let productos;
+
+        db.productos.findAll({
+                include: [{
+                    association: "categorias"
+                }]
+            })
+            .then(elementos => {
+                productos = elementos
+                res.render('productosAdministrador', {
+                    title: "productos Administrador",
+                    categorias: categorias,
+                    productos: productos,
+                    css: "productosAdmin",
+                    usuario: req.session.usuario
+                })
+            })
+            .catch(error => {
+                res.send(error)
+            })
     },
 
     logout: function (req, res) {

@@ -6,37 +6,39 @@
     </div>
     <section>
         <div class="row productos p-4">
-            <% productos.forEach(categoria => { %>
+            <% categorias.forEach(categoria => { %>
             <div class="titulo col-12">
-                <h2><%-categoria.categoria%></h2>
+                <h2><%-categoria.dataValues.nombre%></h2>
             </div>
-            <% categoria.productos.forEach(producto => { %>
+            <% productos.forEach(producto => { %>
+                <% if(categoria.dataValues.nombre == producto.dataValues.categorias.nombre) {%>
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="contenido">
                         <figure>
-                            <a href="./detail/<%= producto.id %> "><img src="/images/productos/<%- producto.image %>  " alt=" "></a>
+                            <a href="./detail/<%= producto.dataValues.idProducto %> "><img src="/images/productos/<%- producto.dataValues.imagen %>  " alt="<%- producto.dataValues.descripcion %> "></a>
                         </figure>
                         <p>
-                            <%- producto.name%>
+                            <%- producto.dataValues.nombre%>
                         </p>
                         
                         <div class="col-10">
                             <div class="d-flex justify-content-around">
-                                <form action="/products/<%= producto.id %>" method="GET">
+                                <form action="/products/<%= producto.dataValues.idProducto %>" method="GET">
                                 <button class="btn btn-outline-light"> <h4 class="fas fa-info text-info"></h4></button>
                                 </form>
-                                <form action="/products/edit/<%= producto.id %>" method="GET">
+                                <form action="/products/edit/<%= producto.dataValues.idProducto %>" method="GET">
                                 <button class="btn btn-outline-light"> <h4 class="fas fa-pen-square text-success"></h4></button>
                                 </form>
-                                <form action="/products/delete/<%= producto.id %>?_method=DELETE" method="POST">
+                                <form action="/products/delete/<%= producto.dataValues.idProducto %>?_method=DELETE" method="POST">
                                 <button class="btn btn-outline-light" type="submit"> <h4 class="fas fa-trash text-danger"></h4></button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <% }) %>
-                <% }) %>
+            <%}%>
+        <% }) %>
+    <% }) %>
     </div>
     </section>
     <div class="d-flex justify-content-center m-5">

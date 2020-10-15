@@ -5,11 +5,8 @@ const db = require("../database/models");
 
 // requiero complementos
 const sequelize = db.sequelize;
-const fs = require("fs");
 const path = require('path');
-const {
-    validationResult
-} = require("express-validator");
+const {validationResult} = require("express-validator");
 
 module.exports = {
 
@@ -17,29 +14,28 @@ module.exports = {
 
         let id = req.params.id;
 
-        let productoElegido = db.productos.findOne({
-                where: {
-                    idProducto: id
-                }
-            })
-            .catch(error => {
-                console.log(productoElegido)
-                res.send(error)
-            })
-
-        let recomendaciones = db.productos.findAll({
+        db.productos.findOne({
             where: {
-                idCategoria: productoElegido.dataValues.idCategoria
+                idProducto: id
             }
+        }).then(producto => {
+            db.productos.findAll({
+                    where: {
+                        idCategoria: producto.idCategoria
+                    }
+                }).then(recomendacion => {
+                    res.render('detailProducts', {
+                        title: producto.nombre,
+                        producto: producto,
+                        recomendaciones: recomendacion,
+                        css: "detailProducts",
+                        usuario: req.session.usuario
+                    })
+                })
+                .catch(error => {
+                    res.send(error)
+                })
         })
-
-        res.render('detailProducts', {
-            title: productoElegido.name,
-            producto: productoElegido,
-            recomendaciones: recomendaciones,
-            css: "detailProducts",
-            usuario: req.session.usuario
-        });
     },
 
     productos: function (req, res, next) {
@@ -140,51 +136,51 @@ module.exports = {
 
         let id = req.params.id
 
-        let product;
-        dbProduct.forEach(producto => {
-            if (producto.id == id) {
-                product = producto
+        db.productos.findOne({
+            where: {
+                idProducto: id
             }
+        }).then(elemento => {
+            res.render("formularioEditarProducto", {
+                producto: elemento,
+                title: "Modificar producto",
+                css: "formularioAgregarProducto",
+                usuario: req.session.usuario
+            })
         })
-        res.render("formularioEditarProducto", {
-            producto: product,
-            title: "Modificar producto",
-            css: "formularioAgregarProducto",
-            usuario: req.session.usuario
+        .catch(error => {
+            res.send(error)
         })
     },
 
     edit: function (req, res, next) {
-        let idProducto = req.params.id;
+        let id = req.params.id;
 
-        dbProduct.forEach(producto => {
-            if (producto.id == idProducto) {
-                producto.id = idProducto;
-                producto.name = req.body.nombre;
-                producto.price = req.body.precio;
-                producto.discount = req.body.discount;
-                producto.category = req.body.categoria;
-                producto.classification = req.body.clasificacion;
-                producto.score = [];
-                producto.stock = req.body.stock;
-                producto.description = req.body.description;
-                producto.image = (req.files[0]) ? req.files[0].filename : producto.image
+        db.productos.update({
+            nombre: req.body.nombre,
+            precio: req.body.precio,
+            descuento: req.body.discount,
+            categoria: req.body.categoria,
+            clasificacion: req.body.clasificacion,
+            stock: req.body.stock,
+            descripcion: req.body.description,
+            imagen: (req.files[0]) ? req.files[0].filename : producto.image
+        }, {
+            where: {
+                idProducto: id
             }
         })
 
-        fs.writeFileSync(path.join(__dirname, "../data/productsDataBase.json"), JSON.stringify(dbProduct))
         res.redirect("/products")
-
     },
+
     eliminar: function (req, res) {
-        let idProducto = req.params.id;
-        dbProduct.forEach(producto => {
-            if (producto.id == idProducto) {
-                let aEliminar = dbProduct.indexOf(producto);
-                dbProduct.splice(aEliminar, 1);
+        let id = req.params.id;
+        db.productos.destroy({
+            where: {
+                idProducto: id
             }
         })
-        fs.writeFileSync(path.join(__dirname, '../data/productsDataBase.json'), JSON.stringify(dbProduct));
         res.redirect('/users/administrador')
     }
 }
