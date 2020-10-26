@@ -32,7 +32,7 @@
                 <div class="contenedor">
                     <div class="col-md-5 mb-3 m-1">
                         <label class="col-4 col-md-4" for="">Categoria</label>
-                        <select class="col-8" name="categoria" value="">
+                        <select class="col-8" name="categoria" type="number" value="">
                             <% categorias.forEach( element => { %>
                             <option value="<%- element.dataValues.idCategoria %>"> <%-element.dataValues.nombre%>
                             </option>
