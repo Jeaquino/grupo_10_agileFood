@@ -9,6 +9,9 @@ window.addEventListener('load', function () {
     let descuento = document.querySelector(".descuento")
     let rebaja = document.querySelector(".rebaja")
 
+    let descripcion = document.querySelector(".descripcion")
+    let detalle = document.querySelector(".detalle")
+
     let imagen = document.querySelector("custom-file-input")
     console.log(imagen)
 
@@ -22,6 +25,10 @@ window.addEventListener('load', function () {
 
     descuento.addEventListener("input", function(){
         rebaja.innerHTML = precio.value
+    })
+
+    descripcion.addEventListener("input", function(){
+        detalle.innerHTML = descripcion.value
     })
 
     imagen.addEventListener("change", function(){
