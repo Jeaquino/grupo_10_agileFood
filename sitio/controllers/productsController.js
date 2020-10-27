@@ -111,8 +111,8 @@ module.exports = {
                     nombre: req.body.nombre.trim(),
                     precio: req.body.precio.trim(),
                     descuento: req.body.descuento.trim(),
-                    idCategoria: req.body.categoria,
-                    clasificacion: req.body.clasificacion,
+                    idCategoria: req.body.categoria.trim(),
+                    clasificacion: req.body.clasificacion.trim(),
                     stock: req.body.stock.trim(),
                     descripcion: req.body.descripcion.trim(),
                     imagen: (req.files[0]) ? req.files[0].filename : "default-image.png"
