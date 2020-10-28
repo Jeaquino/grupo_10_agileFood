@@ -17,19 +17,20 @@ window.addEventListener('load', function () {
     console.log(vistaPrevia)
 
     nombre.addEventListener("input", function () {
-        titulo.innerHTML = nombre.value
+        titulo.innerText = nombre.value
     })
 
     precio.addEventListener("input", function(){
-        importe.innerHTML = precio.value
+        importe.innerText = precio.value
+        console.log(importe)
     })
 
     descuento.addEventListener("input", function(){
-        rebaja.innerHTML = precio.value
+        rebaja.innerText = precio.value
     })
 
     descripcion.addEventListener("change", function(){
-        detalle.innerHTML = descripcion.value
+        detalle.innerText = descripcion.value
     })
 
     imagen.addEventListener('change',function(e){
