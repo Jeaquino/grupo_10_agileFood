@@ -9,11 +9,12 @@ window.addEventListener('load', function () {
     let descuento = document.querySelector(".descuento")
     let rebaja = document.querySelector(".rebaja")
 
-    let descripcion = document.querySelector(".descripcion")
+    let descripcion = document.querySelector("div textarea")
     let detalle = document.querySelector(".detalle")
 
-    let imagen = document.querySelector("custom-file-input")
-    console.log(imagen)
+    let imagen = document.querySelector(".custom-file-input")
+    let vistaPrevia = document.querySelector(".vistaPrevia")
+    console.log(vistaPrevia)
 
     nombre.addEventListener("input", function () {
         titulo.innerHTML = nombre.value
@@ -27,12 +28,21 @@ window.addEventListener('load', function () {
         rebaja.innerHTML = precio.value
     })
 
-    descripcion.addEventListener("input", function(){
+    descripcion.addEventListener("change", function(){
         detalle.innerHTML = descripcion.value
     })
 
-    imagen.addEventListener("change", function(){
-        console.log(imagen)
+    imagen.addEventListener('change',function(e){
+
+        let reader = new FileReader();
+
+        reader.readAsDataURL(e.target.files[0]);
+
+        reader.onload = function(){
+            console.log(vistaPrevia.src)
+            console.log(e.target.files[0])
+            vistaPrevia.src = reader.result;
+        }      
     })
 
 
