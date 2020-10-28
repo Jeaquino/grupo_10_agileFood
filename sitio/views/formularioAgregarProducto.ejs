@@ -8,26 +8,28 @@
                 <div class="contenedor col-12">
                     <div class="col-md-10 mb-3">
                         <label for="validationCustom01">Producto</label>
-                        <input type="text" class="form-control nombre" placeholder="Ingrese nombre del producto" name="nombre"
-                            value="">
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
+                        <input type="text"
+                            class="form-control nombre <%= (typeof inputs != 'undefined' && inputs.nombre)?"is-valid":(typeof errors != 'undefined' && errors.nombre)?"is-invalid": ""  %>"
+                            placeholder="Ingrese nombre del producto" name="nombre"
+                            value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:'' %>">
+                        <small id="errorNombre"
+                            class="text-danger"><%= (typeof errors != 'undefined' && errors.nombre)?errors.nombre.msg: "" %>
+                        </small>
                     </div>
                     <div class="col-md-5 mb-3">
                         <label for="validationCustom02">Precio</label>
-                        <input type="number" class="form-control precio" placeholder="Ingrese precio $" value="" name="precio">
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
+                        <input type="number" class="form-control precio <%= (typeof inputs != 'undefined' && inputs.precio)?"is-valid":(typeof errors != 'undefined' && errors.precio)?"is-invalid": ""  %>" placeholder="Ingrese precio $" min="1" value="<%= (typeof inputs != 'undefined' && inputs.precio)?inputs.precio:'' %>"name="precio">
+                        <small id="errorNombre"
+                            class="text-danger"><%= (typeof errors != 'undefined' && errors.precio)?errors.precio.msg: "" %>
+                        </small>
                     </div>
                     <div class="col-md-5 mb-3">
                         <label for="validationCustom02">Descuento</label>
-                        <input type="number" class="form-control descuento" placeholder="Porcentaje de descuento" value=""
-                            name="descuento">
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
+                        <input type="number" class="form-control descuento <%= (typeof inputs != 'undefined' && inputs.descuento)?"is-valid":(typeof errors != 'undefined' && errors.descuento)?"is-invalid": ""  %>" min="1" max="100"
+                            placeholder="Porcentaje de descuento" value="<%= (typeof inputs != 'undefined' && inputs.descuento)?inputs.descuento:'' %>" name="descuento">
+                        <small id="errorNombre"
+                            class="text-danger"><%= (typeof errors != 'undefined' && errors.descuento)?errors.descuento.msg: "" %>
+                        </small>
                     </div>
                 </div>
                 <div class="contenedor">
@@ -39,6 +41,7 @@
                             </option>
                             <% }) %>
                         </select>
+                        <button type="button" class="btn btn-outline-warning" id="botonCategoria">Agregar</button>
                     </div>
                     <div class="col-md-5 mb-3 m-1">
                         <label class="col-4 col-md-4" for="">Clasificacion</label>
@@ -49,16 +52,17 @@
                             <option>Bebidas</option>
                             <option>Recomendacion del cheff</option>
                         </select>
+                        <button type="button" class="btn btn-outline-warning " id="botonClasificacion">Agregar</button>
                     </div>
                     <div class="col-md-2 mb-3 m-1">
                         <label class="col-4 col-md-4" for="">Cantidad</label>
-                        <input type="number" placeholder="Stock disponible" name="stock" value="">
+                        <input type="number" placeholder="Stock disponible" min="1" max="100" name="stock" value="">
                     </div>
                 </div>
                 <div class="form-group col-9">
                     <label for="exampleFormControlTextarea1">Detalle del producto</label>
-                    <textarea class="form-control descripcion" placeholder="Ingrese descripcion del producto" name="descripcion"
-                        value="" rows="3"></textarea>
+                    <textarea class="form-control descripcion" placeholder="Ingrese descripcion del producto"
+                        name="descripcion" value="" rows="3"></textarea>
                 </div>
                 <div class="form-group col-10 col-xl-6">
                     <div class="custom-file mt-4">
@@ -68,25 +72,26 @@
                 </div>
                 <div class="col-10 d-flex justify-content-between">
                     <button type="submit" class="btn btn-success col-4 mb-3">Subir Producto</button>
-                    <button type="submit" class="btn btn-info col-4 mb-3">Reset</button>
+                    <button type="button" class="btn btn-info col-4 mb-3">Reset</button>
                 </div>
             </form>
         </div>
         <div class="col-lg-4 aling-self-center mx-auto text-center bold">
             <h1>Previsualización</h1>
-            <h2 class="text-center titulo mb-3">Producto</h2>
+            <h2 class="text-center titulo mb-3 text-white">Producto</h2>
             <figure class="aling-self-center mx-auto text-center">
                 <img src="../images/productos/default_large.png" class="img-fluid vistaPrevia  w-75" alt="vistaPrevia">
             </figure>
-            <div class="row text-right aling-self-rigth mb-3">
+            <div class="row text-right aling-self-rigth mb-3 ml-2">
                 <i class="fas fa-dollar-sign fa-2x text-success col-1"></i>
-                <h3 class="importe col-1">Importe</h3>
+                <h3 class="importe col-1 text-white font-weight-bold"">Importe</h3>
             </div>
-            <p class=" col-lg-12 detalle blockquote text-left">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed,
-                itaque. Tenetur architecto tempore odio? Id quas voluptatum, maiores, inventore esse, possimus
-                voluptates officia illum expedita dolore dolorum ipsam laudantium molestias?</p>
+            <p class=" col-lg-12 detalle blockquote text-left text-white font-italic">Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Sed,
+                    itaque. Tenetur architecto tempore odio? Id quas voluptatum, maiores, inventore esse, possimus
+                    voluptates officia illum expedita dolore dolorum ipsam laudantium molestias?</p>
+            </div>
         </div>
     </div>
-</div>
-<script src="/js/registroProducto.js" type="text/javascript"></script>
-<%- include("./partials/footer.ejs") %>
+    <script src="/js/registroProducto.js" type="text/javascript"></script>
+    <%- include("./partials/footer.ejs") %>

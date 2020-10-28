@@ -14,10 +14,30 @@ window.addEventListener('load', function () {
 
     let imagen = document.querySelector(".custom-file-input")
     let vistaPrevia = document.querySelector(".vistaPrevia")
-    console.log(vistaPrevia)
+
+    let botonCategoria = document.querySelector("#botonCategoria")
+    let botonClasificacion = document.querySelector("#botonClasificacion")
 
     nombre.addEventListener("input", function () {
         titulo.innerText = nombre.value
+    })
+
+    nombre.addEventListener("blur", function () {
+        switch (true) {
+            case this.length == 0:
+                errors.nombre = "El campo nombre es obligatorio"
+                this.classList.add('is-invalid')
+                break;
+            case this.value.trim().length <=2:
+                errorNombre.innerHTML = "Tenés que poner al menos tres letras"
+                this.classList.add('is-invalid')
+                break
+            default:
+                this.classList.remove('is-invalid')
+                this.classList.add('is-valid')
+                errorNombre.innerHTML = ""
+                break;
+        }
     })
 
     precio.addEventListener("input", function(){
@@ -29,7 +49,7 @@ window.addEventListener('load', function () {
         rebaja.innerText = precio.value
     })
 
-    descripcion.addEventListener("change", function(){
+    descripcion.addEventListener("input", function(){
         detalle.innerText = descripcion.value
     })
 
@@ -45,6 +65,18 @@ window.addEventListener('load', function () {
             vistaPrevia.src = reader.result;
         }      
     })
+
+    botonCategoria.addEventListener("click", function(){
+        let categoria = prompt("ingrese el nombre de la categoria")
+        let resultado = confirm("seguro que desea agregar la categoria")
+    })
+
+    botonClasificacion.addEventListener("click", function(){
+        let clasificacion = prompt("ingrese el nombre de la categoria")
+        let resultado = confirm("seguro que desea agregar la categoria")
+    })
+
+
 
 
 
