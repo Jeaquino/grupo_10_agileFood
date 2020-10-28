@@ -1,4 +1,7 @@
-const dbProduct = require("../data/database");
+const db = require("../database/models");
+const {
+    Op
+} = require("sequelize");
 
 module.exports = {
 
@@ -14,23 +17,39 @@ module.exports = {
             usuario: req.session.usuario
         });
     },
-    search: function (req, res) {
+
+    search: function (req, res, next) {
         let buscar = req.query.search;
-        let productos = [];
 
-        seccion = dbProduct.filter(producto => {
-            return producto.name.toLowerCase().includes(buscar)
-        })
-        productos.push({
-            categoria: "los resultados para su buqueda de '" + buscar + "' son:",
-            productos: seccion
-        });
+        let categorias = [];
+        let productos;
 
-res.render('Productos', {
-    title: "Resultado de la búsqueda",
-    productos: productos,
-    css: "Productos",
-    usuario: req.session.usuario
-})
-}
+        db.productos.findAll({
+                where: {
+                    nombre: {
+                        [Op.substring]: buscar
+                    }
+                },
+                include: [{
+                    association: "categorias",
+                }],
+            }).then(result => {
+                productos = result; 
+                productos.forEach(elemento => {
+                    if (!categorias.includes(elemento.categorias.nombre)) {
+                        categorias.push(elemento.categorias.nombre)
+                    }
+                })
+                res.render('Productos', {
+                    title: "Resultado de la búsqueda",
+                    categorias: categorias,
+                    productos: productos,
+                    css: "Productos",
+                    usuario: req.session.usuario
+                })
+            })
+            .catch(error => {
+                res.send(error)
+            })
+    }
 }

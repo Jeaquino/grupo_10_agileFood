@@ -1,6 +1,5 @@
 // requiero la base de datos de productos
 
-const dbProduct = require("../data/database");
 const db = require("../database/models");
 
 // requiero complementos
@@ -42,18 +41,8 @@ module.exports = {
 
     productos: function (req, res, next) {
 
-        let categorias;
-        db.categorias.findAll({
-                attributes: ["nombre"]
-            })
-            .then(elementos => {
-                categorias = elementos
-            })
-            .catch(error => {
-                res.send(error)
-            })
-
-        let productos;
+        let categorias = [];
+        let productos = [];
 
         db.productos.findAll({
                 include: [{
@@ -61,8 +50,13 @@ module.exports = {
                 }]
             })
             .then(elementos => {
-                productos = elementos
-                res.render('Productos', {
+                productos = elementos 
+                productos.forEach(elemento => {
+                    if (!categorias.includes(elemento.categorias.nombre)) {
+                        categorias.push(elemento.categorias.nombre)
+                    }
+                })
+                res.render('productos', {
                     title: "Productos",
                     categorias: categorias,
                     productos: productos,
