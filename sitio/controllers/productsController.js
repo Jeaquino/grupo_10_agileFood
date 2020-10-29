@@ -1,12 +1,13 @@
 // requiero la base de datos de productos
 
-const dbProduct = require("../data/database");
 const db = require("../database/models");
 
 // requiero complementos
 const sequelize = db.sequelize;
 const path = require('path');
-const { validationResult } = require("express-validator");
+const {
+    validationResult
+} = require("express-validator");
 
 module.exports = {
 
@@ -40,18 +41,8 @@ module.exports = {
 
     productos: function(req, res, next) {
 
-        let categorias;
-        db.categorias.findAll({
-                attributes: ["nombre"]
-            })
-            .then(elementos => {
-                categorias = elementos
-            })
-            .catch(error => {
-                res.send(error)
-            })
-
-        let productos;
+        let categorias = [];
+        let productos = [];
 
         db.productos.findAll({
                 include: [{
@@ -60,7 +51,12 @@ module.exports = {
             })
             .then(elementos => {
                 productos = elementos
-                res.render('Productos', {
+                productos.forEach(elemento => {
+                    if (!categorias.includes(elemento.categorias.nombre)) {
+                        categorias.push(elemento.categorias.nombre)
+                    }
+                })
+                res.render('productos', {
                     title: "Productos",
                     categorias: categorias,
                     productos: productos,
@@ -75,11 +71,8 @@ module.exports = {
     },
 
     agregar: function(req, res, next) {
-
-        const db = require("../database/models");
         db.categorias.findAll()
             .then(send => {
-                console.log(send)
                 res.render('formularioAgregarProducto', {
                     title: "Agregar producto",
                     css: "formularioAgregarProducto",
@@ -122,13 +115,17 @@ module.exports = {
                     res.send(error)
                 })
         } else {
-            res.render("formularioAgregarProducto", {
-                css: "formularioAgregarProducto",
-                title: "Agregar producto",
-                errors: errores.mapped(),
-                inputs: req.body,
-                usuario: req.session.usuario
-            })
+            db.categorias.findAll()
+                .then(send => {
+                    res.render("formularioAgregarProducto", {
+                        css: "formularioAgregarProducto",
+                        title: "Agregar producto",
+                        errors: errores.mapped(),
+                        inputs: req.body,
+                        usuario: req.session.usuario,
+                        categorias: send
+                    })
+                })
         }
     },
 
