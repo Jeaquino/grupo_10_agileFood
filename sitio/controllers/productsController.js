@@ -6,11 +6,11 @@ const db = require("../database/models");
 // requiero complementos
 const sequelize = db.sequelize;
 const path = require('path');
-const {validationResult} = require("express-validator");
+const { validationResult } = require("express-validator");
 
 module.exports = {
 
-    detalle: function (req, res, next) {
+    detalle: function(req, res, next) {
 
         let id = req.params.id;
 
@@ -38,7 +38,7 @@ module.exports = {
         })
     },
 
-    productos: function (req, res, next) {
+    productos: function(req, res, next) {
 
         let categorias;
         db.categorias.findAll({
@@ -74,7 +74,7 @@ module.exports = {
 
     },
 
-    agregar: function (req, res, next) {
+    agregar: function(req, res, next) {
 
         const db = require("../database/models");
         db.categorias.findAll()
@@ -92,7 +92,7 @@ module.exports = {
             });
     },
 
-    carrito: function (req, res, next) {
+    carrito: function(req, res, next) {
 
         res.render('carritoDeCompras', {
             css: "carritoDeCompras",
@@ -101,7 +101,7 @@ module.exports = {
         });
     },
 
-    crear: function (req, res, next) {
+    crear: function(req, res, next) {
 
         let errores = validationResult(req);
 
@@ -125,35 +125,35 @@ module.exports = {
             res.render("formularioAgregarProducto", {
                 css: "formularioAgregarProducto",
                 title: "Agregar producto",
-                errors: errors.mapped(),
+                errors: errores.mapped(),
                 inputs: req.body,
                 usuario: req.session.usuario
             })
         }
     },
 
-    form: function (req, res, next) {
+    form: function(req, res, next) {
 
         let id = req.params.id
 
         db.productos.findOne({
-            where: {
-                idProducto: id
-            }
-        }).then(elemento => {
-            res.render("formularioEditarProducto", {
-                producto: elemento,
-                title: "Modificar producto",
-                css: "formularioAgregarProducto",
-                usuario: req.session.usuario
+                where: {
+                    idProducto: id
+                }
+            }).then(elemento => {
+                res.render("formularioEditarProducto", {
+                    producto: elemento,
+                    title: "Modificar producto",
+                    css: "formularioAgregarProducto",
+                    usuario: req.session.usuario
+                })
             })
-        })
-        .catch(error => {
-            res.send(error)
-        })
+            .catch(error => {
+                res.send(error)
+            })
     },
 
-    edit: function (req, res, next) {
+    edit: function(req, res, next) {
         let id = req.params.id;
 
         db.productos.update({
@@ -174,7 +174,7 @@ module.exports = {
         res.redirect("/products")
     },
 
-    eliminar: function (req, res) {
+    eliminar: function(req, res) {
         let id = req.params.id;
         db.productos.destroy({
             where: {
