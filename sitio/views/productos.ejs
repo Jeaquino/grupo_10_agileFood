@@ -5,32 +5,45 @@
 <div class="container py-5">
     <section>
         <div class="row productos">
+            <% if(title.includes("búsqueda")) { %>
+                <% if(productos.length > 0) { %>
+                    <div class="col-12">
+                        <h2>El resultado de su busqueda es:</h2>
+                    </div>
+                <%}else{%>
+                    <div class="aling-self-center mx-auto text-center">
+                        <h2 class="col-12 ">No hay resultados para su búsqueda</h2>
+                            <img class="img-" src="images/productos/no-encontrado.png" alt="búsqueda sin resultado">
+                        </figure>
+                    </div>
+                <%}%>
+            <%}%>
             <% categorias.forEach(categoria => { %>
-                <div class="titulo col-12">
-                    <h2><%= categoria%></h2>
+            <div class="titulo col-12">
+                <h2><%= categoria%></h2>
+            </div>
+            <% productos.forEach(producto => { %>
+            <% if(categoria == producto.dataValues.categorias.nombre) {%>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="contenido">
+                    <figure class="col-12">
+                        <a href="http://localhost:3001/products/<%= producto.dataValues.idProducto %>"><img
+                                src="images/productos/<%= producto.dataValues.imagen %>  "
+                                alt="<%= producto.dataValues.descripcion %>"></a>
+                    </figure>
+                    <article>
+                        <h5>$<%=producto.dataValues.precio%></h5>
+                        <!--precio-->
+                        <h2>$<%-producto.dataValues.precio-((producto.dataValues.precio*producto.dataValues.descuento)/100)%>
+                        </h2>
+                        <!--descuento-->
+                        <span><%=producto.dataValues.descuento%>% OFF</span>
+                        <!--nombre del producto ??-->
+                        <p><%=producto.dataValues.nombre%></p>
                 </div>
-                <% productos.forEach(producto => { %>
-                    <% if(categoria == producto.dataValues.categorias.nombre) {%> 
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="contenido">
-                                <figure class="col-12">
-                                    <a href="http://localhost:3001/products/<%= producto.dataValues.idProducto %>"><img
-                                    src="images/productos/<%= producto.dataValues.imagen %>  "
-                                    alt="<%= producto.dataValues.descripcion %>"></a>
-                                </figure>
-                                <article>
-                                    <h5>$<%=producto.dataValues.precio%></h5>
-                                    <!--precio-->
-                                    <h2>$<%-producto.dataValues.precio-((producto.dataValues.precio*producto.dataValues.descuento)/100)%>
-                                    </h2>
-                                    <!--descuento-->
-                                    <span><%=producto.dataValues.descuento%>% OFF</span>
-                                    <!--nombre del producto ??-->
-                                    <p><%=producto.dataValues.nombre%></p>
-                            </div>
-                        </div>
-                    <%}%>
-                <%})%>  
+            </div>
+            <%}%>
+                <%})%>
             <%})%>
         </div>
     </section>
