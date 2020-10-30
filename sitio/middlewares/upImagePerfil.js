@@ -11,6 +11,18 @@ let storage = multer.diskStorage({
     }
 })
 
+const fileFilter = (req,file,callback)=>{
+    expresionRegImagen = /jpeg|jpg|png|gif/;
+    testImagen = expresionRegImagen.test(file.mimetype);
+     if(testImagen){
+        callback(null,true);
+     }else{
+        req.errorValidacionImagen = "Se aceptan solo imagenes";
+        return callback(null, false, req.errorValidacionImagen);
+     }
+}
+
 module.exports = multer({
-    storage:storage
+    storage:storage,
+    fileFilter : fileFilter
 });
