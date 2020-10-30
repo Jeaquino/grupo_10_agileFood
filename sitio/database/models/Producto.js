@@ -1,37 +1,37 @@
-module.exports = (sequelize,dataTypes) => {
+module.exports = (sequelize, dataTypes) => {
     let alias = "productos";
     let cols = {
-        idProducto:{
+        idProducto: {
             type: dataTypes.INTEGER(11),
             primaryKey: true,
-            autoIncremet: true 
+            autoIncremet: true
         },
-        nombre:{
+        nombre: {
             type: dataTypes.STRING(100)
         },
-        precio:{
-            type: dataTypes.DECIMAL(10,2)
+        precio: {
+            type: dataTypes.DECIMAL(10, 2)
         },
-        descuento:{
+        descuento: {
             type: dataTypes.INTEGER(2)
         },
-        idCategoria:{
+        idCategoria: {
             type: dataTypes.INTEGER(11),
             allowNull: true
         },
-        clasificacion:{
+        clasificacion: {
             type: dataTypes.STRING(100)
         },
-        puntaje:{
-            type: dataTypes.DECIMAL(2,2)
+        puntaje: {
+            type: dataTypes.DECIMAL(2, 2)
         },
-        stock:{
+        stock: {
             type: dataTypes.INTEGER(11)
         },
-        descripcion:{
+        descripcion: {
             type: dataTypes.STRING(300)
         },
-        imagen:{
+        imagen: {
             type: dataTypes.STRING(100)
         },
     };
@@ -41,13 +41,17 @@ module.exports = (sequelize,dataTypes) => {
         timestamps: false
     }
 
-    let Producto = sequelize.define(alias,cols,config)
+    let Producto = sequelize.define(alias, cols, config)
 
     Producto.associate = function(models) {
 
         Producto.belongsTo(models.categorias, {
             as: "categorias",
             foreignKey: "idCategoria",
+        })
+        Producto.belongsTo(models.clasificacion, {
+            as: "clasificaciones",
+            foreignKey: "idClasificaciones",
         })
 
         Producto.belongsToMany(models.usuarios, {

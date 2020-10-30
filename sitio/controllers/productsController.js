@@ -1,5 +1,5 @@
 // requiero la base de datos de productos
-
+//requiere todos los modelos
 const db = require("../database/models");
 
 // requiero complementos
@@ -8,6 +8,7 @@ const path = require('path');
 const {
     validationResult
 } = require("express-validator");
+const { send } = require("process");
 
 module.exports = {
 
@@ -69,15 +70,30 @@ module.exports = {
             })
 
     },
-
+    /*para agregar producto */
     agregar: function(req, res, next) {
+        /*definino que es un array para saber que elementos tiene que agarrar */
+        /*se hace una caja asi se guardan todos los elementos */
+        let categorias = [];
+        let clasificaciones = [];
+        //findAll es el metodo de encontrar todo
         db.categorias.findAll()
-            .then(send => {
+            //y se guarda este send en categorias
+            .then(elementos => {
+                categorias = elementos
+                db.clasificaciones.findAll()
+                    //despues de hacer la busquedad a estos (elementos o clasificacion) le asigno clasificaciones le asigno clasificacion
+                    .then(clasificacion => {
+                        clasificaciones = clasificacion
+                    })
+                    //se almacena en la variable elementos
+                    //luego hacemos una nueva busquedad
                 res.render('formularioAgregarProducto', {
                     title: "Agregar producto",
                     css: "formularioAgregarProducto",
                     usuario: req.session.usuario,
-                    categorias: send
+                    categorias: send,
+                    clasificaciones: send,
                 })
             })
             .catch(error => {
