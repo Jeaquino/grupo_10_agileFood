@@ -5,15 +5,19 @@ se exporta un array de validaciones _aca abajo_ cada una de ellas*/
 module.exports = [
 check("nombre") //checkeo el nombre
 .isLength({
-    min: 1
+    min: 2
 })
 .withMessage("debes ingresar un nombre real, no se aceptan simbolos, ni números"),
 
 check("apellido") //checkeo el apellido
 .isLength({
-    min: 1
+    min: 2
 })
 .withMessage("debes ingresar un apellido real, no se aceptan simbolos, ni números "),
+
+check('email')
+    .isEmail()
+    .withMessage('Ingrese un email válido'),
 
 body("email") //checkeo el email
 .custom(function(value) {
@@ -56,7 +60,7 @@ check("contrasena")
     min: 8,
     max: 18
 })
-.withMessage("debe ingresar una contraseña 6 y 12 caracteres"),
+.withMessage("debe ingresar una contraseña 8 a 12 caracteres"),
 
 check("contrasena")
 .isAlphanumeric()
@@ -76,5 +80,13 @@ check("aceptacion")
     min: 1
 })
 .withMessage("Debe aceptar nuestras condiciones"),
+body('image')
+    .custom((value,{req})=>{
+        if(req.errorValidacionImagen){
+            return false
+        }else{
+            return true
+        }
+    }).withMessage("Solo se permiten archivos de imagen png, jpg, jpeg, gif")
 ]
 /*salen errorres  */
