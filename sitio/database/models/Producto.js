@@ -17,11 +17,9 @@ module.exports = (sequelize, dataTypes) => {
         },
         idCategoria: {
             type: dataTypes.INTEGER(11),
-            allowNull: true
         },
         idClasificacion: {
             type: dataTypes.INTEGER(11),
-            allowNull: true
         },
         puntaje: {
             type: dataTypes.DECIMAL(2, 2)

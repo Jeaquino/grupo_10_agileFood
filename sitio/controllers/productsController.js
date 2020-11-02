@@ -49,11 +49,12 @@ module.exports = {
 
         db.productos.findAll({
                 include: [{
-                    association: "clasificaciones"
-                },
-                {
-                    association: "categorias"
-                }]
+                        association: "clasificaciones"
+                    },
+                    {
+                        association: "categorias"
+                    }
+                ]
             })
             .then(elementos => {
                 productos = elementos
@@ -119,13 +120,14 @@ module.exports = {
         let errores = validationResult(req);
 
         if (errores.isEmpty()) {
+            console.log(req.body)
 
             db.productos.create({
                     nombre: req.body.nombre.trim(),
                     precio: req.body.precio.trim(),
                     descuento: req.body.descuento.trim(),
-                    idCategoria: req.body.categoria.trim(),
-                    clasificacion: req.body.clasificacion.trim(),
+                    idCategoria: req.body.categoria,
+                    idClasificacion: req.body.clasificacion,
                     stock: req.body.stock.trim(),
                     descripcion: req.body.descripcion.trim(),
                     imagen: (req.files[0]) ? req.files[0].filename : "default-image.png"
@@ -135,17 +137,33 @@ module.exports = {
                     res.send(error)
                 })
         } else {
-            db.categorias.findAll()
-                .then(send => {
-                    res.render("formularioAgregarProducto", {
-                        css: "formularioAgregarProducto",
+            console.log(req.body)
+            let categorias = [];
+            let clasificaciones = [];
+
+            //findAll es el metodo de encontrar todo
+            db.clasificaciones.findAll().then(resultado => {
+                // se realiza la busqueda de todas las clasificaciones en la base de datos y se guarda el resultado en clasificaciones
+                clasificaciones = resultado
+                db.categorias.findAll().then(elementos => {
+                    // se realiza la busqueda de todas las categorias en la base de datos y se guarda el resultado en categorias
+                    categorias = elementos
+                    //se renderiza la vista, enviando como variables la vista, el archivo css a vincular, el titulo de la vista, la session del usuario si es que existe, los resultados de categorias y clasificaciones. Que precisa la vista para ser dinamica
+                    res.render('formularioAgregarProducto', {
                         title: "Agregar producto",
+                        css: "formularioAgregarProducto",
+                        usuario: req.session.usuario,
                         errors: errores.mapped(),
                         inputs: req.body,
-                        usuario: req.session.usuario,
-                        categorias: send
+                        categorias: categorias,
+                        clasificaciones: clasificaciones,
                     })
+                }).catch(error => {
+                    res.send(error)
                 })
+            }).catch(error => {
+                res.send(error)
+            })
         }
     },
 

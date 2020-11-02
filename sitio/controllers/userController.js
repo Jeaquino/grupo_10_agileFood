@@ -35,6 +35,7 @@ module.exports = {
                     nombre: req.body.nombre.trim(),
                     apellido: req.body.apellido.trim(),
                     email: req.body.email.trim(),
+                    categoria: "usuario",
                     contrasena: bcrypt.hashSync(req.body.contrasena, 10),
                     imagen: (req.files[0]) ? req.files[0].filename : "default-image.png",
                 })

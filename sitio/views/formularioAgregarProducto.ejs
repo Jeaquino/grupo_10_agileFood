@@ -42,7 +42,7 @@
                 <div class="contenedor">
                     <div class="col-md-5 mb-3 m-1">
                         <label class="col-4 col-md-4" for="">Categoria</label>
-                        <select class="col-8" name="categoria" type="number" value="">
+                        <select class="col-8" name="categoria" type="number" value="<%= (typeof inputs != 'undefined' && inputs.categoria)?inputs.categoria:'' %>">
                             <!--este es el forEach que recorre la categoria y devuelve la categoria captura el id ylo que muestra en el html en la pagina es el nombre, viaja por value-->
                             <% categorias.forEach( element => { %>
                             <option value="<%- element.idCategoria %>"> <%-element.nombre%>
@@ -50,10 +50,13 @@
                             <% }) %>
                         </select>
                         <button type="button" class="btn btn-outline-warning" id="botonCategoria">Agregar</button>
+                        <small id="errorNombre"
+                            class="text-danger"><%= (typeof errors != 'undefined' && errors.categoria)?errors.categoria.msg: "" %>
+                        </small>
                     </div>
                     <div class="col-md-5 mb-3 m-1">
                         <label class="col-4 col-md-4" for="">Clasificacion</label>
-                        <select class="col-8" name="categoria" value="">
+                        <select class="col-8" name="clasificacion" type="number" value="<%= (typeof inputs != 'undefined' && inputs.clasificacion)?inputs.clasificacion:'' %>">
                             <!--este es el forEach que recorre la categoria y devuelve la categoria captura el id ylo que muestra en el html en la pagina es el nombre, viaja por value-->
                             <% clasificaciones.forEach( element => { %>
                             <option value="<%- element.idClasificacion %>"> <%-element.nombre%>
@@ -61,6 +64,9 @@
                             <% }) %>
                         </select>
                         <button type="button" class="btn btn-outline-warning " id="botonClasificacion">Agregar</button>
+                        <small id="errorNombre"
+                            class="text-danger"><%= (typeof errors != 'undefined' && errors.clasificacion)?errors.clasificacion.msg: "" %>
+                        </small>
                     </div>
                     <div class="col-md-2 mb-3 m-1">
                         <label class="col-4 col-md-4" for="">Cantidad</label>

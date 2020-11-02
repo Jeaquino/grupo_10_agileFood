@@ -5,40 +5,72 @@ module.exports = [
     check("nombre")
     .isLength({
         min: 1,
-        max: 20,
+        max: 100,
     })
-    .withMessage("debe ingresar al menos un caracter y maximo 20"),
+    .withMessage("debe ingresar al menos un caracter y maximo 100"),
+
+    check("nombre")
+    .isAlpha()
+    .withMessage("Solo se aceptan letras"),
+
     check("precio")
     .isLength({
         min: 1,
     })
-    .withMessage("debe ingresar un monto valido no superior a 5 caracteres"),
+    .withMessage("Debe conmpletar este campo"),
+
+    check("precio")
+    .isNumeric()
+    .withMessage("Solo se aceptab valores numericos"),
 
     check("descuento")
     .isLength({
         min: 1,
-        max: 6,
     })
-    .withMessage("debe ingresar un monto valido no superior a 6 caracteres"),
+    .withMessage("Debe conmpletar este campo"),
+
+    check("descuento")
+    .isNumeric()
+    .withMessage("Solo se aceptab valores numericos"),
+
+    check("categoria")
+    .isLength({
+        min: 1,
+    })
+    .withMessage("Debe conmpletar este campo"),
+
+    check("categoria")
+    .isNumeric()
+    .withMessage("Solo se aceptab valores numericos"),
+
+    check("clasificacion")
+    .isLength({
+        min: 1,
+    })
+    .withMessage("Debe conmpletar este campo"),
+
+    check("clasificacion")
+    .isNumeric()
+    .withMessage("Solo se aceptab valores numericos"),
 
     check("stock")
     .isLength({
         min: 1,
-        max: 6,
     })
-    .withMessage("debe ingresar un monto valido no superior a 6 caracteres"),
+    .withMessage("Debe conmpletar este campo"),
+
+    check("stock")
+    .isNumeric()
+    .withMessage("Solo se aceptab valores numericos"),
+
+    check("descripcion")
+    .isEmpty()
+    .withMessage("Debe conmpletar este campo"),
 
     check("descripcion")
     .isLength({
         min: 1,
-        max: 200,
+        max: 300,
     })
-    .withMessage("debe ingresar una descripcion valida por favor"),
-
-    check("image")
-    .isLength({
-        min: 1,
-        max: 4,
-    })
-    .withMessage("debe ingresar una imagen valida"),
+    .withMessage("La descripcion no puede superar los 300 caracteres"),
 ]
