@@ -131,7 +131,7 @@ module.exports = {
                     stock: req.body.stock.trim(),
                     descripcion: req.body.descripcion.trim(),
                     imagen: (req.files[0]) ? req.files[0].filename : "default-image.png"
-                }).then( result => {
+                }).then(result => {
                     res.redirect("/products")
                 })
                 .catch(error => {
@@ -171,22 +171,38 @@ module.exports = {
     form: function (req, res, next) {
 
         let id = req.params.id
+        let categorias = [];
+        let clasificaciones = [];
 
-        db.productos.findOne({
-                where: {
-                    idProducto: id
-                }
-            }).then(elemento => {
-                res.render("formularioEditarProducto", {
-                    producto: elemento,
-                    title: "Modificar producto",
-                    css: "formularioAgregarProducto",
-                    usuario: req.session.usuario
+        //findAll es el metodo de encontrar todo
+        db.clasificaciones.findAll().then(resultado => {
+            // se realiza la busqueda de todas las clasificaciones en la base de datos y se guarda el resultado en clasificaciones
+            clasificaciones = resultado
+            db.categorias.findAll().then(elementos => {
+                // se realiza la busqueda de todas las categorias en la base de datos y se guarda el resultado en categorias
+                categorias = elementos
+                db.productos.findOne({
+                    where: {
+                        idProducto: id
+                    }
+                    //Se realiza la busqueda del producto pasado por el parametro id
+                }).then(producto => {
+                    //se renderiza la vista, enviando como variables la vista, se envian todos los elementos que se buscaron y los necesarios(css title vista) que precisa la vista para ser dinamica
+                    res.render('formularioAgregarProducto', {
+                        title: "Editar producto ",
+                        css: "formularioAgregarProducto",
+                        usuario: req.session.usuario,
+                        categorias: categorias,
+                        clasificaciones: clasificaciones,
+                        producto: producto,
+                    })
+                }).catch(error => {
+                    res.send(error)
                 })
             })
-            .catch(error => {
-                res.send(error)
-            })
+        }).catch(error => {
+            res.send(error)
+        })
     },
 
     edit: function (req, res, next) {
