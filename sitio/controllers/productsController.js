@@ -8,11 +8,13 @@ const path = require('path');
 const {
     validationResult
 } = require("express-validator");
-const { send } = require("process");
+const {
+    send
+} = require("process");
 
 module.exports = {
 
-    detalle: function(req, res, next) {
+    detalle: function (req, res, next) {
 
         let id = req.params.id;
 
@@ -40,13 +42,16 @@ module.exports = {
         })
     },
 
-    productos: function(req, res, next) {
+    productos: function (req, res, next) {
 
         let categorias = [];
         let productos = [];
 
         db.productos.findAll({
                 include: [{
+                    association: "clasificaciones"
+                },
+                {
                     association: "categorias"
                 }]
             })
@@ -71,37 +76,36 @@ module.exports = {
 
     },
     /*para agregar producto */
-    agregar: function(req, res, next) {
+    agregar: function (req, res, next) {
         /*definino que es un array para saber que elementos tiene que agarrar */
         /*se hace una caja asi se guardan todos los elementos */
         let categorias = [];
         let clasificaciones = [];
+
         //findAll es el metodo de encontrar todo
-        db.categorias.findAll()
-            //y se guarda este send en categorias
-            .then(elementos => {
+        db.clasificaciones.findAll().then(resultado => {
+            // se realiza la busqueda de todas las clasificaciones en la base de datos y se guarda el resultado en clasificaciones
+            clasificaciones = resultado
+            db.categorias.findAll().then(elementos => {
+                // se realiza la busqueda de todas las categorias en la base de datos y se guarda el resultado en categorias
                 categorias = elementos
-                db.clasificaciones.findAll()
-                    //despues de hacer la busquedad a estos (elementos o clasificacion) le asigno clasificaciones le asigno clasificacion
-                    .then(clasificacion => {
-                        clasificaciones = clasificacion
-                    })
-                    //se almacena en la variable elementos
-                    //luego hacemos una nueva busquedad
+                //se renderiza la vista, enviando como variables la vista, el archivo css a vincular, el titulo de la vista, la session del usuario si es que existe, los resultados de categorias y clasificaciones. Que precisa la vista para ser dinamica
                 res.render('formularioAgregarProducto', {
                     title: "Agregar producto",
                     css: "formularioAgregarProducto",
                     usuario: req.session.usuario,
-                    categorias: send,
-                    clasificaciones: send,
+                    categorias: categorias,
+                    clasificaciones: clasificaciones,
                 })
-            })
-            .catch(error => {
+            }).catch(error => {
                 res.send(error)
-            });
+            })
+        }).catch(error => {
+            res.send(error)
+        })
     },
 
-    carrito: function(req, res, next) {
+    carrito: function (req, res, next) {
 
         res.render('carritoDeCompras', {
             css: "carritoDeCompras",
@@ -110,7 +114,7 @@ module.exports = {
         });
     },
 
-    crear: function(req, res, next) {
+    crear: function (req, res, next) {
 
         let errores = validationResult(req);
 
@@ -145,7 +149,7 @@ module.exports = {
         }
     },
 
-    form: function(req, res, next) {
+    form: function (req, res, next) {
 
         let id = req.params.id
 
@@ -166,7 +170,7 @@ module.exports = {
             })
     },
 
-    edit: function(req, res, next) {
+    edit: function (req, res, next) {
         let id = req.params.id;
 
         db.productos.update({
@@ -187,7 +191,7 @@ module.exports = {
         res.redirect("/products")
     },
 
-    eliminar: function(req, res) {
+    eliminar: function (req, res) {
         let id = req.params.id;
         db.productos.destroy({
             where: {

@@ -19,8 +19,9 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER(11),
             allowNull: true
         },
-        clasificacion: {
-            type: dataTypes.STRING(100)
+        idClasificacion: {
+            type: dataTypes.INTEGER(11),
+            allowNull: true
         },
         puntaje: {
             type: dataTypes.DECIMAL(2, 2)
@@ -49,9 +50,9 @@ module.exports = (sequelize, dataTypes) => {
             as: "categorias",
             foreignKey: "idCategoria",
         })
-        Producto.belongsTo(models.clasificacion, {
+        Producto.belongsTo(models.clasificaciones, {
             as: "clasificaciones",
-            foreignKey: "idClasificaciones",
+            foreignKey: "idClasificacion",
         })
 
         Producto.belongsToMany(models.usuarios, {

@@ -1,85 +1,98 @@
 <%- include("./partials/head.ejs") %>
-    <%- include("./partials/header.ejs") %>-
-        <div class="container">
-            <div class="row">
-                <!--This is a comment. Comments are not displayed in the browser-->
-                <div class="col-lg-8">
-                    <form class="mtx" method="POST" action="/products/create" enctype="multipart/form-data">
-                        <div class="contenedor col-12">
-                            <div class="col-md-10 mb-3">
-                                <label for="validationCustom01">Producto</label>
-                                <input type="text" class="form-control nombre <%= (typeof inputs != 'undefined' && inputs.nombre)?" is-valid ":(typeof errors != 'undefined' && errors.nombre)?"is-invalid ": " "  %>" placeholder="Ingrese nombre del producto" name="nombre" value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:'' %>">
-                                <small id="errorNombre" class="text-danger"><%= (typeof errors != 'undefined' && errors.nombre)?errors.nombre.msg: "" %>
+<%- include("./partials/header.ejs") %>-
+<div class="container">
+    <div class="row">
+        <!--This is a comment. Comments are not displayed in the browser-->
+        <div class="col-lg-8">
+            <form class="mtx" method="POST" action="/products/create" enctype="multipart/form-data">
+                <div class="contenedor col-12">
+                    <div class="col-md-10 mb-3">
+                        <label for="validationCustom01">Producto</label>
+                        <input type="text"
+                            class="form-control nombre <%= (typeof inputs != 'undefined' && inputs.nombre)?" is-valid ":(typeof errors != 'undefined' && errors.nombre)?"is-invalid ": " "  %>"
+                            placeholder="Ingrese nombre del producto" name="nombre"
+                            value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:'' %>">
+                        <small id="errorNombre"
+                            class="text-danger"><%= (typeof errors != 'undefined' && errors.nombre)?errors.nombre.msg: "" %>
                         </small>
-                            </div>
-                            <div class="col-md-5 mb-3">
-                                <label for="validationCustom02">Precio</label>
-                                <input type="number" class="form-control precio <%= (typeof inputs != 'undefined' && inputs.precio)?" is-valid ":(typeof errors != 'undefined' && errors.precio)?"is-invalid ": " "  %>" placeholder="Ingrese precio $" min="1" value="<%= (typeof inputs != 'undefined' && inputs.precio)?inputs.precio:'' %>"
-                                    name="precio">
-                                <small id="errorNombre" class="text-danger"><%= (typeof errors != 'undefined' && errors.precio)?errors.precio.msg: "" %>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <label for="validationCustom02">Precio</label>
+                        <input type="number"
+                            class="form-control precio <%= (typeof inputs != 'undefined' && inputs.precio)?" is-valid ":(typeof errors != 'undefined' && errors.precio)?"is-invalid ": " "  %>"
+                            placeholder="Ingrese precio $" min="1"
+                            value="<%= (typeof inputs != 'undefined' && inputs.precio)?inputs.precio:'' %>"
+                            name="precio">
+                        <small id="errorNombre"
+                            class="text-danger"><%= (typeof errors != 'undefined' && errors.precio)?errors.precio.msg: "" %>
                         </small>
-                            </div>
-                            <div class="col-md-5 mb-3">
-                                <label for="validationCustom02">Descuento</label>
-                                <input type="number" class="form-control descuento <%= (typeof inputs != 'undefined' && inputs.descuento)?" is-valid ":(typeof errors != 'undefined' && errors.descuento)?"is-invalid ": " "  %>" min="1" max="100" placeholder="Porcentaje de descuento" value="<%= (typeof inputs != 'undefined' && inputs.descuento)?inputs.descuento:'' %>"
-                                    name="descuento">
-                                <small id="errorNombre" class="text-danger"><%= (typeof errors != 'undefined' && errors.descuento)?errors.descuento.msg: "" %>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <label for="validationCustom02">Descuento</label>
+                        <input type="number"
+                            class="form-control descuento <%= (typeof inputs != 'undefined' && inputs.descuento)?" is-valid ":(typeof errors != 'undefined' && errors.descuento)?"is-invalid ": " "  %>"
+                            min="1" max="100" placeholder="Porcentaje de descuento"
+                            value="<%= (typeof inputs != 'undefined' && inputs.descuento)?inputs.descuento:'' %>"
+                            name="descuento">
+                        <small id="errorNombre"
+                            class="text-danger"><%= (typeof errors != 'undefined' && errors.descuento)?errors.descuento.msg: "" %>
                         </small>
-                            </div>
-                        </div>
-                        <div class="contenedor">
-                            <div class="col-md-5 mb-3 m-1">
-                                <label class="col-4 col-md-4" for="">Categoria</label>
-                                <select class="col-8" name="categoria" type="number" value="">
+                    </div>
+                </div>
+                <div class="contenedor">
+                    <div class="col-md-5 mb-3 m-1">
+                        <label class="col-4 col-md-4" for="">Categoria</label>
+                        <select class="col-8" name="categoria" type="number" value="">
                             <!--este es el forEach que recorre la categoria y devuelve la categoria captura el id ylo que muestra en el html en la pagina es el nombre, viaja por value-->
                             <% categorias.forEach( element => { %>
-                            <option value="<%- element.dataValues.idCategoria %>"> <%-element.dataValues.nombre%>
+                            <option value="<%- element.idCategoria %>"> <%-element.nombre%>
                             </option>
                             <% }) %>
                         </select>
-                                <button type="button" class="btn btn-outline-warning" id="botonCategoria">Agregar</button>
-                            </div>
-                            <div class="col-md-5 mb-3 m-1">
-                                <label class="col-4 col-md-4" for="">Clasificacion</label>
-                                <select class="col-8" name="categoria" value="">
-                            <option>Oferta del dia</option>
-                            <option>Mas vendidos</option>
-                            <option>Sector Saludable</option>
-                            <option>Bebidas</option>
-                            <option>Recomendacion del cheff</option>
+                        <button type="button" class="btn btn-outline-warning" id="botonCategoria">Agregar</button>
+                    </div>
+                    <div class="col-md-5 mb-3 m-1">
+                        <label class="col-4 col-md-4" for="">Clasificacion</label>
+                        <select class="col-8" name="categoria" value="">
+                            <!--este es el forEach que recorre la categoria y devuelve la categoria captura el id ylo que muestra en el html en la pagina es el nombre, viaja por value-->
+                            <% clasificaciones.forEach( element => { %>
+                            <option value="<%- element.idClasificacion %>"> <%-element.nombre%>
+                            </option>
+                            <% }) %>
                         </select>
-                                <button type="button" class="btn btn-outline-warning " id="botonClasificacion">Agregar</button>
-                            </div>
-                            <div class="col-md-2 mb-3 m-1">
-                                <label class="col-4 col-md-4" for="">Cantidad</label>
-                                <input type="number" placeholder="Stock disponible" min="1" max="100" name="stock" value="">
-                            </div>
-                        </div>
-                        <div class="form-group col-9">
-                            <label for="exampleFormControlTextarea1">Detalle del producto</label>
-                            <textarea class="form-control descripcion" placeholder="Ingrese descripcion del producto" name="descripcion" value="" rows="3"></textarea>
-                        </div>
-                        <div class="form-group col-10 col-xl-6">
-                            <div class="custom-file mt-4">
-                                <input type="file" class="custom-file-input" lang="en" name="image">
-                                <label class="custom-file-label">Seleccione una imagen</label>
-                            </div>
-                        </div>
-                        <div class="col-10 d-flex justify-content-between">
-                            <button type="submit" class="btn btn-success col-4 mb-3">Subir Producto</button>
-                            <button type="button" class="btn btn-info col-4 mb-3">Reset</button>
-                        </div>
-                    </form>
+                        <button type="button" class="btn btn-outline-warning " id="botonClasificacion">Agregar</button>
+                    </div>
+                    <div class="col-md-2 mb-3 m-1">
+                        <label class="col-4 col-md-4" for="">Cantidad</label>
+                        <input type="number" placeholder="Stock disponible" min="1" max="100" name="stock" value="">
+                    </div>
                 </div>
-                <div class="col-lg-4 aling-self-center mx-auto text-center bold">
-                    <h1>Previsualización</h1>
-                    <h2 class="text-center titulo mb-3 text-white">Producto</h2>
-                    <figure class="aling-self-center mx-auto text-center">
-                        <img src="../images/productos/default_large.png" class="img-fluid vistaPrevia  w-75" alt="vistaPrevia">
-                    </figure>
-                    <div class="row text-right aling-self-rigth mb-3 ml-2">
-                        <i class="fas fa-dollar-sign fa-2x text-success col-1"></i>
-                        <h3 class="importe col-1 text-white font-weight-bold" ">Importe</h3>
+                <div class="form-group col-9">
+                    <label for="exampleFormControlTextarea1">Detalle del producto</label>
+                    <textarea class="form-control descripcion" placeholder="Ingrese descripcion del producto"
+                        name="descripcion" value="" rows="3"></textarea>
+                </div>
+                <div class="form-group col-10 col-xl-6">
+                    <div class="custom-file mt-4">
+                        <input type="file" class="custom-file-input" lang="en" name="image">
+                        <label class="custom-file-label">Seleccione una imagen</label>
+                    </div>
+                </div>
+                <div class="col-10 d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success col-4 mb-3">Subir Producto</button>
+                    <button type="button" class="btn btn-info col-4 mb-3">Reset</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4 aling-self-center mx-auto text-center bold">
+            <h1>Previsualización</h1>
+            <h2 class="text-center titulo mb-3 text-white">Producto</h2>
+            <figure class="aling-self-center mx-auto text-center">
+                <img src="../images/productos/default_large.png" class="img-fluid vistaPrevia  w-75" alt="vistaPrevia">
+            </figure>
+            <div class="row text-right aling-self-rigth mb-3 ml-2">
+                <i class="fas fa-dollar-sign fa-2x text-success col-1"></i>
+                <h3 class="importe col-1 text-white font-weight-bold" ">Importe</h3>
             </div>
             <p class=" col-lg-12 detalle blockquote text-left text-white font-italic ">Lorem ipsum, dolor sit amet
                     consectetur adipisicing elit. Sed,
@@ -88,5 +101,5 @@
             </div>
         </div>
     </div>
-    <script src="/js/registroProducto.js " type="text/javascript "></script>
-    <%- include("./partials/footer.ejs ") %>
+    <script src="/js/registroProducto.js " type=" text/javascript "></script>
+    <%- include("./partials/footer.ejs") %>
