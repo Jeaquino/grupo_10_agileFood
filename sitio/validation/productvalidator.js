@@ -1,4 +1,8 @@
-const { check, validatorResult, body } = require("express-validator");
+const {
+    check,
+    validatorResult,
+    body
+} = require("express-validator");
 const db = require('../database/models')
 
 module.exports = [
@@ -7,11 +11,7 @@ module.exports = [
         min: 1,
         max: 100,
     })
-    .withMessage("debe ingresar al menos un caracter y maximo 100"),
-
-    check("nombre")
-    .isAlpha()
-    .withMessage("Solo se aceptan letras"),
+    .withMessage("Debe ingresar al menos un caracter y maximo 100"),
 
     check("precio")
     .isLength({
@@ -43,6 +43,15 @@ module.exports = [
     .isNumeric()
     .withMessage("Solo se aceptab valores numericos"),
 
+    body('categoria')
+    .custom(function (value) {
+        if (value == '0') {
+            return false
+        }else{
+            return true
+        }
+    }).withMessage("Debe seleccionar una categoria"),
+
     check("clasificacion")
     .isLength({
         min: 1,
@@ -53,6 +62,15 @@ module.exports = [
     .isNumeric()
     .withMessage("Solo se aceptab valores numericos"),
 
+    body('clasificacion')
+    .custom(function (value) {
+        if (value == '0') {
+            return false
+        }else{
+            return true
+        }
+    }).withMessage("Debe selecionar una clasificacion"),
+
     check("stock")
     .isLength({
         min: 1,
@@ -62,15 +80,32 @@ module.exports = [
     check("stock")
     .isNumeric()
     .withMessage("Solo se aceptab valores numericos"),
-
-    check("descripcion")
-    .isEmpty()
-    .withMessage("Debe conmpletar este campo"),
 
     check("descripcion")
     .isLength({
         min: 1,
         max: 300,
     })
-    .withMessage("La descripcion no puede superar los 300 caracteres"),
+    .withMessage("La descripcion no debe estar vacia y no puede superar los 300 caracteres"),
+/*
+    body('image')
+    .custom((value,{req})=>{
+        console.log(req.files)
+        console.log(req.image)
+        if(req.image == undefined){
+            return false
+        }else{
+            return true
+        }
+    }).withMessage("Debe seleccionar un archivo"),
+*/
+    body('image')
+    .custom((value,{req})=>{
+        if(req.errorValidacionImagen){
+            return false
+        }else{
+            return true
+        }
+    }).withMessage("Solo se permite png, jpg, jpeg, gif")
+
 ]

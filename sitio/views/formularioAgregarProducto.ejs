@@ -23,7 +23,7 @@
                             placeholder="Ingrese precio $" min="1"
                             value="<%= (typeof inputs != 'undefined' && inputs.precio)?inputs.precio:'' %>"
                             name="precio">
-                        <small id="errorNombre"
+                        <small id="errorPrecio"
                             class="text-danger"><%= (typeof errors != 'undefined' && errors.precio)?errors.precio.msg: "" %>
                         </small>
                     </div>
@@ -34,7 +34,7 @@
                             min="1" max="100" placeholder="Porcentaje de descuento"
                             value="<%= (typeof inputs != 'undefined' && inputs.descuento)?inputs.descuento:'' %>"
                             name="descuento">
-                        <small id="errorNombre"
+                        <small id="errorDescuento"
                             class="text-danger"><%= (typeof errors != 'undefined' && errors.descuento)?errors.descuento.msg: "" %>
                         </small>
                     </div>
@@ -42,47 +42,64 @@
                 <div class="contenedor">
                     <div class="col-md-5 mb-3 m-1">
                         <label class="col-4 col-md-4" for="">Categoria</label>
-                        <select class="col-8" name="categoria" type="number" value="<%= (typeof inputs != 'undefined' && inputs.categoria)?inputs.categoria:'' %>">
+                        <select class="col-8" name="categoria" type="number"
+                            value="<%= (typeof inputs != 'undefined' && inputs.categoria)?inputs.categoria:'' %>">
                             <!--este es el forEach que recorre la categoria y devuelve la categoria captura el id ylo que muestra en el html en la pagina es el nombre, viaja por value-->
+                            <option value="0">Seleccione categoria</option>
                             <% categorias.forEach( element => { %>
                             <option value="<%- element.idCategoria %>"> <%-element.nombre%>
                             </option>
                             <% }) %>
                         </select>
                         <button type="button" class="btn btn-outline-warning" id="botonCategoria">Agregar</button>
-                        <small id="errorNombre"
+                        <small id="errorCategoria"
                             class="text-danger"><%= (typeof errors != 'undefined' && errors.categoria)?errors.categoria.msg: "" %>
                         </small>
                     </div>
                     <div class="col-md-5 mb-3 m-1">
                         <label class="col-4 col-md-4" for="">Clasificacion</label>
-                        <select class="col-8" name="clasificacion" type="number" value="<%= (typeof inputs != 'undefined' && inputs.clasificacion)?inputs.clasificacion:'' %>">
+                        <select class="col-8" name="clasificacion" type="number"
+                            value="<%= (typeof inputs != 'undefined' && inputs.clasificacion)?inputs.clasificacion:'' %>">
                             <!--este es el forEach que recorre la categoria y devuelve la categoria captura el id ylo que muestra en el html en la pagina es el nombre, viaja por value-->
+                            <option value="0">Seleccione clasificacion</option>
                             <% clasificaciones.forEach( element => { %>
                             <option value="<%- element.idClasificacion %>"> <%-element.nombre%>
                             </option>
                             <% }) %>
                         </select>
                         <button type="button" class="btn btn-outline-warning " id="botonClasificacion">Agregar</button>
-                        <small id="errorNombre"
+                        <small id="errorClasificacion"
                             class="text-danger"><%= (typeof errors != 'undefined' && errors.clasificacion)?errors.clasificacion.msg: "" %>
                         </small>
                     </div>
-                    <div class="col-md-2 mb-3 m-1">
-                        <label class="col-4 col-md-4" for="">Cantidad</label>
-                        <input type="number" placeholder="Stock disponible" min="1" max="100" name="stock" value="">
+                    <div class="col-md-8 mb-3 m-1">
+                        <label class="col-4 col-md-2" for="">Cantidad</label>
+                        <input type="number" placeholder="Stock disponible" min="1" max="100" name="stock"
+                            value="<%= (typeof inputs != 'undefined' && inputs.stock)?inputs.stock:'' %>">
+                        <small id="errorStock"
+                            class="text-danger ml-1"><%= (typeof errors != 'undefined' && errors.stock)?errors.stock.msg: "" %>
+                        </small>
                     </div>
                 </div>
                 <div class="form-group col-9">
                     <label for="exampleFormControlTextarea1">Detalle del producto</label>
-                    <textarea class="form-control descripcion" placeholder="Ingrese descripcion del producto"
-                        name="descripcion" value="" rows="3"></textarea>
+                    <textarea class="form-control descripcion"
+                        placeholder="<%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:"Ingrese descripcion del producto" %>"
+                        name="descripcion"
+                        value="<%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:'' %>"
+                        rows="3"></textarea>
+                    <small id="errorDescripcion"
+                        class="text-danger"><%= (typeof errors != 'undefined' && errors.descripcion)?errors.descripcion.msg: "" %>
+                    </small>
                 </div>
                 <div class="form-group col-10 col-xl-6">
                     <div class="custom-file mt-4">
                         <input type="file" class="custom-file-input" lang="en" name="image">
                         <label class="custom-file-label">Seleccione una imagen</label>
                     </div>
+                    <small id="errorImage"
+                        class="text-danger"><%= (typeof errors != 'undefined' && errors.image)?errors.image.msg: "" %>
+                    </small>
                 </div>
                 <div class="col-10 d-flex justify-content-between">
                     <button type="submit" class="btn btn-success col-4 mb-3">Subir Producto</button>

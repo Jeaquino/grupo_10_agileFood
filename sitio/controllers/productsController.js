@@ -131,8 +131,9 @@ module.exports = {
                     stock: req.body.stock.trim(),
                     descripcion: req.body.descripcion.trim(),
                     imagen: (req.files[0]) ? req.files[0].filename : "default-image.png"
+                }).then( result => {
+                    res.redirect("/products")
                 })
-                .then(res.redirect("/products"))
                 .catch(error => {
                     res.send(error)
                 })
