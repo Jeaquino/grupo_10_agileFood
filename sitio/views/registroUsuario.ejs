@@ -13,6 +13,11 @@
                     <div class="mt-5">
                         <img src="/images/Logo.png" alt="imagen de logo agile foot" width="300" id="logo">
                     </div>
+                    <div class="mt-5">
+                        <figure>
+                        <img id="vistaPrevia" alt="" width="300"/>
+                        </figure>
+                    </div>
                 </div>
                 <div class="col-xl-7 col-lg-8 d-flex">
                     <div class="container align-self-center p-6">
@@ -25,7 +30,7 @@
                         </div>
                         <p class="text-muted mb-5">Ingresa tus datos.</p>
                         <!--el formulario tiene que bajar por POST siempre que recopile informacion sencible tiene que viajar por POST. en todo caso si los otro formularios reciban un archivo tiene que tener el enctype="multilpar/form-data-->
-                        <form method="POST" action="/users/registrarme" enctype="multipart/form-data">
+                        <form method="POST" action="/users/registrarme" enctype="multipart/form-data" id="registro">
                             <div class="form-row mb-2">
                                 <div class="form-group col-md-6">
                                     
@@ -33,14 +38,14 @@
                                     <input type="text" 
                                     class="form-control <%= (typeof inputs != 'undefined' && typeof errors.nombre == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.nombre)?"is-invalid": ""  %>" 
                                     id="nombre"  name="nombre"  value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:'' %>" placeholder="Tu nombre"/>
-                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.nombre)?errors.nombre.msg: "" %> </small>
+                                    <small id="errorNombre" class="text-danger"><%= (typeof errors != 'undefined' && errors.nombre)?errors.nombre.msg: "" %> </small>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="font-weight-bold">Apellido <span class="text-danger">*</span></label>
                                     <input type="text" 
                                     class="form-control <%= (typeof inputs != 'undefined' && typeof errors.apellido == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.apellido)?"is-invalid": ""  %>" 
                                     id="apellido"  name="apellido"  value="<%= (typeof inputs != 'undefined' && inputs.apellido)?inputs.apellido:'' %>" placeholder="Tu apellido"/>
-                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.apellido)?errors.apellido.msg: "" %> </small>
+                                    <small id="errorApellido" class="text-danger"><%= (typeof errors != 'undefined' && errors.apellido)?errors.apellido.msg: "" %> </small>
                                 </div>
                             </div>
                             <div class="form-group mb-3">
@@ -48,7 +53,7 @@
                                 <input type="email" 
                                 class="form-control <%= (typeof inputs != 'undefined' && typeof errors.email == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.email)?"is-invalid": ""  %>" 
                                     id="email"  name="email"  value="<%= (typeof inputs != 'undefined' && inputs.email)?inputs.email:'' %>" placeholder="Tu e-mail"/>
-                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.email)?errors.email.msg: "" %> </small>
+                                    <small id="errorEmail" class="text-danger"><%= (typeof errors != 'undefined' && errors.email)?errors.email.msg: "" %> </small>
                             </div>
                             <div class="form-row mb-4">
                                 <div class="form-group col-md-6">
@@ -83,7 +88,7 @@
                                     <input type="password" 
                                     class="form-control <%= (typeof inputs != 'undefined' && typeof errors.contrasena == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.constrasena)?"is-invalid": ""  %>" 
                                     id="contrasena"  name="contrasena"  value="<%= (typeof inputs != 'undefined' && inputs.contrasena)?inputs.contrasena:'' %>" placeholder="Debe tener min de 8 caracteres y un maximo de 18, solo se aceptan valores alphanumericos"/>
-                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.contrasena)?errors.contrasena.msg: "" %> </small>
+                                    <small id="errorContrasena" class="text-danger"><%= (typeof errors != 'undefined' && errors.contrasena)?errors.contrasena.msg: "" %> </small>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="font-weight-bold">Verificación de contraseña <span
@@ -91,26 +96,29 @@
                                     <input type="password"
                                     class="form-control <%= (typeof inputs != 'undefined' && typeof errors.verificacion == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.verificacion)?"is-invalid": ""  %>" 
                                     id="verificacion"  name="verificacion"  value="<%= (typeof inputs != 'undefined' && inputs.verificacion)?inputs.verificacion:'' %>" placeholder="Reitere su contraseña"/>
-                                    <small class="text-danger"><%= (typeof errors != 'undefined' && errors.verificacion)?errors.verificacion.msg: "" %> </small> 
+                                    <small id="errorVerificacion" class="text-danger"><%= (typeof errors != 'undefined' && errors.verificacion)?errors.verificacion.msg: "" %> </small> 
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Seleccione una imagen de perfil</label>
-                                <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1">
-                                <small class="text-danger"><%= (typeof errors != 'undefined' && errors.image)?errors.image.msg: "" %> </small>
+                                <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1" id="imagen" accept="image/jpeg, image/png, image/png, image/gif">
+                                <small id="errorFoto" class="text-danger"><%= (typeof errors != 'undefined' && errors.image)?errors.image.msg: "" %> </small>
                             </div>
                             <div class="form-group mb-5">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="aceptacion">
                                     <label class="form-check-label text-muted">Al seleccionar esta casilla aceptas nuestro aviso
                                 de privacidad y los términos y condiciones</label>
-                                <small class="text-danger"><%= (typeof errors != 'undefined' && errors.aceptacion)?errors.aceptacion.msg: "" %> </small>
+                                <small id="errorBases" class="text-danger"><%= (typeof errors != 'undefined' && errors.aceptacion)?errors.aceptacion.msg: "" %> </small>
                                 </div>
                             </div>
-                            <button class="btn btn-primary width-100">Regístrate</button>
+                            <span id="msgError" class="text-danger col-12"></span>
+                            <br>
+                            <button type="submit" class="btn btn-primary width-100">Regístrate</button>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
+        <script src="/js/registroUsuario.js"></script>
         <%- include("./partials/footer.ejs") %>

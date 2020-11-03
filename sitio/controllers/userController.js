@@ -12,7 +12,7 @@ module.exports = {
     registro: function (req, res, next) { //_3_me renderiza a la pagina_registroUsuario_
 
         res.render('registroUsuario', {
-            css: "style",
+            css: "registrarUsuario",
             title: "Registro",
             usuario: req.session.usuario
         });
@@ -63,7 +63,7 @@ module.exports = {
                 })
         } else {
             res.render("registroUsuario", {
-                css: "style",
+                css: "registrarUsuario",
                 title: "Registro",
                 errors: errors.mapped(),
                 inputs: req.body,
