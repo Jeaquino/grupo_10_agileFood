@@ -6,7 +6,7 @@ let regExNombre =  /[\d]+$/g;
 module.exports = [
     check("nombre")
     .isLength({
-        min: 1,
+        min: 3,
         max: 100,
     })
     .withMessage("Debe ingresar al menos un caracter y maximo 100"),
