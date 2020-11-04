@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-md-8 mb-3 m-1">
                         <label class="col-4 col-md-2" for="">Cantidad</label>
-                        <input type="number" placeholder="Stock disponible" min="1" max="100" name="stock"
+                        <input type="number" placeholder="Stock disponible" min="1" max="100" name="stock" class="stock"
                             value="<%= (typeof inputs != 'undefined' && inputs.stock)?inputs.stock:(typeof producto != 'undefined')?producto.stock:''  %>">
                         <small id="errorStock"
                             class="text-danger ml-1"><%= (typeof errors != 'undefined' && errors.stock)?errors.stock.msg: "" %>
@@ -86,7 +86,7 @@
                     <textarea class="form-control descripcion"
                         placeholder="<%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:(typeof producto != 'undefined')?producto.descripcion:"Ingrese descripcion del producto" %>"
                         name="descripcion"
-                        value="<%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:(typeof producto != 'undefined')?producto.descripcion:"Ingrese descripcion del producto"%>" rows="3">"<%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:(typeof producto != 'undefined')?producto.descripcion:"Ingrese descripcion del producto"%>" </textarea>
+                        value="<%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:(typeof producto != 'undefined')?producto.descripcion:"Ingrese descripcion del producto"%>" rows="3"><%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:(typeof producto != 'undefined')?producto.descripcion:"Ingrese descripcion del producto"%></textarea>
                     <small id="errorDescripcion"
                         class="text-danger"><%= (typeof errors != 'undefined' && errors.descripcion)?errors.descripcion.msg: "" %>
                     </small>

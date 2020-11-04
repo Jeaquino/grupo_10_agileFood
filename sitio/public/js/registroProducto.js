@@ -12,25 +12,30 @@ window.addEventListener('load', function () {
     let descripcion = document.querySelector("div textarea")
     let detalle = document.querySelector(".detalle")
 
+    let stock = document.querySelector(".stock")
+    let categoria = document.querySelector(".categoria")
+    let clasificacion = document.querySelector(".clasificacion")
+
     let imagen = document.querySelector(".custom-file-input")
     let vistaPrevia = document.querySelector(".vistaPrevia")
 
     let botonCategoria = document.querySelector("#botonCategoria")
     let botonClasificacion = document.querySelector("#botonClasificacion")
 
-    let regExNombre =  /[\d]+$/g;
+    let regExNombre = /[\d]+$/g;
 
     nombre.addEventListener("input", function () {
         titulo.innerText = nombre.value
     })
 
     nombre.addEventListener("blur", function () {
+        console.log(this.value)
         switch (true) {
-            case this.length == 0:
-                errors.nombre = "El campo nombre es obligatorio"
+            case this.value.trim() == "":
+                errorNombre.innerHTML = "El campo nombre es obligatorio"
                 this.classList.add('is-invalid')
                 break;
-            case this.value.trim().length <=2:
+            case this.value.trim().length <= 2:
                 errorNombre.innerHTML = "Tenés que poner al menos tres letras"
                 this.classList.add('is-invalid')
                 break
@@ -46,43 +51,145 @@ window.addEventListener('load', function () {
         }
     })
 
-    precio.addEventListener("input", function(){
+    precio.addEventListener("input", function () {
         importe.innerText = precio.value
         console.log(importe)
     })
 
-    descuento.addEventListener("input", function(){
+    precio.addEventListener("blur", function () {
+        switch (true) {
+            case this.value.trim() == "":
+                errorPrecio.innerHTML = "No debe estar vacio"
+                this.classList.add('is-invalid')
+                break
+            case this.value == 0:
+                errorPrecio.innerHTML = "El precio no debe ser 0"
+                this.classList.add('is-invalid')
+            default:
+                this.classList.remove('is-invalid')
+                this.classList.add('is-valid')
+                errorPrecio.innerHTML = ""
+                break;
+        }
+    })
+
+    descuento.addEventListener("blur", function () {
+        switch (true) {
+            case this.value.trim() == "":
+                errorDescuento.innerHTML = "No debe estar vacio, si lo deseas pueden poner 0% de descuento"
+                this.classList.add('is-invalid')
+                break
+            default:
+                this.classList.remove('is-invalid')
+                this.classList.add('is-valid')
+                errorDescuento.innerHTML = ""
+                break;
+        }
+    })
+
+    descuento.addEventListener("input", function () {
         rebaja.innerText = precio.value
     })
 
-    descripcion.addEventListener("input", function(){
+    stock.addEventListener("blur", function () {
+        switch (true) {
+            case this.value.trim() == "":
+                errorStock.innerHTML = "No debe estar vacio"
+                this.classList.add('is-invalid')
+                break
+            case this.value == 0:
+                errorStock.innerHTML = "El stock no debe ser 0"
+                this.classList.add('is-invalid')
+                break
+            default:
+                this.classList.remove('is-invalid')
+                this.classList.add('is-valid')
+                errorStock.innerHTML = ""
+                break;
+        }
+    })
+
+    categoria.addEventListener("blur", function () {
+        switch (true) {
+            case this.options.selectedIndex == "0":
+                errorCategoria.innerHTML = "Debes elegir una categoria"
+                this.classList.add('is-invalid')
+                break
+            default:
+                this.classList.remove('is-invalid')
+                this.classList.add('is-valid')
+                errorCategoria.innerHTML = ""
+                break;
+        }
+    })
+
+    clasificacion.addEventListener("blur", function () {
+        switch (true) {
+            case this.options.selectedIndex == "0":
+                errorClasificacion.innerHTML = "Debes elegir una clasificacion"
+                this.classList.add('is-invalid')
+                break
+            default:
+                this.classList.remove('is-invalid')
+                this.classList.add('is-valid')
+                errorClasificacion.innerHTML = ""
+                break;
+        }
+    })
+
+    descripcion.addEventListener("input", function () {
         detalle.innerText = descripcion.value
     })
 
-    imagen.addEventListener('change',function(e){
+    descripcion.addEventListener("blur", function () {
+        switch (true) {
+            case this.value.trim() == "":
+                errorDescripcion.innerHTML = "Agregue una breve descripcion por favor"
+                this.classList.add('is-invalid')
+                break
+            default:
+                this.classList.remove('is-invalid')
+                this.classList.add('is-valid')
+                errorDescripcion.innerHTML = ""
+                break;
+        }
+    })
+
+    imagen.addEventListener('change', function (e) {
 
         let reader = new FileReader();
 
         reader.readAsDataURL(e.target.files[0]);
 
-        reader.onload = function(){
-            console.log(vistaPrevia.src)
-            console.log(e.target.files[0])
+        reader.onload = function () {
             vistaPrevia.src = reader.result;
-        }      
+        }
     })
 
-    botonCategoria.addEventListener("click", function(){
+    imagen.addEventListener("blur", function (e) {
+        console.log(e)
+        switch (true) {
+            case !e.target.files[0]:
+                errorImage.innerHTML = "Debe selecionar una imagen"
+                this.classList.add('is-invalid')
+                break
+            default:
+                this.classList.remove('is-invalid')
+                this.classList.add('is-valid')
+                errorDescripcion.innerHTML = ""
+                break;
+        }
+    })
+
+    botonCategoria.addEventListener("click", function () {
         let categoria = prompt("ingrese el nombre de la categoria")
         let resultado = confirm("seguro que desea agregar la categoria")
     })
 
-    botonClasificacion.addEventListener("click", function(){
+    botonClasificacion.addEventListener("click", function () {
         let clasificacion = prompt("ingrese el nombre de la categoria")
         let resultado = confirm("seguro que desea agregar la categoria")
     })
-
-
 
 
 
