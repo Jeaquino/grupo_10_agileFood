@@ -10,7 +10,11 @@ module.exports = [
     check('contraseña')
     .isLength(8,18)
     .isAlphanumeric()
-    .withMessage('Debes ingresar una contraseña, debe poseer valores alfanuméricos, un minimo de 6 caracteres y un maximo de 18'),
+    .withMessage('Debes ingresar una contraseña con un minimo de 8 caracteres y un maximo de 18'),
+
+    check('contraseña')
+    .isAlphanumeric()
+    .withMessage('Debe poseer valores alphanumericos'),
 
     body('email')
     .custom(function(value){

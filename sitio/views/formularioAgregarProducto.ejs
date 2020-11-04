@@ -9,7 +9,7 @@
                     <div class="col-md-10 mb-3">
                         <label for="validationCustom01">Producto</label>
                         <input type="text"
-                            class="form-control nombre <%= (typeof inputs != 'undefined' && inputs.nombre)?" is-valid ":(typeof errors != 'undefined' && errors.nombre)?"is-invalid ": " "  %>"
+                            class="form-control nombre <%= (typeof inputs != 'undefined' && inputs.nombre)?" is-valid ":(typeof errors != 'undefined' && errors.nombre)?"is-invalid ": ""  %>"
                             placeholder="Ingrese nombre del producto" name="nombre"
                             value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof producto != 'undefined')?producto.nombre:'' %>">
                         <small id="errorNombre"
@@ -111,7 +111,7 @@
             <h1>Previsualización</h1>
             <h2 class="text-center titulo mb-3 text-white"><%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof producto != 'undefined')?producto.nombre:'Producto'%></h2>
             <figure class="aling-self-center mx-auto text-center">
-                <img src="<%= (typeof inputs != 'undefined' && inputs.image)?inputs.image:(typeof producto != 'undefined')?producto.imagen:"../images/productos/default_large.png"%>" class="img-fluid vistaPrevia  w-75" alt="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof producto != 'undefined')?producto.imagen:'vistaPrevia'%>">
+                <img src="<%= (typeof inputs != 'undefined' && inputs.image)?inputs.image:(typeof producto != 'undefined')?"../images/productos/default_large.png":"../images/productos/default_large.png"%>" class="img-fluid vistaPrevia  w-75" alt="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof producto != 'undefined')?"casa":'vistaPrevia'%>">
             </figure>
             <div class="row text-right aling-self-rigth mb-3 ml-2">
                 <i class="fas fa-dollar-sign fa-2x text-success col-1"></i>

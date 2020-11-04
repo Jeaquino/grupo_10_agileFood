@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <label for="">Email</label>
                     <input type="email"
-                        class="form-control <%= (typeof inputs != 'undefined' && typeof errors.email == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.email)?"is-invalid": ""  %>"
+                        class="form-control mail<%= (typeof inputs != 'undefined' && typeof errors.email == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.email)?"is-invalid": ""  %>"
                         id="email" name="email"
                         value="<%= (typeof inputs != 'undefined' && inputs.email)?inputs.email:'' %>"
                         placeholder="Tu e-mail" />
@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <label for="">Contraseña</label>
                     <input type="password"
-                        class="form-control <%= (typeof inputs != 'undefined' && typeof errors.contraseña == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.constraseña)?"is-invalid": ""  %>"
+                        class="form-control contrasena<%= (typeof inputs != 'undefined' && typeof errors.contraseña == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.constraseña)?"is-invalid": ""  %>"
                         id="contraseña" name="contraseña"
                         value="<%= (typeof inputs != 'undefined' && inputs.contraseña)?inputs.contraseña:'' %>"
                         placeholder="Debe tener min de 8 caracteres y un maximo de 18, solo se aceptan valores alphanumericos" />

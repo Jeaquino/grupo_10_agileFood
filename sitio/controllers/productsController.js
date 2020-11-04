@@ -5,12 +5,7 @@ const db = require("../database/models");
 // requiero complementos
 const sequelize = db.sequelize;
 const path = require('path');
-const {
-    validationResult
-} = require("express-validator");
-const {
-    send
-} = require("process");
+const {validationResult} = require("express-validator");
 
 module.exports = {
 
@@ -120,7 +115,6 @@ module.exports = {
         let errores = validationResult(req);
 
         if (errores.isEmpty()) {
-            console.log(req.body)
 
             db.productos.create({
                     nombre: req.body.nombre.trim(),
@@ -138,7 +132,7 @@ module.exports = {
                     res.send(error)
                 })
         } else {
-            console.log(req.body)
+            console.log(errores)
             let categorias = [];
             let clasificaciones = [];
 
