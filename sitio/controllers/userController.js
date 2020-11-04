@@ -39,6 +39,7 @@ module.exports = {
                     contrasena: bcrypt.hashSync(req.body.contrasena, 10),
                     imagen: (req.files[0]) ? req.files[0].filename : "default-image.png",
                 })
+                //then=(luego) el codigo consecuencia 
                 .then(user => {
                     db.domicilios.create({
                             calle: req.body.calle.trim(),
@@ -47,7 +48,7 @@ module.exports = {
                             localidad: req.body.localidad.trim(),
                             idUsuario: user.null
                         })
-                        .then(domicilio => { //then=(luego) el codigo consecuencia 
+                        .then(domicilio => { //then=(luego) el codigo consecuencia //el(then) ejecuta una promesa
                             db.usuarios.update({
                                 idDomicilio: domicilio.null
                             }, {
@@ -83,7 +84,7 @@ module.exports = {
                         email: req.body.email
                     }
                 })
-                .then(usuario => { //then=(luego) el codigo consecuencia 
+                .then(usuario => { //then=(luego) el codigo consecuencia //el(then) ejecuta una promesa
                     req.session.usuario = {
                         id: usuario.idUsuario,
                         nick: usuario.nombre + " " + usuario.apellido,
@@ -119,6 +120,7 @@ module.exports = {
                 //El resultado se le asigna un parametro de esta funcion, aqui lo llamammos(elementos), pero podria tener cualquier nombre
                 attributes: ["nombre"]
             })
+            //el(then) ejecuta una promesa
             .then(elementos => {
                 categorias = elementos
             })
@@ -134,7 +136,7 @@ module.exports = {
                     association: "categorias"
                 }]
             })
-            .then(elementos => { //then=(luego) el codigo consecuencia 
+            .then(elementos => { //then=(luego) el codigo consecuencia //el(then) ejecuta una promesa
                 productos = elementos
                 res.render('productosAdministrador', {
                     title: "productos Administrador",

@@ -20,7 +20,7 @@ module.exports = {
                 idProducto: id
             }
         }).then(producto => {
-            //then=(luego) el codigo consecuencia 
+            //then=(luego) el codigo consecuencia. el(then) ejecuta una promesa
             db.productos.findAll({
                     //findAll para buscar todos los datos registrados en la tabla
                     where: {
@@ -29,7 +29,7 @@ module.exports = {
                         idCategoria: producto.idCategoria
                     }
                 }).then(recomendacion => {
-                    //then=(luego) el codigo consecuencia 
+                    //then=(luego) el codigo consecuencia. el(then) ejecuta una promesa
                     res.render('detailProducts', {
                         title: producto.nombre,
                         producto: producto,
@@ -38,7 +38,7 @@ module.exports = {
                         usuario: req.session.usuario
                     })
                 })
-                .catch(error => {
+                .catch(error => { //cuando las (promesas) Fallan,podemos atrapar todas las fallas con un (.catch)
                     res.send(error)
                 })
         })
@@ -59,6 +59,7 @@ module.exports = {
                     }
                 ]
             })
+            //el(then) ejecuta una promesa
             .then(elementos => {
                 productos = elementos
                 productos.forEach(elemento => {
@@ -74,6 +75,7 @@ module.exports = {
                     usuario: req.session.usuario
                 })
             })
+            //cuando las (promesas) Fallan,podemos atrapar todas las fallas con un (.catch)
             .catch(error => {
                 res.send(error)
             })
@@ -95,12 +97,13 @@ module.exports = {
                 categorias = elementos
                     //se renderiza la vista, enviando como variables la vista, el archivo css a vincular, el titulo de la vista, la session del usuario si es que existe, los resultados de categorias y clasificaciones. Que precisa la vista para ser dinamica
                 res.render('formularioAgregarProducto', {
-                    title: "Agregar producto",
-                    css: "formularioAgregarProducto",
-                    usuario: req.session.usuario,
-                    categorias: categorias,
-                    clasificaciones: clasificaciones,
-                })
+                        title: "Agregar producto",
+                        css: "formularioAgregarProducto",
+                        usuario: req.session.usuario,
+                        categorias: categorias,
+                        clasificaciones: clasificaciones,
+                    })
+                    //cuando las (promesas) Fallan,podemos atrapar todas las fallas con un (.catch)
             }).catch(error => {
                 res.send(error)
             })
@@ -133,9 +136,10 @@ module.exports = {
                     stock: req.body.stock.trim(),
                     descripcion: req.body.descripcion.trim(),
                     imagen: (req.files[0]) ? req.files[0].filename : "default-image.png"
-                }).then(result => {
+                }).then(result => { //el(then) ejecuta una promesa
                     res.redirect("/products")
                 })
+                //cuando las (promesas) Fallan,podemos atrapar todas las fallas con un (.catch)
                 .catch(error => {
                     res.send(error)
                 })
@@ -153,14 +157,15 @@ module.exports = {
                     categorias = elementos
                         //se renderiza la vista, enviando como variables la vista, el archivo css a vincular, el titulo de la vista, la session del usuario si es que existe, los resultados de categorias y clasificaciones. Que precisa la vista para ser dinamica
                     res.render('formularioAgregarProducto', {
-                        title: "Agregar producto",
-                        css: "formularioAgregarProducto",
-                        usuario: req.session.usuario,
-                        errors: errores.mapped(),
-                        inputs: req.body,
-                        categorias: categorias,
-                        clasificaciones: clasificaciones,
-                    })
+                            title: "Agregar producto",
+                            css: "formularioAgregarProducto",
+                            usuario: req.session.usuario,
+                            errors: errores.mapped(),
+                            inputs: req.body,
+                            categorias: categorias,
+                            clasificaciones: clasificaciones,
+                        })
+                        //cuando las (promesas) Fallan,podemos atrapar todas las fallas con un (.catch)
                 }).catch(error => {
                     res.send(error)
                 })
@@ -190,16 +195,17 @@ module.exports = {
                         idProducto: id
                     }
                     //Se realiza la busqueda del producto pasado por el parametro id
-                }).then(producto => { //then=(luego) el codigo consecuencia 
+                }).then(producto => { //then=(luego) el codigo consecuencia //el(then) ejecuta una promesa
                     //se renderiza la vista, enviando como variables la vista, se envian todos los elementos que se buscaron y los necesarios(css title vista) que precisa la vista para ser dinamica
                     res.render('formularioAgregarProducto', {
-                        title: "Editar producto ",
-                        css: "formularioAgregarProducto",
-                        usuario: req.session.usuario,
-                        categorias: categorias,
-                        clasificaciones: clasificaciones,
-                        producto: producto,
-                    })
+                            title: "Editar producto ",
+                            css: "formularioAgregarProducto",
+                            usuario: req.session.usuario,
+                            categorias: categorias,
+                            clasificaciones: clasificaciones,
+                            producto: producto,
+                        })
+                        //cuando las (promesas) Fallan,podemos atrapar todas las fallas con un (.catch)
                 }).catch(error => {
                     res.send(error)
                 })

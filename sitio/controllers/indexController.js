@@ -36,7 +36,8 @@ module.exports = {
                 include: [{
                     association: "categorias",
                 }],
-            }).then(result => { //then=(luego) el codigo consecuencia 
+            }).then(result => { //then=(luego) el codigo consecuencia //el(then) ejecuta una promesa
+
                 productos = result;
                 productos.forEach(elemento => {
                     if (!categorias.includes(elemento.categorias.nombre)) {
