@@ -5,7 +5,7 @@ const {
 
 module.exports = {
 
-    home: function (req, res, next) {
+    home: function(req, res, next) {
 
         let categorias;
         let mostrar;
@@ -18,14 +18,17 @@ module.exports = {
         });
     },
 
-    search: function (req, res, next) {
+    search: function(req, res, next) {
         let buscar = req.query.search;
 
         let categorias = [];
         let productos;
 
         db.productos.findAll({
+                //findAll para buscar todos los datos registrados en la tabla
                 where: {
+                    //dentro del (where) pasmos los atributos de acuerdo  con la columna de la tabla
+                    //y el valor a buscar.
                     nombre: {
                         [Op.substring]: buscar
                     }
@@ -33,8 +36,8 @@ module.exports = {
                 include: [{
                     association: "categorias",
                 }],
-            }).then(result => {
-                productos = result; 
+            }).then(result => { //then=(luego) el codigo consecuencia 
+                productos = result;
                 productos.forEach(elemento => {
                     if (!categorias.includes(elemento.categorias.nombre)) {
                         categorias.push(elemento.categorias.nombre)

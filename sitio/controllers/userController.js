@@ -47,7 +47,7 @@ module.exports = {
                             localidad: req.body.localidad.trim(),
                             idUsuario: user.null
                         })
-                        .then(domicilio => {
+                        .then(domicilio => { //then=(luego) el codigo consecuencia 
                             db.usuarios.update({
                                 idDomicilio: domicilio.null
                             }, {
@@ -79,10 +79,11 @@ module.exports = {
                     //permite que busquemos resultados que cohincidan con los atributos indicados en el objeto
                     //literal que recibe el metodo
                     where: {
+                        //dentro del(where) pasamos el atributo de acuerdo con la columna de la tabla y el valor a buscar.
                         email: req.body.email
                     }
                 })
-                .then(usuario => {
+                .then(usuario => { //then=(luego) el codigo consecuencia 
                     req.session.usuario = {
                         id: usuario.idUsuario,
                         nick: usuario.nombre + " " + usuario.apellido,
@@ -133,7 +134,7 @@ module.exports = {
                     association: "categorias"
                 }]
             })
-            .then(elementos => {
+            .then(elementos => { //then=(luego) el codigo consecuencia 
                 productos = elementos
                 res.render('productosAdministrador', {
                     title: "productos Administrador",

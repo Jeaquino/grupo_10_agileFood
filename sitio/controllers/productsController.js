@@ -20,13 +20,16 @@ module.exports = {
                 idProducto: id
             }
         }).then(producto => {
-
+            //then=(luego) el codigo consecuencia 
             db.productos.findAll({
                     //findAll para buscar todos los datos registrados en la tabla
                     where: {
+                        //dentro del (where) pasmos los atributos de acuerdo  con la columna de la tabla
+                        //y el valor a buscar.
                         idCategoria: producto.idCategoria
                     }
                 }).then(recomendacion => {
+                    //then=(luego) el codigo consecuencia 
                     res.render('detailProducts', {
                         title: producto.nombre,
                         producto: producto,
@@ -187,7 +190,7 @@ module.exports = {
                         idProducto: id
                     }
                     //Se realiza la busqueda del producto pasado por el parametro id
-                }).then(producto => {
+                }).then(producto => { //then=(luego) el codigo consecuencia 
                     //se renderiza la vista, enviando como variables la vista, se envian todos los elementos que se buscaron y los necesarios(css title vista) que precisa la vista para ser dinamica
                     res.render('formularioAgregarProducto', {
                         title: "Editar producto ",
