@@ -1,9 +1,9 @@
-const querySelector = function (element){
+const querySelector = function (element) {
     return document.querySelector(element);
 }
 
 
-window.addEventListener('load',function(){
+window.addEventListener('load', function () {
     console.log('vinculación correcta');
 
     let formRegister = querySelector('form#registro');
@@ -18,17 +18,17 @@ window.addEventListener('load',function(){
     let inputVerificacion = querySelector('#verificacion');
     let checkBases = querySelector('.form-check-input');
 
-    let regExEmail =  /^(([^<>()\[\]\.,;:\s@\”]+(\.[^<>()\[\]\.,;:\s@\”]:+)*)|(\”.+\”))@(([^<>()[\]\.,;:\s@\”]+\.)+[^<>()[\]\.,;:\s@\”]{2,})$/;
+    let regExEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
     let regExPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$/;
 
-    inputNombre.addEventListener('blur',function(){
+    inputNombre.addEventListener('blur', function () {
         switch (true) {
             case this.value == 0:
                 errorNombre.innerHTML = "El campo nombre es obligatorio"
                 this.classList.add('is-invalid')
                 break;
-            case this.value.trim().length <=2:
+            case this.value.trim().length <= 2:
                 errorNombre.innerHTML = "Tenés que poner al menos tres letras"
                 this.classList.add('is-invalid')
                 break
@@ -40,13 +40,13 @@ window.addEventListener('load',function(){
         }
     })
 
-    inputApellido.addEventListener('blur',function(){
+    inputApellido.addEventListener('blur', function () {
         switch (true) {
             case this.value == 0:
                 errorApellido.innerHTML = "El campo apellido es obligatorio"
                 this.classList.add('is-invalid')
                 break;
-            case this.value.trim().length <=2:
+            case this.value.trim().length <= 2:
                 errorApellido.innerHTML = "Tenés que poner al menos tres letras"
                 this.classList.add('is-invalid')
                 break
@@ -58,7 +58,7 @@ window.addEventListener('load',function(){
         }
     })
 
-    inputEmail.addEventListener('blur',function(){
+    inputEmail.addEventListener('blur', function () {
 
         switch (true) {
             case this.value == 0:
@@ -77,21 +77,21 @@ window.addEventListener('load',function(){
         }
     })
 
-    inputImagen.addEventListener('change',function(e){
-        
-      let reader = new FileReader();
-  
+    inputImagen.addEventListener('change', function (e) {
+
+        let reader = new FileReader();
+
         reader.readAsDataURL(e.target.files[0]);
-        
-        reader.onload = function(){
-                vistaPrevia.src = reader.result;
-                inputImagen.classList.remove('is-invalid')
-                inputImagen.classList.add('is-valid');
-                errorFoto.innerHTML = ""
-        }      
+
+        reader.onload = function () {
+            vistaPrevia.src = reader.result;
+            inputImagen.classList.remove('is-invalid')
+            inputImagen.classList.add('is-valid');
+            errorFoto.innerHTML = ""
+        }
     })
-        
-    inputContrasena.addEventListener('blur',function(){
+
+    inputContrasena.addEventListener('blur', function () {
         switch (true) {
             case this.value == 0:
                 errorContrasena.innerHTML = "El campo contraseña es obligatorio"
@@ -109,12 +109,12 @@ window.addEventListener('load',function(){
         }
     })
 
-    inputContrasena.addEventListener('mouseover',function(){
-       this.setAttribute("title","La contraseña debe tener entre 8 y 12 caracteres, una mayúscula una minúscula y un número");
+    inputContrasena.addEventListener('mouseover', function () {
+        this.setAttribute("title", "La contraseña debe tener entre 8 y 12 caracteres, una mayúscula una minúscula y un número");
     })
 
 
-    inputVerificacion.addEventListener('blur',function(){
+    inputVerificacion.addEventListener('blur', function () {
         switch (true) {
             case this.value == 0:
                 errorVerificacion.innerHTML = "Reingrese su contraseña"
@@ -132,28 +132,28 @@ window.addEventListener('load',function(){
         }
     })
 
-    checkBases.addEventListener('click',function(){
-            checkBases.classList.toggle('is-valid');
-            checkBases.classList.remove('is-invalid');
-            errorBases.innerHTML = ""
+    checkBases.addEventListener('click', function () {
+        checkBases.classList.toggle('is-valid');
+        checkBases.classList.remove('is-invalid');
+        errorBases.innerHTML = ""
     })
 
-    formRegister.addEventListener('submit',function(event){
+    formRegister.addEventListener('submit', function (event) {
         event.preventDefault();
-        if(checkBases.checked == false){
+        if (checkBases.checked == false) {
             checkBases.classList.add('is-invalid');
             errorBases.innerHTML = "Debes aceptar las bases y condiciones"
         }
         let error = false
-        for (let index = 0; index < elementos.length-1; index++) {
-            if(elementos[index].value == 0){
+        for (let index = 0; index < elementos.length - 1; index++) {
+            if (elementos[index].value == 0 && elementos[index].name != "aclaracion") {
                 elementos[index].classList.add('is-invalid');
-               error = true;
+                error = true;
             }
         }
-        if(!error){
+        if (!error) {
             formRegister.submit()
-        }else{
+        } else {
             msgError.innerHTML = "Los campos señadados son obligatorios"
         }
     })

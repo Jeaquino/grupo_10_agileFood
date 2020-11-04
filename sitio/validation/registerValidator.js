@@ -2,6 +2,8 @@ const { check, validatorResult, body } = require("express-validator");
 const db = require('../database/models')
 /*aca solicito express validator lo requiero de esta forma con la _base de datos_propiamente dicha 
 se exporta un array de validaciones _aca abajo_ cada una de ellas*/
+let regExPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$/;
+
 module.exports = [
 check("nombre") //checkeo el nombre
 .isLength({
@@ -61,6 +63,16 @@ check("contrasena")
     max: 18
 })
 .withMessage("debe ingresar una contraseña 8 a 18 caracteres"),
+
+
+body("contrasena")
+.custom((value)=>{
+    if(!regExPass.test(value)){
+        return true
+    }else{
+        return false
+    }
+}).withMessage("debe ingresar una contraseña 8 a 18 caracteres"),
 
 check("contrasena")
 .isAlphanumeric()
