@@ -5,20 +5,24 @@ const db = require("../database/models");
 // requiero complementos
 const sequelize = db.sequelize;
 const path = require('path');
-const {validationResult} = require("express-validator");
+const { validationResult } = require("express-validator");
 
 module.exports = {
 
-    detalle: function (req, res, next) {
+    detalle: function(req, res, next) {
 
         let id = req.params.id;
 
         db.productos.findOne({
+            //permite que busquemos resultados que cohincidan con los atributos indicados en el objeto
+            //literal que recibe el metodo
             where: {
                 idProducto: id
             }
         }).then(producto => {
+
             db.productos.findAll({
+                    //findAll para buscar todos los datos registrados en la tabla
                     where: {
                         idCategoria: producto.idCategoria
                     }
@@ -37,12 +41,13 @@ module.exports = {
         })
     },
 
-    productos: function (req, res, next) {
+    productos: function(req, res, next) {
 
         let categorias = [];
         let productos = [];
 
         db.productos.findAll({
+                //findAll para buscar todos los datos registrados en la tabla
                 include: [{
                         association: "clasificaciones"
                     },
@@ -72,7 +77,7 @@ module.exports = {
 
     },
     /*para agregar producto */
-    agregar: function (req, res, next) {
+    agregar: function(req, res, next) {
         /*definino que es un array para saber que elementos tiene que agarrar */
         /*se hace una caja asi se guardan todos los elementos */
         let categorias = [];
@@ -85,7 +90,7 @@ module.exports = {
             db.categorias.findAll().then(elementos => {
                 // se realiza la busqueda de todas las categorias en la base de datos y se guarda el resultado en categorias
                 categorias = elementos
-                //se renderiza la vista, enviando como variables la vista, el archivo css a vincular, el titulo de la vista, la session del usuario si es que existe, los resultados de categorias y clasificaciones. Que precisa la vista para ser dinamica
+                    //se renderiza la vista, enviando como variables la vista, el archivo css a vincular, el titulo de la vista, la session del usuario si es que existe, los resultados de categorias y clasificaciones. Que precisa la vista para ser dinamica
                 res.render('formularioAgregarProducto', {
                     title: "Agregar producto",
                     css: "formularioAgregarProducto",
@@ -101,7 +106,7 @@ module.exports = {
         })
     },
 
-    carrito: function (req, res, next) {
+    carrito: function(req, res, next) {
 
         res.render('carritoDeCompras', {
             css: "carritoDeCompras",
@@ -110,7 +115,7 @@ module.exports = {
         });
     },
 
-    crear: function (req, res, next) {
+    crear: function(req, res, next) {
 
         let errores = validationResult(req);
 
@@ -143,7 +148,7 @@ module.exports = {
                 db.categorias.findAll().then(elementos => {
                     // se realiza la busqueda de todas las categorias en la base de datos y se guarda el resultado en categorias
                     categorias = elementos
-                    //se renderiza la vista, enviando como variables la vista, el archivo css a vincular, el titulo de la vista, la session del usuario si es que existe, los resultados de categorias y clasificaciones. Que precisa la vista para ser dinamica
+                        //se renderiza la vista, enviando como variables la vista, el archivo css a vincular, el titulo de la vista, la session del usuario si es que existe, los resultados de categorias y clasificaciones. Que precisa la vista para ser dinamica
                     res.render('formularioAgregarProducto', {
                         title: "Agregar producto",
                         css: "formularioAgregarProducto",
@@ -162,7 +167,7 @@ module.exports = {
         }
     },
 
-    form: function (req, res, next) {
+    form: function(req, res, next) {
 
         let id = req.params.id
         let categorias = [];
@@ -176,6 +181,8 @@ module.exports = {
                 // se realiza la busqueda de todas las categorias en la base de datos y se guarda el resultado en categorias
                 categorias = elementos
                 db.productos.findOne({
+                    //permite que busquemos resultados que cohincidan con los atributos indicados en el objeto
+                    //literal que recibe el metodo
                     where: {
                         idProducto: id
                     }
@@ -199,7 +206,7 @@ module.exports = {
         })
     },
 
-    edit: function (req, res, next) {
+    edit: function(req, res, next) {
         let id = req.params.id;
 
         db.productos.update({
@@ -220,7 +227,7 @@ module.exports = {
         res.redirect("/products")
     },
 
-    eliminar: function (req, res) {
+    eliminar: function(req, res) {
         let id = req.params.id;
         db.productos.destroy({
             where: {
