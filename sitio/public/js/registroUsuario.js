@@ -28,8 +28,8 @@ window.addEventListener('load', function () {
                 errorNombre.innerHTML = "El campo nombre es obligatorio"
                 this.classList.add('is-invalid')
                 break;
-            case this.value.trim().length <= 2:
-                errorNombre.innerHTML = "Tenés que poner al menos tres letras"
+            case this.value.trim().length < 2:
+                errorNombre.innerHTML = "Tenés que poner al menos 2 letras"
                 this.classList.add('is-invalid')
                 break
             default:
@@ -46,8 +46,8 @@ window.addEventListener('load', function () {
                 errorApellido.innerHTML = "El campo apellido es obligatorio"
                 this.classList.add('is-invalid')
                 break;
-            case this.value.trim().length <= 2:
-                errorApellido.innerHTML = "Tenés que poner al menos tres letras"
+            case this.value.trim().length < 2:
+                errorApellido.innerHTML = "Tenés que poner al menos 2 letras"
                 this.classList.add('is-invalid')
                 break
             default:

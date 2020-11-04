@@ -58,25 +58,17 @@ check("localidad") //checkeo el apellido
 .withMessage("Ingrese su localidad, solo el nombre"),
 
 check("contrasena")
-.isLength({
-    min: 8,
-    max: 18
-})
-.withMessage("debe ingresar una contraseña 8 a 18 caracteres"),
-
+.isAlphanumeric()
+.withMessage("Solo se aceptan valores alphanumericos, no debe contener espacios"),
 
 body("contrasena")
-.custom((value)=>{
-    if(!regExPass.test(value)){
+.custom(function(value,{req}){
+    if(regExPass.test(req.body.contrasena)){
         return true
     }else{
         return false
     }
-}).withMessage("debe ingresar una contraseña 8 a 18 caracteres"),
-
-check("contrasena")
-.isAlphanumeric()
-.withMessage("Solo se aceptan valores alphanumericos"),
+}).withMessage("La contraseña debe tener entre 8 y 12 caracteres, una mayúscula una minúscula y un número"),
 
 body("verificacion")
 .custom(function(value,{ req }){
