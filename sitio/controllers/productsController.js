@@ -5,26 +5,31 @@ const db = require("../database/models");
 // requiero complementos
 const sequelize = db.sequelize;
 const path = require('path');
-const {
-    validationResult
-} = require("express-validator");
+const { validationResult } = require("express-validator");
 
 module.exports = {
 
-    detalle: function (req, res, next) {
+    detalle: function(req, res, next) {
 
         let id = req.params.id;
 
         db.productos.findOne({
+            //permite que busquemos resultados que cohincidan con los atributos indicados en el objeto
+            //literal que recibe el metodo
             where: {
                 idProducto: id
             }
         }).then(producto => {
+            //then=(luego) el codigo consecuencia. el(then) ejecuta una promesa
             db.productos.findAll({
+                    //findAll para buscar todos los datos registrados en la tabla
                     where: {
+                        //dentro del (where) pasmos los atributos de acuerdo  con la columna de la tabla
+                        //y el valor a buscar.
                         idCategoria: producto.idCategoria
                     }
                 }).then(recomendacion => {
+                    //then=(luego) el codigo consecuencia. el(then) ejecuta una promesa
                     res.render('detailProducts', {
                         title: producto.nombre,
                         producto: producto,
@@ -33,18 +38,19 @@ module.exports = {
                         usuario: req.session.usuario
                     })
                 })
-                .catch(error => {
+                .catch(error => { //cuando las (promesas) Fallan,podemos atrapar todas las fallas con un (.catch)
                     res.send(error)
                 })
         })
     },
 
-    productos: function (req, res, next) {
+    productos: function(req, res, next) {
 
         let categorias = [];
         let productos = [];
 
         db.productos.findAll({
+                //findAll para buscar todos los datos registrados en la tabla
                 include: [{
                         association: "clasificaciones"
                     },
@@ -53,6 +59,7 @@ module.exports = {
                     }
                 ]
             })
+            //el(then) ejecuta una promesa
             .then(elementos => {
                 productos = elementos
                 productos.forEach(elemento => {
@@ -68,13 +75,14 @@ module.exports = {
                     usuario: req.session.usuario
                 })
             })
+            //cuando las (promesas) Fallan,podemos atrapar todas las fallas con un (.catch)
             .catch(error => {
                 res.send(error)
             })
 
     },
     /*para agregar producto */
-    agregar: function (req, res, next) {
+    agregar: function(req, res, next) {
         /*definino que es un array para saber que elementos tiene que agarrar */
         /*se hace una caja asi se guardan todos los elementos */
         let categorias = [];
@@ -87,14 +95,15 @@ module.exports = {
             db.categorias.findAll().then(elementos => {
                 // se realiza la busqueda de todas las categorias en la base de datos y se guarda el resultado en categorias
                 categorias = elementos
-                //se renderiza la vista, enviando como variables la vista, el archivo css a vincular, el titulo de la vista, la session del usuario si es que existe, los resultados de categorias y clasificaciones. Que precisa la vista para ser dinamica
+                    //se renderiza la vista, enviando como variables la vista, el archivo css a vincular, el titulo de la vista, la session del usuario si es que existe, los resultados de categorias y clasificaciones. Que precisa la vista para ser dinamica
                 res.render('formularioAgregarProducto', {
-                    title: "Agregar producto",
-                    css: "formularioAgregarProducto",
-                    usuario: req.session.usuario,
-                    categorias: categorias,
-                    clasificaciones: clasificaciones,
-                })
+                        title: "Agregar producto",
+                        css: "formularioAgregarProducto",
+                        usuario: req.session.usuario,
+                        categorias: categorias,
+                        clasificaciones: clasificaciones,
+                    })
+                    //cuando las (promesas) Fallan,podemos atrapar todas las fallas con un (.catch)
             }).catch(error => {
                 res.send(error)
             })
@@ -103,7 +112,7 @@ module.exports = {
         })
     },
 
-    carrito: function (req, res, next) {
+    carrito: function(req, res, next) {
 
         res.render('carritoDeCompras', {
             css: "carritoDeCompras",
@@ -112,7 +121,7 @@ module.exports = {
         });
     },
 
-    crear: function (req, res, next) {
+    crear: function(req, res, next) {
 
         let errores = validationResult(req);
 
@@ -127,9 +136,10 @@ module.exports = {
                     stock: req.body.stock.trim(),
                     descripcion: req.body.descripcion.trim(),
                     imagen: (req.files[0]) ? req.files[0].filename : "default-image.png"
-                }).then(result => {
+                }).then(result => { //el(then) ejecuta una promesa
                     res.redirect("/products")
                 })
+                //cuando las (promesas) Fallan,podemos atrapar todas las fallas con un (.catch)
                 .catch(error => {
                     res.send(error)
                 })
@@ -145,16 +155,17 @@ module.exports = {
                 db.categorias.findAll().then(elementos => {
                     // se realiza la busqueda de todas las categorias en la base de datos y se guarda el resultado en categorias
                     categorias = elementos
-                    //se renderiza la vista, enviando como variables la vista, el archivo css a vincular, el titulo de la vista, la session del usuario si es que existe, los resultados de categorias y clasificaciones. Que precisa la vista para ser dinamica
+                        //se renderiza la vista, enviando como variables la vista, el archivo css a vincular, el titulo de la vista, la session del usuario si es que existe, los resultados de categorias y clasificaciones. Que precisa la vista para ser dinamica
                     res.render('formularioAgregarProducto', {
-                        title: "Agregar producto",
-                        css: "formularioAgregarProducto",
-                        usuario: req.session.usuario,
-                        errors: errores.mapped(),
-                        inputs: req.body,
-                        categorias: categorias,
-                        clasificaciones: clasificaciones,
-                    })
+                            title: "Agregar producto",
+                            css: "formularioAgregarProducto",
+                            usuario: req.session.usuario,
+                            errors: errores.mapped(),
+                            inputs: req.body,
+                            categorias: categorias,
+                            clasificaciones: clasificaciones,
+                        })
+                        //cuando las (promesas) Fallan,podemos atrapar todas las fallas con un (.catch)
                 }).catch(error => {
                     res.send(error)
                 })
@@ -164,7 +175,7 @@ module.exports = {
         }
     },
 
-    form: function (req, res, next) {
+    form: function(req, res, next) {
 
         let id = req.params.id
         let categorias = [];
@@ -178,11 +189,13 @@ module.exports = {
                 // se realiza la busqueda de todas las categorias en la base de datos y se guarda el resultado en categorias
                 categorias = elementos
                 db.productos.findOne({
+                    //permite que busquemos resultados que cohincidan con los atributos indicados en el objeto
+                    //literal que recibe el metodo
                     where: {
                         idProducto: id
                     }
                     //Se realiza la busqueda del producto pasado por el parametro id
-                }).then(producto => {
+                }).then(producto => { //then=(luego) el codigo consecuencia //el(then) ejecuta una promesa
                     //se renderiza la vista, enviando como variables la vista, se envian todos los elementos que se buscaron y los necesarios(css title vista) que precisa la vista para ser dinamica
                     res.render('formularioEditarProducto', {
                         title: "Editar producto ",
@@ -192,6 +205,7 @@ module.exports = {
                         clasificaciones: clasificaciones,
                         producto: producto,
                     })
+                    //cuando las (promesas) Fallan,podemos atrapar todas las fallas con un (.catch)
                 }).catch(error => {
                     res.send(error)
                 })
@@ -269,7 +283,7 @@ module.exports = {
         }
     },
 
-    eliminar: function (req, res) {
+    eliminar: function(req, res) {
         let id = req.params.id;
         db.productos.destroy({
             where: {

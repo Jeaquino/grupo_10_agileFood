@@ -4,12 +4,12 @@ const db = require('../database/models'); // requiero la base de datos de mysql
 
 const bcrypt = require("bcrypt"); //se requiere encriptado
 const fs = require("fs"); //se requiere file system---
-const {validationResult} = require("express-validator");
+const { validationResult } = require("express-validator");
 const path = require("path")
 
 module.exports = {
 
-    registro: function (req, res, next) { //_3_me renderiza a la pagina_registroUsuario_
+    registro: function(req, res, next) { //_3_me renderiza a la pagina_registroUsuario_
 
         res.render('registroUsuario', {
             css: "registrarUsuario",
@@ -18,7 +18,7 @@ module.exports = {
         });
     },
 
-    login: function (req, res, next) {
+    login: function(req, res, next) {
 
         res.render('login', {
             css: "login",
@@ -27,7 +27,7 @@ module.exports = {
         });
     },
     /*agregue nuevoo proceso de registro  */
-    processRegister: function (req, res) {
+    processRegister: function(req, res) {
         let errors = validationResult(req);
 
         if (errors.isEmpty()) {
@@ -39,6 +39,7 @@ module.exports = {
                     contrasena: bcrypt.hashSync(req.body.contrasena, 10),
                     imagen: (req.files[0]) ? req.files[0].filename : "default-image.png",
                 })
+                //then=(luego) el codigo consecuencia 
                 .then(user => {
                     db.domicilios.create({
                             calle: req.body.calle.trim(),
@@ -47,7 +48,7 @@ module.exports = {
                             localidad: req.body.localidad.trim(),
                             idUsuario: user.null
                         })
-                        .then(domicilio => {
+                        .then(domicilio => { //then=(luego) el codigo consecuencia //el(then) ejecuta una promesa
                             db.usuarios.update({
                                 idDomicilio: domicilio.null
                             }, {
@@ -72,15 +73,18 @@ module.exports = {
         }
     },
 
-    verificarLogin: function (req, res, next) {
+    verificarLogin: function(req, res, next) {
         let errors = validationResult(req);
         if (errors.isEmpty()) {
             db.usuarios.findOne({
+                    //permite que busquemos resultados que cohincidan con los atributos indicados en el objeto
+                    //literal que recibe el metodo
                     where: {
+                        //dentro del(where) pasamos el atributo de acuerdo con la columna de la tabla y el valor a buscar.
                         email: req.body.email
                     }
                 })
-                .then(usuario => {
+                .then(usuario => { //then=(luego) el codigo consecuencia //el(then) ejecuta una promesa
                     req.session.usuario = {
                         id: usuario.idUsuario,
                         nick: usuario.nombre + " " + usuario.apellido,
@@ -111,8 +115,12 @@ module.exports = {
     productosAdmin: (req, res, next) => {
         let categorias;
         db.categorias.findAll({
+                //findAll para buscar todos los datos registrados en la tabla
+                //la funcion findAll devuelve una promesa , por lo tanto ,la usamos para usar el resultado de la busquedad.
+                //El resultado se le asigna un parametro de esta funcion, aqui lo llamammos(elementos), pero podria tener cualquier nombre
                 attributes: ["nombre"]
             })
+            //el(then) ejecuta una promesa
             .then(elementos => {
                 categorias = elementos
             })
@@ -123,11 +131,12 @@ module.exports = {
         let productos;
 
         db.productos.findAll({
+                //findAll para buscar todos los datos registrados en la tabla
                 include: [{
                     association: "categorias"
                 }]
             })
-            .then(elementos => {
+            .then(elementos => { //then=(luego) el codigo consecuencia //el(then) ejecuta una promesa
                 productos = elementos
                 res.render('productosAdministrador', {
                     title: "productos Administrador",
@@ -142,7 +151,7 @@ module.exports = {
             })
     },
 
-    logout: function (req, res) {
+    logout: function(req, res) {
         req.session.destroy();
         if (req.cookies.userAgileFood) {
             res.cookie('userAgileFood', '', {
