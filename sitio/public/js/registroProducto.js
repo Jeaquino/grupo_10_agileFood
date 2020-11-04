@@ -18,6 +18,8 @@ window.addEventListener('load', function () {
     let botonCategoria = document.querySelector("#botonCategoria")
     let botonClasificacion = document.querySelector("#botonClasificacion")
 
+    let regExNombre =  /[\d]+$/g;
+
     nombre.addEventListener("input", function () {
         titulo.innerText = nombre.value
     })
@@ -30,6 +32,10 @@ window.addEventListener('load', function () {
                 break;
             case this.value.trim().length <=2:
                 errorNombre.innerHTML = "Tenés que poner al menos tres letras"
+                this.classList.add('is-invalid')
+                break
+            case regExNombre.test(this.value):
+                errorNombre.innerHTML = "Solo se pueden utilizar valores alfabeticos"
                 this.classList.add('is-invalid')
                 break
             default:

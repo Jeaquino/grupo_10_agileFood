@@ -1,7 +1,7 @@
 const {check,validatorResult,body} = require("express-validator");
 const db = require('../database/models')
 
-let regExNombre =  /[A-z\s]+$/g;
+let regExNombre =  /[\d]+$/g;
 
 module.exports = [
     check("nombre")
@@ -13,7 +13,7 @@ module.exports = [
 
     body('nombre')
     .custom((value)=>{
-        if(!regExNombre.test(value)){
+        if(regExNombre.test(value)){
             return true
         }else{
             return false
