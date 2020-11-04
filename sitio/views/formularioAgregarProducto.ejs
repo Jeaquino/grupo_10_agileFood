@@ -9,9 +9,9 @@
                     <div class="col-md-10 mb-3">
                         <label for="validationCustom01">Producto</label>
                         <input type="text"
-                            class="form-control nombre <%= (typeof inputs != 'undefined' && inputs.nombre)?" is-valid ":(typeof errors != 'undefined' && errors.nombre)?"is-invalid ": ""  %>"
+                            class="form-control nombre <%= (typeof inputs != 'undefined' && inputs.nombre)?" is-valid ":(typeof errors != 'undefined' && errors.nombre)?"is-invalid ": " "  %>"
                             placeholder="Ingrese nombre del producto" name="nombre"
-                            value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof producto != 'undefined')?producto.nombre:'' %>">
+                            value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:'' %>">
                         <small id="errorNombre"
                             class="text-danger"><%= (typeof errors != 'undefined' && errors.nombre)?errors.nombre.msg: "" %>
                         </small>
@@ -21,7 +21,7 @@
                         <input type="number"
                             class="form-control precio <%= (typeof inputs != 'undefined' && inputs.precio)?" is-valid ":(typeof errors != 'undefined' && errors.precio)?"is-invalid ": " "  %>"
                             placeholder="Ingrese precio $" min="1"
-                            value="<%= (typeof inputs != 'undefined' && inputs.precio)?inputs.precio:(typeof producto != 'undefined')?producto.precio:''  %>"
+                            value="<%= (typeof inputs != 'undefined' && inputs.precio)?inputs.precio:''  %>"
                             name="precio">
                         <small id="errorPrecio"
                             class="text-danger"><%= (typeof errors != 'undefined' && errors.precio)?errors.precio.msg: "" %>
@@ -32,7 +32,7 @@
                         <input type="number"
                             class="form-control descuento <%= (typeof inputs != 'undefined' && inputs.descuento)?" is-valid ":(typeof errors != 'undefined' && errors.descuento)?"is-invalid ": " "  %>"
                             min="1" max="100" placeholder="Porcentaje de descuento"
-                            value="<%= (typeof inputs != 'undefined' && inputs.descuento)?inputs.descuento:(typeof producto != 'undefined')?producto.descuento:''  %>"
+                            value="<%= (typeof inputs != 'undefined' && inputs.descuento)?inputs.descuento:''%>"
                             name="descuento">
                         <small id="errorDescuento"
                             class="text-danger"><%= (typeof errors != 'undefined' && errors.descuento)?errors.descuento.msg: "" %>
@@ -43,11 +43,11 @@
                     <div class="col-md-5 mb-3 m-1">
                         <label class="col-4 col-md-4" for="">Categoria</label>
                         <select class="col-8" name="categoria" type="number"
-                            value="<%= (typeof inputs != 'undefined' && inputs.categoria)?inputs.categoria:(typeof producto != 'undefined')?producto.categoria:''  %>">
+                            value="<%= (typeof inputs != 'undefined' && inputs.categoria)?inputs.categoria:''%>">
                             <!--este es el forEach que recorre la categoria y devuelve la categoria captura el id ylo que muestra en el html en la pagina es el nombre, viaja por value-->
                             <option value="0">Seleccione categoria</option>
                             <% categorias.forEach( element => { %>
-                            <option value="<%- element.idCategoria %>"> <%-element.nombre%>
+                            <option value="<%- element.idCategoria %>" <%= (typeof inputs != 'undefined' && inputs.categoria)?(element.idCategoria == inputs.categoria)?"selected":"":""%>> <%-element.nombre%>
                             </option>
                             <% }) %>
                         </select>
@@ -59,11 +59,11 @@
                     <div class="col-md-5 mb-3 m-1">
                         <label class="col-4 col-md-4" for="">Clasificacion</label>
                         <select class="col-8" name="clasificacion" type="number"
-                            value="<%= (typeof inputs != 'undefined' && inputs.clasificacion)?inputs.clasificacion:(typeof producto != 'undefined')?producto.clasificacion:''  %>">
+                            value="<%= (typeof inputs != 'undefined' && inputs.clasificacion)?inputs.clasificacion:''  %>">
                             <!--este es el forEach que recorre la categoria y devuelve la categoria captura el id ylo que muestra en el html en la pagina es el nombre, viaja por value-->
                             <option value="0">Seleccione clasificacion</option>
                             <% clasificaciones.forEach( element => { %>
-                            <option value="<%- element.idClasificacion %>"> <%-element.nombre%>
+                            <option value="<%- element.idClasificacion %>" <%= (typeof inputs != 'undefined' && inputs.clasificacion)?(element.idClasificacion == inputs.clasificacion)?"selected":"":""%> > <%-element.nombre%>
                             </option>
                             <% }) %>
                         </select>
@@ -75,7 +75,7 @@
                     <div class="col-md-8 mb-3 m-1">
                         <label class="col-4 col-md-2" for="">Cantidad</label>
                         <input type="number" placeholder="Stock disponible" min="1" max="100" name="stock"
-                            value="<%= (typeof inputs != 'undefined' && inputs.stock)?inputs.stock:(typeof producto != 'undefined')?producto.stock:''  %>">
+                            value="<%= (typeof inputs != 'undefined' && inputs.stock)?inputs.stock:''%>">
                         <small id="errorStock"
                             class="text-danger ml-1"><%= (typeof errors != 'undefined' && errors.stock)?errors.stock.msg: "" %>
                         </small>
@@ -84,10 +84,9 @@
                 <div class="form-group col-9">
                     <label for="exampleFormControlTextarea1">Detalle del producto</label>
                     <textarea class="form-control descripcion"
-                        placeholder="<%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:(typeof producto != 'undefined')?producto.descripcion:"Ingrese descripcion del producto" %>"
+                        placeholder="<%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:"Ingrese descripcion del producto" %>"
                         name="descripcion"
-                        value="<%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:'' %>"
-                        rows="3"></textarea>
+                        value="<%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:"Ingrese descripcion del producto"%>" rows="3"><%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:""%></textarea>
                     <small id="errorDescripcion"
                         class="text-danger"><%= (typeof errors != 'undefined' && errors.descripcion)?errors.descripcion.msg: "" %>
                     </small>
@@ -109,15 +108,15 @@
         </div>
         <div class="col-lg-4 aling-self-center mx-auto text-center bold">
             <h1>Previsualización</h1>
-            <h2 class="text-center titulo mb-3 text-white"><%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof producto != 'undefined')?producto.nombre:'Producto'%></h2>
+            <h2 class="text-center titulo mb-3 text-white"><%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:'Producto'%></h2>
             <figure class="aling-self-center mx-auto text-center">
-                <img src="<%= (typeof inputs != 'undefined' && inputs.image)?inputs.image:(typeof producto != 'undefined')?"../images/productos/default_large.png":"../images/productos/default_large.png"%>" class="img-fluid vistaPrevia  w-75" alt="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof producto != 'undefined')?"casa":'vistaPrevia'%>">
+                <img src="/images/productos/<%= (typeof inputs != 'undefined' && inputs.image)?inputs.image:'default_large.png'%>" class="img-fluid vistaPrevia  w-75" alt="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:'vistaPrevia'%>">>
             </figure>
             <div class="row text-right aling-self-rigth mb-3 ml-2">
                 <i class="fas fa-dollar-sign fa-2x text-success col-1"></i>
-                <h3 class="importe col-1 text-white font-weight-bold"><%= (typeof inputs != 'undefined' && inputs.precio)?inputs.precio:(typeof producto != 'undefined')?producto.precio:'Importe'%></h3>
+                <h3 class="importe col-1 text-white font-weight-bold"><%= (typeof inputs != 'undefined' && inputs.precio)?inputs.precio:'Importe'%></h3>
             </div>
-            <p class=" col-lg-12 detalle blockquote text-left text-white font-italic "><%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:(typeof producto != 'undefined')?producto.descripcion:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, itaque. Tenetur architecto tempore odio? Id quas voluptatum, maiores, inventore esse, possimus voluptates officia illum expedita dolore dolorum ipsam laudantium molestias?'%></p>
+            <p class=" col-lg-12 detalle blockquote text-left text-white font-italic "><%= (typeof inputs != 'undefined' && inputs.descripcion)?inputs.descripcion:'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, itaque. Tenetur architecto tempore odio? Id quas voluptatum, maiores, inventore esse, possimus voluptates officia illum expedita dolore dolorum ipsam laudantium molestias?'%></p>
             </div>
         </div>
     </div>

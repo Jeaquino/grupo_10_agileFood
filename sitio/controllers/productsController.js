@@ -5,7 +5,9 @@ const db = require("../database/models");
 // requiero complementos
 const sequelize = db.sequelize;
 const path = require('path');
-const {validationResult} = require("express-validator");
+const {
+    validationResult
+} = require("express-validator");
 
 module.exports = {
 
@@ -182,7 +184,7 @@ module.exports = {
                     //Se realiza la busqueda del producto pasado por el parametro id
                 }).then(producto => {
                     //se renderiza la vista, enviando como variables la vista, se envian todos los elementos que se buscaron y los necesarios(css title vista) que precisa la vista para ser dinamica
-                    res.render('formularioAgregarProducto', {
+                    res.render('formularioEditarProducto', {
                         title: "Editar producto ",
                         css: "formularioAgregarProducto",
                         usuario: req.session.usuario,
@@ -200,24 +202,71 @@ module.exports = {
     },
 
     edit: function (req, res, next) {
+
         let id = req.params.id;
+        let errores = validationResult(req);
 
-        db.productos.update({
-            nombre: req.body.nombre,
-            precio: req.body.precio,
-            descuento: req.body.discount,
-            categoria: req.body.categoria,
-            clasificacion: req.body.clasificacion,
-            stock: req.body.stock,
-            descripcion: req.body.description,
-            imagen: (req.files[0]) ? req.files[0].filename : producto.image
-        }, {
-            where: {
-                idProducto: id
-            }
-        })
+        if (errores.isEmpty()) {
+            console.log("aca")
+            db.productos.update({
+                    nombre: req.body.nombre.trim(),
+                    precio: req.body.precio.trim(),
+                    descuento: req.body.descuento.trim(),
+                    idCategoria: req.body.categoria,
+                    idClasificacion: req.body.clasificacion,
+                    stock: req.body.stock.trim(),
+                    descripcion: req.body.descripcion.trim(),
+                    imagen: (req.files[0]) ? req.files[0].filename : req.body.imagen
+                }, {
+                    where: {
+                        idProducto: id
+                    }
+                }).then(result => {
+                    res.redirect("/products")
+                })
+                .catch(error => {
+                    res.send(error)
+                })
+        } else {
+            console.log(errores)
+            let categorias = [];
+            let clasificaciones = [];
+            let producto;
 
-        res.redirect("/products")
+            //findAll es el metodo de encontrar todo
+            db.clasificaciones.findAll().then(resultado => {
+                // se realiza la busqueda de todas las clasificaciones en la base de datos y se guarda el resultado en clasificaciones
+                clasificaciones = resultado
+                db.categorias.findAll().then(elementos => {
+                    // se realiza la busqueda de todas las categorias en la base de datos y se guarda el resultado en categorias
+                    categorias = elementos
+                    //se renderiza la vista, enviando como variables la vista, el archivo css a vincular, el titulo de la vista, la session del usuario si es que existe, los resultados de categorias y clasificaciones. Que precisa la vista para ser dinamica
+                    db.productos.findOne({
+                        where: {
+                            idProducto: id
+                        }
+                    }).then(elemt => {
+                        producto = elemt
+                        res.render('formularioEditarProducto', {
+                            title: "Editar producto",
+                            css: "formularioAgregarProducto",
+                            usuario: req.session.usuario,
+                            errors: errores.mapped(),
+                            inputs: req.body,
+                            categorias: categorias,
+                            clasificaciones: clasificaciones,
+                            producto: producto
+                        })
+                    }).catch(error => {
+                        res.send(error)
+                    })
+                }).catch(error => {
+                    res.send(error)
+                })
+            }).catch(error => {
+                res.send(error)
+            })
+        }
     },
 
     eliminar: function (req, res) {

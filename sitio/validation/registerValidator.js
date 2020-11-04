@@ -44,8 +44,8 @@ check("numero")
     min: 1
 })
 .withMessage("Ingrese la enumeración de su domicilio"),
-check("numero")
 
+check("numero")
 .isNumeric()
 .withMessage("solo se aceptan números"),
 
@@ -60,7 +60,7 @@ check("contrasena")
     min: 8,
     max: 18
 })
-.withMessage("debe ingresar una contraseña 8 a 12 caracteres"),
+.withMessage("debe ingresar una contraseña 8 a 18 caracteres"),
 
 check("contrasena")
 .isAlphanumeric()

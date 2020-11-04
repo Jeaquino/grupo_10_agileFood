@@ -10,12 +10,6 @@ module.exports = (sequelize,dataTypes) => {
         nombre:{
             type: dataTypes.STRING(100),
             allowNull:false,
-            validate: {
-                isAlpha:{
-                    args:true,
-                    msg:"Por más que seas eleven de stranger things, escribe tu nombre con letras no numeros"
-                }
-            }
         },
         apellido:{
             type: dataTypes.STRING(100),
