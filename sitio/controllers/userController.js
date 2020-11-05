@@ -8,7 +8,7 @@ const { validationResult } = require("express-validator");
 const path = require("path")
 
 module.exports = {
-
+    //---------Registro------------------
     registro: function(req, res, next) { //_3_me renderiza a la pagina_registroUsuario_
 
         res.render('registroUsuario', {
@@ -17,7 +17,7 @@ module.exports = {
             usuario: req.session.usuario
         });
     },
-
+    //--------Login-----------------------
     login: function(req, res, next) {
 
         res.render('login', {
@@ -72,7 +72,7 @@ module.exports = {
             })
         }
     },
-
+    //----------------------Verificacion del Login-----------------------------
     verificarLogin: function(req, res, next) {
         let errors = validationResult(req);
         if (errors.isEmpty()) {
@@ -111,7 +111,7 @@ module.exports = {
             })
         }
     },
-
+    //---------------------Productos  administrador-----------------------
     productosAdmin: (req, res, next) => {
         let categorias;
         db.categorias.findAll({
@@ -150,7 +150,7 @@ module.exports = {
                 res.send(error)
             })
     },
-
+    //------------------Cerrar Session------------------
     logout: function(req, res) {
         req.session.destroy();
         if (req.cookies.userAgileFood) {

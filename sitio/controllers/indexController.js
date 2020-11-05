@@ -1,10 +1,10 @@
-const db = require("../database/models");
+const db = require("../database/models"); //requiero la base de datos que esta en la carpeta models
 const {
     Op
-} = require("sequelize");
+} = require("sequelize"); //la propiedad sequelize
 
 module.exports = {
-
+    //---------Inicio del Home control-------------------------------
     home: function(req, res, next) {
 
         let categorias;
@@ -17,10 +17,10 @@ module.exports = {
             usuario: req.session.usuario
         });
     },
-
+    //--------------Busquedad de productos------------------
     search: function(req, res, next) {
         let buscar = req.query.search;
-
+        //la funcion (query) nos permite utilizar consultas sql, aqui lo guardo en la categora buscar
         let categorias = [];
         let productos;
 
