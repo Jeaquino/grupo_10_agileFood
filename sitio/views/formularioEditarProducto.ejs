@@ -107,7 +107,7 @@
             </form>
         </div>
         <div class="col-lg-4 aling-self-center mx-auto text-center bold">
-            <h1>Previsualización</h1>
+            <h2>Previsualización</h2>
             <h2 class="text-center titulo mb-3 text-white"><%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof producto != 'undefined')?producto.nombre:'Producto'%></h2>
             <figure class="aling-self-center mx-auto text-center">
                 <img src="/images/productos/<%= (typeof inputs != 'undefined' && inputs.image)?inputs.image:(typeof producto != 'undefined')?producto.imagen:'default_large.png'%>" class="img-fluid vistaPrevia  w-75" alt="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof producto != 'undefined')?producto.nombre:'vistaPrevia'%>">>

@@ -22,7 +22,7 @@ window.addEventListener('load', function () {
     let botonCategoria = document.querySelector("#botonCategoria")
     let botonClasificacion = document.querySelector("#botonClasificacion")
 
-    let regExNombre = /[\d]+$/g;
+    let regExNombre = /[\d]/;
 
     nombre.addEventListener("input", function () {
         titulo.innerText = nombre.value

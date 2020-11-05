@@ -221,7 +221,6 @@ module.exports = {
         let errores = validationResult(req);
 
         if (errores.isEmpty()) {
-            console.log("aca")
             db.productos.update({
                     nombre: req.body.nombre.trim(),
                     precio: req.body.precio.trim(),
