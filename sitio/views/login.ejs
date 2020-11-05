@@ -26,7 +26,7 @@
                         id="email" name="email"
                         value="<%= (typeof inputs != 'undefined' && inputs.email)?inputs.email:'' %>"
                         placeholder="Tu e-mail" />
-                    <small
+                    <small id="errorEmail"
                         class="text-danger"><%= (typeof errors != 'undefined' && errors.email)?errors.email.msg: "" %>
                     </small>
                 </div>
@@ -37,7 +37,7 @@
                         id="contraseña" name="contraseña"
                         value="<%= (typeof inputs != 'undefined' && inputs.contraseña)?inputs.contraseña:'' %>"
                         placeholder="Debe tener min de 8 caracteres y un maximo de 18, solo se aceptan valores alphanumericos" />
-                    <small
+                    <small id="errorContrasena"
                         class="text-danger"><%= (typeof errors != 'undefined' && errors.contraseña)?errors.contraseña.msg: "" %>
                     </small>
                 </div>
@@ -55,4 +55,5 @@
     </div>
 </div>
 
+<script src="/js/login.js " type=" text/javascript "></script>
 <%- include("./partials/footer.ejs") %>
