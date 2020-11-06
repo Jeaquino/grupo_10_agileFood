@@ -32,7 +32,17 @@
                     <% if (usuario == undefined){ %>
                         <li><a href="http://localhost:3001/users"><i class="fas fa-user-circle"></i>Login</a></li>
                         <% } else { %>
-                            <li><a href="http://localhost:3001/users/logout"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</a></li>%>
+                            <ul class="navbar-nav">
+                                <li class="col-6">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user-alt "></i> Mi cuenta
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="http://localhost:3001/users/datosUsuarios"><i class="fas fa-user-circle"></i>Mi perfil</a>
+                                    <a class="dropdown-item" href="http://localhost:3001/users/logout"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</a>
+                                    </div>
+                                </li>
+                            </ul>
                             <% } %>
                 </ul>
             </div>

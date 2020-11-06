@@ -13,6 +13,7 @@ router.post("/", loginValidator, controller.verificarLogin)
 
 router.get("/registrarme", controller.registro) // renderizo la vista de registro
 router.post("/registrarme", upImagePerfil.any(), registerValidator, controller.processRegister); //valido utilizando el archivo registerValitor, luego ejecuto processRegister del controlador user
+router.get("/datosUsuarios", sessionUserCheck, controller.datosUsuarios);
 
 router.get('/Administrador',sessionUserCheck, controller.productosAdmin)
 
