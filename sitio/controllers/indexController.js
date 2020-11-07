@@ -24,7 +24,7 @@ module.exports = {
         let categorias = [];
         let productos;
 
-        db.productos.findAll({
+        db.productos.findAll({ //
                 //findAll para buscar todos los datos registrados en la tabla
                 where: {
                     //dentro del (where) pasmos los atributos de acuerdo  con la columna de la tabla
@@ -38,10 +38,10 @@ module.exports = {
                 }],
             }).then(result => { //then=(luego) el codigo consecuencia //el(then) ejecuta una promesa
 
-                productos = result;
-                productos.forEach(elemento => {
-                    if (!categorias.includes(elemento.categorias.nombre)) {
-                        categorias.push(elemento.categorias.nombre)
+                productos = result; //el resultado lo guado en productos
+                productos.forEach(elemento => { //en el forEach recorre los elementos de una coleccion
+                    if (!categorias.includes(elemento.categorias.nombre)) { //si categoria incluye
+                        categorias.push(elemento.categorias.nombre) //el push retira el ultimo elemento apilado
                     }
                 })
                 res.render('Productos', {

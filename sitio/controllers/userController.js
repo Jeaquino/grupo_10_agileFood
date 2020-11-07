@@ -72,6 +72,56 @@ module.exports = {
             })
         }
     },
+    datosUsuarios : function(req, res, next) {
+    
+        if(req.session.usuario){
+         db.usuarios.findByPk(req.session.usuario.id)
+         .then(user => {
+             console.log(user)
+             res.render('actualizarUsuario', {
+                 title: "Datos de usuario",
+                 css:"registrarUsuario",
+                 usuario: req.session.usuario,
+                 user : user,
+             })
+         })
+     }else{
+         res.redirect('/')
+     } 
+ },
+
+ actualizarDatos:function(req,res){
+     if(req.files[0]){
+         if(fs.existsSync(path.join(__dirname,'../public/images/users/'+req.session.user.avatar))){
+             fs.unlinkSync(path.join(__dirname,'../public/images/users/'+req.session.user.avatar))
+             res.locals.user.avatar = req.files[0].filename
+         }
+
+     }
+     db.usuarios.update(
+         {
+             fecha: req.body.fecha,
+             avatar:(req.files[0])?req.files[0].filename:req.session.usuario.avatar,
+             direccion: req.body.direccion.trim(),
+             ciudad:req.body.ciudad.trim(),
+             provincia:req.body.provincia.trim()
+         },
+         {
+             where:{
+                 id:req.params.id
+             }
+         }
+     )
+     .then( result => {
+       console.log(req.session.usuario)
+
+       return res.redirect('/users/datosUsuarios')
+       })
+     .catch(err => {
+         console.log(err)
+     })
+
+ },
     //----------------------Verificacion del Login-----------------------------
     verificarLogin: function(req, res, next) {
         let errors = validationResult(req);
