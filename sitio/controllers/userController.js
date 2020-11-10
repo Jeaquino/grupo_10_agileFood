@@ -4,12 +4,14 @@ const db = require('../database/models'); // requiero la base de datos de mysql
 
 const bcrypt = require("bcrypt"); //se requiere encriptado
 const fs = require("fs"); //se requiere file system---
-const { validationResult } = require("express-validator");
+const {
+    validationResult
+} = require("express-validator");
 const path = require("path")
 
 module.exports = {
     //---------Registro------------------
-    registro: function(req, res, next) { //_3_me renderiza a la pagina_registroUsuario_
+    registro: function (req, res, next) { //_3_me renderiza a la pagina_registroUsuario_
 
         res.render('registroUsuario', {
             css: "registrarUsuario",
@@ -18,7 +20,7 @@ module.exports = {
         });
     },
     //--------Login-----------------------
-    login: function(req, res, next) {
+    login: function (req, res, next) {
 
         res.render('login', {
             css: "login",
@@ -27,7 +29,7 @@ module.exports = {
         });
     },
     /*agregue nuevoo proceso de registro  */
-    processRegister: function(req, res) {
+    processRegister: function (req, res) {
         let errors = validationResult(req);
 
         if (errors.isEmpty()) {
@@ -46,7 +48,8 @@ module.exports = {
                             altura: req.body.numero.trim(),
                             departamento: req.body.aclaracion.trim(),
                             localidad: req.body.localidad.trim(),
-                            idUsuario: user.null
+                            idUsuario: user.null,
+                            codigoPotal: null
                         })
                         .then(domicilio => { //then=(luego) el codigo consecuencia //el(then) ejecuta una promesa
                             db.usuarios.update({
@@ -72,58 +75,62 @@ module.exports = {
             })
         }
     },
-    datosUsuarios : function(req, res, next) {
-    
-        if(req.session.usuario){
-         db.usuarios.findByPk(req.session.usuario.id)
-         .then(user => {
-             console.log(user)
-             res.render('actualizarUsuario', {
-                 title: "Datos de usuario",
-                 css:"registrarUsuario",
-                 usuario: req.session.usuario,
-                 user : user,
-             })
-         })
-     }else{
-         res.redirect('/')
-     } 
- },
+    datosUsuarios: function (req, res, next) {
 
- actualizarDatos:function(req,res){
-     if(req.files[0]){
-         if(fs.existsSync(path.join(__dirname,'../public/images/users/'+req.session.user.avatar))){
-             fs.unlinkSync(path.join(__dirname,'../public/images/users/'+req.session.user.avatar))
-             res.locals.user.avatar = req.files[0].filename
-         }
+        if (req.session.usuario) {
+            db.usuarios.findOne({
+                where: {
+                    idUsuario: req.session.usuario.id
+                },
+                include: {
+                    association: "domicilios"
+                },
+            }).then(user => {
+                res.render('actualizarUsuario', {
+                    title: "Datos de usuario",
+                    css: "registrarUsuario",
+                    usuario: req.session.usuario,
+                    user: user
+                })
+            }).catch(error => {
+                res.send(error)
+        })
+    } else {
+            res.redirect('/')
+        }
+    },
 
-     }
-     db.usuarios.update(
-         {
-             fecha: req.body.fecha,
-             avatar:(req.files[0])?req.files[0].filename:req.session.usuario.avatar,
-             direccion: req.body.direccion.trim(),
-             ciudad:req.body.ciudad.trim(),
-             provincia:req.body.provincia.trim()
-         },
-         {
-             where:{
-                 id:req.params.id
-             }
-         }
-     )
-     .then( result => {
-       console.log(req.session.usuario)
+    actualizarDatos: function (req, res) {
+        if (req.files[0]) {
+            if (fs.existsSync(path.join(__dirname, '../public/images/users/' + req.session.user.avatar))) {
+                fs.unlinkSync(path.join(__dirname, '../public/images/users/' + req.session.user.avatar))
+                res.locals.user.avatar = req.files[0].filename
+            }
 
-       return res.redirect('/users/datosUsuarios')
-       })
-     .catch(err => {
-         console.log(err)
-     })
+        }
+        db.usuarios.update({
+                fecha: req.body.fecha,
+                avatar: (req.files[0]) ? req.files[0].filename : req.session.usuario.avatar,
+                direccion: req.body.direccion.trim(),
+                ciudad: req.body.ciudad.trim(),
+                provincia: req.body.provincia.trim()
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(result => {
+                console.log(req.session.usuario)
 
- },
+                return res.redirect('/users/datosUsuarios')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+    },
     //----------------------Verificacion del Login-----------------------------
-    verificarLogin: function(req, res, next) {
+    verificarLogin: function (req, res, next) {
         let errors = validationResult(req);
         if (errors.isEmpty()) {
             db.usuarios.findOne({
@@ -139,13 +146,15 @@ module.exports = {
                         id: usuario.idUsuario,
                         nick: usuario.nombre + " " + usuario.apellido,
                         email: usuario.email,
-                        avatar: usuario.imagen
+                        avatar: usuario.imagen,
+                        domicilio: usuario.idDomicilio
                     }
                     if (req.body.recordar) {
                         res.cookie('userAgileFood', req.session.usuario, {
                             maxAge: 1000 * 60 * 60
                         })
                     }
+                    console.log()
                     return res.redirect('/')
                 })
                 .catch(error => {
@@ -201,7 +210,7 @@ module.exports = {
             })
     },
     //------------------Cerrar Session------------------
-    logout: function(req, res) {
+    logout: function (req, res) {
         req.session.destroy();
         if (req.cookies.userAgileFood) {
             res.cookie('userAgileFood', '', {

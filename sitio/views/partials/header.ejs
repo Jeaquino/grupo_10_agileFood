@@ -12,45 +12,50 @@
                 </form>
             </div>
             <% if(usuario != undefined) {%>
-                <div class="col-12 col-md-4 col-lg-4 d-flex justify-content-end align-items-center cuotas">
-                    <a href="http://localhost:3001/users/Administrador">
-                        <h5 class="mr-2">
-                            <%=usuario.nick%>
-                        </h5>
-                    </a>
-                    <a href=""><img src="/images/users/<%= usuario.avatar %> " alt="avatar" width="50px" height="50px"
+            <div class="col-12 col-md-4 col-lg-4 d-flex justify-content-end align-items-center cuotas">
+                <a href="http://localhost:3001/users/Administrador">
+                    <h5 class="mr-2">
+                        <%=usuario.nick%>
+                    </h5>
+                </a>
+                <a href=""><img src="/images/users/<%= usuario.avatar %> " alt="avatar" width="50px" height="50px"
                         class="avatar"></a>
-                    <% } %>
-                </div>
+                <% } %>
+            </div>
         </div>
         <div class="col-12">
             <div class="user">
-                <ul class="user">
+                <ul>
                     <li><a href="http://localhost:3001/products/cart"><span
                                 class="badge badge-pill badge-info">0</span><i
                                 class="fas fa-shopping-basket"></i>Mipedido</a></li>
                     <% if (usuario == undefined){ %>
-                        <li><a href="http://localhost:3001/users"><i class="fas fa-user-circle"></i>Login</a></li>
-                        <% } else { %>
-                            <ul class="navbar-nav">
-                                <li class="col-6">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-user-alt "></i> Mi cuenta
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="http://localhost:3001/users/datosUsuarios"><i class="fas fa-user-circle"></i>Mi perfil</a>
-                                    <a class="dropdown-item" href="http://localhost:3001/users/logout"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</a>
-                                    </div>
-                                </li>
-                            </ul>
-                            <% } %>
+                    <li><a href="http://localhost:3001/users"><i class="fas fa-user-circle"></i>Login</a></li>
+                    <% } else { %>
+                    <ul>
+                        <li class="col-6">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user-alt "></i> Mi cuenta
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="http://localhost:3001/users/datosUsuarios"><i
+                                        class="fas fa-user-circle"></i>Mi perfil</a>
+                                <a class="dropdown-item" href="http://localhost:3001/users/logout"><i
+                                        class="fas fa-sign-out-alt"></i>Cerrar Sesion</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <% } %>
                 </ul>
             </div>
         </div>
         <div>
             <nav class="navbar-expand-md">
                 <!--boton de hamburguesa-->
-                <button class="navbar-toggler burger" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars "></i></button>
+                <button class="navbar-toggler burger" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation"><i class="fas fa-bars "></i></button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="menu navbar-nav d-flex justify-content-between" style="width: 100%;">
                         <li><a href="http://localhost:3001/products">Nuestra carta</a></li>

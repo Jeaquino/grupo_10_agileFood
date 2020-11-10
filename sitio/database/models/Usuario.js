@@ -24,12 +24,6 @@ module.exports = (sequelize, dataTypes) => {
         apellido: {
             type: dataTypes.STRING(100), //el tipo de dato es un STRING y asi se restringue que no sea un numero
             allowNull: false,
-            validate: {
-                isAlpha: {
-                    args: true,
-                    msg: "Por más que seas un experimento y tengas un codigo de barras, escribe tu apellido con letras, no uses numeros"
-                }
-            }
         },
         dni: {
             type: dataTypes.INTEGER(8) //el tipo de dato es un entero que recibe 8 digitos
@@ -55,12 +49,12 @@ module.exports = (sequelize, dataTypes) => {
     let config = {
         tableName: "usuarios", //el nombre de la tabla
         timestamps: false //fecha de creacion y actualizacion de los registros
-            //si no tiene timestamps va a fallar la base de datos
+        //si no tiene timestamps va a fallar la base de datos
     }
 
-    const Usuario = sequelize.define(alias, cols, config) //aca se [cierra el modelo d base d datos con las 3 alias]
-        //-------------------------------alias,cols,config
-    Usuario.associate = function(models) {
+    let Usuario = sequelize.define(alias, cols, config) //aca se [cierra el modelo d base d datos con las 3 alias]
+    //-------------------------------alias,cols,config
+    Usuario.associate = function (models) {
 
         Usuario.belongsToMany(models.productos, {
             as: 'producto',
@@ -68,12 +62,12 @@ module.exports = (sequelize, dataTypes) => {
             foreignKey: "idProducto", //clave foranea
             otherKey: "idUsuario", //otra clave
             timestamps: false //la fecha y la actualizacion de los registros, si no tiene timestamps..
-                //puede fallar la base de datos
+            //puede fallar la base de datos
         })
 
         Usuario.hasMany(models.domicilios, { //usuario tiene muchos modelos de domicilio
             as: "domicilios", // de domicilio
-            ForeignKey: "idUsuario", //clave foranea de domicilio
+            foreignKey: "idUsuario", //clave foranea de domicilio
         })
     }
 

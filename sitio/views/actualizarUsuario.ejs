@@ -36,14 +36,14 @@
                                 <label class="font-weight-bold">Nombre <span class="text-danger">*</span></label>
                                 <input type="text" 
                                 class="form-control <%= (typeof inputs != 'undefined' && typeof errors.nombre == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.nombre)?"is-invalid": ""  %>" 
-                                id="nombre"  name="nombre"  value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:'' %> <%= user.nombre %>" placeholder="Tu nombre"/>
+                                id="nombre"  name="nombre"  value= "<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.nombre:'' %>" placeholder="Tu nombre"/>
                                 <small id="errorNombre" class="text-danger"><%= (typeof errors != 'undefined' && errors.nombre)?errors.nombre.msg: "" %> </small>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="font-weight-bold">Apellido <span class="text-danger">*</span></label>
                                 <input type="text" 
                                 class="form-control <%= (typeof inputs != 'undefined' && typeof errors.apellido == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.apellido)?"is-invalid": ""  %>" 
-                                id="apellido"  name="apellido"  value="<%= (typeof inputs != 'undefined' && inputs.apellido)?inputs.apellido:'' %> <%= user.apellido %>" placeholder="Tu apellido"/>
+                                id="apellido"  name="apellido"  value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.apellido:'' %>" placeholder="Tu apellido"/>
                                 <small id="errorApellido" class="text-danger"><%= (typeof errors != 'undefined' && errors.apellido)?errors.apellido.msg: "" %> </small>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                             <label class="font-weight-bold">Correo electrónico <span class="text-danger">*</span></label>
                             <input type="email" 
                             class="form-control <%= (typeof inputs != 'undefined' && typeof errors.email == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.email)?"is-invalid": ""  %>" 
-                                id="email"  name="email"  value="<%= (typeof inputs != 'undefined' && inputs.email)?inputs.email:''  %> <%= user.email %>" placeholder="Tu e-mail"/>
+                                id="email"  name="email"  value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.email:'' %>" placeholder="Tu e-mail"/>
                                 <small id="errorEmail" class="text-danger"><%= (typeof errors != 'undefined' && errors.email)?errors.email.msg: "" %> </small>
                         </div>
                         <div class="form-row mb-4">
@@ -59,25 +59,25 @@
                                 <label class="font-weight-bold">Domicilio <span class="text-danger">*</span></label>
                                 <input type="text" 
                                 class="form-control <%= (typeof inputs != 'undefined' && typeof errors.calle == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.calle)?"is-invalid": ""  %>" 
-                                id="calle"  name="calle"  value="<%= (typeof inputs != 'undefined' && inputs.calle)?inputs.calle:'' %>" placeholder="Tu calle"/>
+                                id="calle"  name="calle"  value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.domicilios[0].calle:'' %>"/>
                                 <small class="text-danger"><%= (typeof errors != 'undefined' && errors.calle)?errors.calle.msg: "" %> </small>
                             </div>
                             <div class="form-group col-md-2">
                                 <label class="font-weight-bold">Número <span class="text-danger">*</span></label>
                                 <input type="text" 
                                 class="form-control <%= (typeof inputs != 'undefined' && typeof errors.numero == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.numero)?"is-invalid": ""  %>" 
-                                id="numero"  name="numero"  value="<%= (typeof inputs != 'undefined' && inputs.numero)?inputs.numero:'' %>" placeholder="Enumeración"/>
+                                id="numero"  name="numero"  value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.domicilios[0].altura:'' %>" placeholder="Enumeración"/>
                                 <small class="text-danger"><%= (typeof errors != 'undefined' && errors.numero)?errors.numero.msg: "" %> </small>
                             </div>
                             <div class="form-group col-md-2">
                                 <label class="font-weight-bold">Piso/dpto <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="detalle" name="aclaracion" value="">
+                                <input type="text" class="form-control" placeholder="detalle" name="aclaracion" value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.domicilios[0].departamento:'' %>">
                             </div>
                             <div class="form-group col-md-2">
                                 <label class="font-weight-bold">Localidad <span class="text-danger">*</span></label>
                                 <input type="text" 
                                 class="form-control <%= (typeof inputs != 'undefined' && typeof errors.localidad == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.localidad)?"is-invalid": ""  %>" 
-                                id="localidad"  name="localidad"  value="<%= (typeof inputs != 'undefined' && inputs.localidad)?inputs.localidad:'' %>" placeholder="Tu localidad"/>
+                                id="localidad"  name="localidad"  value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.domicilios[0].localidad:'' %>" placeholder="Tu localidad"/>
                                 <small class="text-danger"><%= (typeof errors != 'undefined' && errors.localidad)?errors.localidad.msg: "" %> </small>
                             </div>
                         </div>
