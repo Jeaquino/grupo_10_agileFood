@@ -81,21 +81,31 @@
                                 <small class="text-danger"><%= (typeof errors != 'undefined' && errors.localidad)?errors.localidad.msg: "" %> </small>
                             </div>
                         </div>
-                        <div class="form-row mb-2">
-                            <div class="form-group col-md-6">
-                                <label class="font-weight-bold">Contraseña <span class="text-danger">*</span></label>
-                                <input type="password" 
-                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.contrasena == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.constrasena)?"is-invalid": ""  %>" 
-                                id="contrasena"  name="contrasena"  value="<%= (typeof inputs != 'undefined' && inputs.contrasena)?inputs.contrasena:''%>" placeholder="Debe tener min de 8 caracteres y un maximo de 18, solo se aceptan valores alphanumericos"/>
-                                <small id="errorContrasena" class="text-danger"><%= (typeof errors != 'undefined' && errors.contrasena)?errors.contrasena.msg: "" %> </small>
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-3">
+                                <label class="font-weight-bold">Provincia</label>
+                                <input type="text" 
+                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.provincia == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.provincia)?"is-invalid": ""  %>" 
+                                id="calle"  name="provincia"  value="<%= (typeof inputs != 'undefined' && inputs.provincia)?inputs.provincia:(typeof user != 'undefined')?user.provincia:'' %>"/>
+                                <small class="text-danger"><%= (typeof errors != 'undefined' && errors.provincia)?errors.provincia.msg: "" %> </small>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label class="font-weight-bold">Verificación de contraseña <span
-                                class="text-danger">*</span></label>
-                                <input type="password"
-                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.verificacion == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.verificacion)?"is-invalid": ""  %>" 
-                                id="verificacion"  name="verificacion"  value="<%= (typeof inputs != 'undefined' && inputs.verificacion)?inputs.verificacion:''%>" placeholder="Reitere su contraseña"/>
-                                <small id="errorVerificacion" class="text-danger"><%= (typeof errors != 'undefined' && errors.verificacion)?errors.verificacion.msg: "" %> </small> 
+                            <div class="form-group col-md-3">
+                                <label class="font-weight-bold">Pais</label>
+                                <input type="text" 
+                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.pais == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.numero)?"is-invalid": ""  %>" 
+                                id="numero"  name="numero"  value="<%= (typeof inputs != 'undefined' && inputs.pais)?inputs.pais:(typeof user != 'undefined')?user.pais:'' %>" placeholder="Enumeración"/>
+                                <small class="text-danger"><%= (typeof errors != 'undefined' && errors.pais)?errors.pais.msg: "" %> </small>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="font-weight-bold">Codigo Postal <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" placeholder="detalle" name="codigoPostal" value="<%= (typeof inputs != 'undefined' && inputs.codigoPostal)?inputs.codigoPostal:(typeof user.codigoPostal != 'undefined')?user.codigoPostal:'' %>">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="font-weight-bold">Dni</label>
+                                <input type="text" 
+                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.dni == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.dni)?"is-invalid": ""  %>" 
+                                id="localidad"  name="dni"  value="<%= (typeof inputs != 'undefined' && inputs.dni)?inputs.dni:(typeof user.dni != 'undefined')?user.dni:'' %>" placeholder="Tu localidad"/>
+                                <small class="text-danger"><%= (typeof errors != 'undefined' && errors.dni)?errors.dni.msg: "" %> </small>
                             </div>
                         </div>
                         <div class="form-group">
@@ -113,7 +123,7 @@
                         </div>
                         <span id="msgError" class="text-danger col-12"></span>
                         <br>
-                        <button type="submit" class="btn btn-primary width-100">Regístrate</button>
+                        <button type="submit" class="btn btn-primary width-100">Actulizar datos</button>
                     </form>
                 </div>
             </div>

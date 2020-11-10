@@ -1,9 +1,9 @@
 Swal.fire({ /*se trabaja con un objeto por eso se tiene que poner coma despues de los elementos o propiedades*/
-    title: 'bienvenido a Agile food!', //titulo
+    title: 'Bienvenido a Agile food!', //titulo
     text: 'Espero que te guste la comida deliciosa', //texto debajo del titulo
     // html:
-    icon: 'success', //icono de success tambien esta de question,information
-    confirmButtonText: 'ok', //mensaje de confirmacion
+    confirmButtonText: 'OK', //mensaje de confirmacion
+    icon: 'info', //icono de success tambien esta de question,information
     footer: 'Cumpliendo los estandares de Calidad ISO 2001®', //mensaje de pie de pagina
     // width:
     padding: "1rem",
