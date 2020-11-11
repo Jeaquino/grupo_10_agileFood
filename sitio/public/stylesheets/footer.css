@@ -96,14 +96,9 @@ footer .copyright {
     font-size: 10px;
 }
 
-.footer img {
-    width: 45%;
-    }
-}
 
-@media(min-width:1024px) {
-    .footer img {
-        width: 40%;
-        }
+
+@media(min-width:1400px) {
+    
     }   
 }

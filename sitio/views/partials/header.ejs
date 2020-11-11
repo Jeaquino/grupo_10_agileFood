@@ -23,16 +23,16 @@
             </div>
         </div>
         <div class="col-12">
-            <div class="user">
-                <ul>
+            <div class="user row">
+                <ul class="row align-self-center align-items-center">
                     <li><a href="http://localhost:3001/products/cart"><span
                                 class="badge badge-pill badge-info">0</span><i
                                 class="fas fa-shopping-basket"></i>Mipedido</a></li>
                     <% if (usuario == undefined){ %>
                     <li><a href="http://localhost:3001/users"><i class="fas fa-user-circle"></i>Login</a></li>
                     <% } else { %>
-                    <ul>
-                        <li class="col-6">
+                    <ul class="col-5">
+                        <li class="m-0">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user-alt "></i> Mi cuenta
@@ -60,13 +60,13 @@
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation"><i class="fas fa-bars "></i></button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="menu navbar-nav d-flex justify-content-between" style="width: 100%;">
-                        <li><a href="http://localhost:3001/products">Nuestra carta</a></li>
-                        <li><a href="">Promociones</a></li>
-                        <li><a href="">Novedades</a></li>
-                        <li><a href="">Sucursales</a></li>
-                        <li><a href="">Nosotros</a></li>
-                        <li><a href="">Contacto</a></li>
+                    <ul class="menu navbar-nav d-flex justify-content-between row" style="width: 100%;">
+                        <li class="col-2 m-0 p-1"><a href="http://localhost:3001/products">Nuestra carta</a></li>
+                        <li class="col-2 m-0 p-1"><a href="">Promociones</a></li>
+                        <li class="col-2 m-0 p-1"><a href="">Novedades</a></li>
+                        <li class="col-2 m-0 p-1"><a href="">Sucursales</a></li>
+                        <li class="col-2 m-0 p-1"><a href="">Nosotros</a></li>
+                        <li class="col-2 m-0 p-1"><a href="">Contacto</a></li>
                     </ul>
                 </div>
             </nav>
