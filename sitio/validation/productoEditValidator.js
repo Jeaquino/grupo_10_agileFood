@@ -97,15 +97,6 @@ module.exports = [
 
     body('image')
     .custom((value,{req})=>{
-        if(!req.files[0]){
-            return false
-        }else{
-            return true
-        }
-    }).withMessage("Debe seleccionar un archivo"),
-
-    body('image')
-    .custom((value,{req})=>{
         if(req.errorValidacionImagen){
             return false
         }else{

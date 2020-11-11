@@ -169,11 +169,11 @@ window.addEventListener('load', function () {
     imagen.addEventListener("blur", function (e) {
         console.log(e)
         switch (true) {
-            case !e.target.files[0]:
+            /*case vistaPrevia.src==null:
                 errorImage.innerHTML = "Debe selecionar una imagen"
                 this.classList.add('is-invalid')
                 break
-            default:
+            */default:
                 this.classList.remove('is-invalid')
                 this.classList.add('is-valid')
                 errorDescripcion.innerHTML = ""

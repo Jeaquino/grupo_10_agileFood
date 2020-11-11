@@ -13,7 +13,6 @@
             </div>
             <% if(usuario != undefined) {%>
             <div class="col-12 col-md-4 col-lg-4 d-flex justify-content-end align-items-center cuotas">
-                <a href="http://localhost:3001/users/Administrador">
                     <h5 class="mr-2">
                         <%=usuario.nick%>
                     </h5>
@@ -41,6 +40,10 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="http://localhost:3001/users/datosUsuarios"><i
                                         class="fas fa-user-circle"></i>Mi perfil</a>
+                                <% if(usuario.categoria == "Administrador") {%>
+                                <a class="dropdown-item" href="http://localhost:3001/users/Administrador">
+                                    <i class="fab fa-product-hunt"></i>Mis productos</a>
+                                <% } %>
                                 <a class="dropdown-item" href="http://localhost:3001/users/logout"><i
                                         class="fas fa-sign-out-alt"></i>Cerrar Sesion</a>
                             </div>

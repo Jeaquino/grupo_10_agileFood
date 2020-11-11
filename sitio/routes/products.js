@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const validatorProduct = require("../validation/productvalidator");
+const validatorEditProduct = require("../validation/productoEditValidator");
 const sessionUserCheck = require("../middlewares/sessionUserCheck");
 const upImagenProduct = require("../middlewares/upImagenProduct");
 const controller = require("../controllers/productsController");
@@ -12,7 +13,7 @@ router.post("/create", upImagenProduct.any(), validatorProduct, controller.crear
 router.get("/cart", sessionUserCheck, controller.carrito) // utilizo el metodo carrito de productsController
 router.get("/:id", controller.detalle) // utilizo el metodo detalle de productsController
 router.get("/edit/:id", controller.form) // utilizo el metodo form de productsController
-router.put("/edit/:id", upImagenProduct.any(), validatorProduct, controller.edit) // utilizo el metodo edit de productsController
+router.put("/edit/:id", upImagenProduct.any(), validatorEditProduct, controller.edit) // utilizo el metodo edit de productsController
 router.delete('/delete/:id', controller.eliminar); //utilizo el metodo eliminar de productsController
 
 module.exports = router;

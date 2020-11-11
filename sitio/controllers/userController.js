@@ -4,9 +4,7 @@ const db = require('../database/models'); // requiero la base de datos de mysql
 
 const bcrypt = require("bcrypt"); //se requiere encriptado
 const fs = require("fs"); //se requiere file system---
-const {
-    validationResult
-} = require("express-validator");
+const {validationResult} = require("express-validator");
 const path = require("path")
 
 module.exports = {
@@ -147,14 +145,14 @@ module.exports = {
                         nick: usuario.nombre + " " + usuario.apellido,
                         email: usuario.email,
                         avatar: usuario.imagen,
-                        domicilio: usuario.idDomicilio
+                        domicilio: usuario.idDomicilio,
+                        categoria: usuario.categoria
                     }
                     if (req.body.recordar) {
                         res.cookie('userAgileFood', req.session.usuario, {
                             maxAge: 1000 * 60 * 60
                         })
                     }
-                    console.log()
                     return res.redirect('/')
                 })
                 .catch(error => {
