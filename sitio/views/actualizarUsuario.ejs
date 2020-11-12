@@ -29,7 +29,7 @@
                         </figure>
                     </div>
                     <!--el formulario tiene que bajar por POST siempre que recopile informacion sencible tiene que viajar por POST. en todo caso si los otro formularios reciban un archivo tiene que tener el enctype="multilpar/form-data-->
-                    <form method="POST" action="/users/datosUsuarios/<%= usuario.id %> ?_method=PUT" enctype="multipart/form-data" id="registro">
+                    <form method="POST" action="/users/datosUsuarios?_method=PUT" enctype="multipart/form-data" id="registro">
                         <div class="form-row mb-2">
                             <div class="form-group col-md-6">
                                 
@@ -93,7 +93,7 @@
                                 <label class="font-weight-bold">Pais</label>
                                 <input type="text" 
                                 class="form-control <%= (typeof inputs != 'undefined' && typeof errors.pais == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.numero)?"is-invalid": ""  %>" 
-                                id="numero"  name="numero"  value="<%= (typeof inputs != 'undefined' && inputs.pais)?inputs.pais:(typeof user != 'undefined')?user.pais:'' %>" placeholder="Enumeración"/>
+                                id="numero"  name="pais"  value="<%= (typeof inputs != 'undefined' && inputs.pais)?inputs.pais:(typeof user != 'undefined')?user.pais:'' %>" placeholder="Enumeración"/>
                                 <small class="text-danger"><%= (typeof errors != 'undefined' && errors.pais)?errors.pais.msg: "" %> </small>
                             </div>
                             <div class="form-group col-md-3">
