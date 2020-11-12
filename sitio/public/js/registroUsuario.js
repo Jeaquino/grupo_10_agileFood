@@ -15,6 +15,7 @@ window.addEventListener('load', function () {
     let inputEmail = querySelector('#email');
     let inputImagen = querySelector('#imagen');
     let inputContrasena = querySelector('#contrasena');
+    let ojo = querySelector('#ojo');
     let inputVerificacion = querySelector('#verificacion');
     let checkBases = querySelector('.form-check-input');
 
@@ -88,6 +89,23 @@ window.addEventListener('load', function () {
             inputImagen.classList.remove('is-invalid')
             inputImagen.classList.add('is-valid');
             errorFoto.innerHTML = ""
+        }
+    })
+
+    ojo.addEventListener("click", function(){
+        console.log("reconoce")
+        console.log(ojo)
+        if(inputContrasena.type == "password"){
+            inputContrasena.type = "text"
+            inputVerificacion.type = "text"
+            this.classList.remove('fa-eye')
+            this.classList.add('fa-eye-slash')
+        }
+        else{
+            inputContrasena.type = "password"
+            inputVerificacion.type = "password"
+            this.classList.remove('fa-eye-slash')
+            this.classList.add('fa-eye')
         }
     })
 

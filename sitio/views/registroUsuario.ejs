@@ -87,8 +87,8 @@
                                     <label class="font-weight-bold">Contraseña <span class="text-danger">*</span></label>
                                     <input type="password" 
                                     class="form-control <%= (typeof inputs != 'undefined' && typeof errors.contrasena == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.constrasena)?"is-invalid": ""  %>" 
-                                    id="contrasena"  name="contrasena"  value="<%= (typeof inputs != 'undefined' && inputs.contrasena)?inputs.contrasena:'' %>" placeholder="Debe tener min de 8 caracteres y un maximo de 18, solo se aceptan valores alphanumericos"/><i class="far fa-eye fa-2x text-warning mt-2"></i>
-                                    <small id="errorContrasena" class="text-danger"><%= (typeof errors != 'undefined' && errors.contrasena)?errors.contrasena.msg: "" %> </small>
+                                    id="contrasena"  name="contrasena"  value="<%= (typeof inputs != 'undefined' && inputs.contrasena)?inputs.contrasena:'' %>" placeholder="Debe tener min de 8 caracteres y un maximo de 18, solo se aceptan valores alphanumericos"/><i class="far fa-eye fa-2x text-warning mt-2" id="ojo"></i>
+                                    <small id="errorContrasena" class="text-danger"></small><%= (typeof errors != 'undefined' && errors.contrasena)?errors.contrasena.msg: "" %> </small>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="font-weight-bold">Verificación de contraseña <span
