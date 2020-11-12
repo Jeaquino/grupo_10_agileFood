@@ -1,133 +1,158 @@
 <%- include("./partials/head.ejs") %>
 <%- include("./partials/header.ejs") %>
 
-    <section class="contact-box d-flex row">
+<section class="contact-box d-flex row">
 
-        <div class="row no-gutters">
-            <div class="col-xl-5 col-lg-4 register-bg">
-                <div class="position-absolute testiomonial p-4">
-                    <h3 class="font-weight-bold text-light">Recibe tu comida rapido.</h3>
-                    <p class="lead text-light">Completa tu formulario.</p>
-                </div>
-                <div class="mt-5">
-                    <img src="/images/Logo.png" alt="imagen de logo agile foot" width="300" id="logo">
-                </div>
+    <div class="row no-gutters">
+        <div class="col-xl-5 col-lg-4 register-bg">
+            <div class="position-absolute testiomonial p-4">
+                <h3 class="font-weight-bold text-light">Recibe tu comida rapido.</h3>
+                <p class="lead text-light">Completa tu formulario.</p>
             </div>
-            <div class="col-xl-7 col-lg-8 d-flex">
-                <div class="container align-self-center p-6">
-                    <h1 class="font-weight-bold mb-3">Actualiza tu cuenta</h1>
-                    <div class="form-group">
-                        <button class="btn btn-outline-dark d-inline-block text-light mr-2 mb-3 width-100"><i
-                        class="fab fa-google"></i> Google </button>
-                        <button class="btn btn-outline-dark d-inline-block text-light mb-3 width-100"><i
-                        class="fab fa-facebook-square"></i> Facebook</button>
-                    </div>
-                    <p class="text-muted mb-5">Ingresa tus datos.</p>
-                    <div class="col-lg-4 aling-self-center mx-auto text-center bold">
-                        <figure class="aling-self-center mx-auto text-center">
-                        <img src="/images/users/<%= usuario.avatar %> " id="vistaPrevia" alt="" class="img-fluid vistaPrevia  w-75"/>
-                        </figure>
-                    </div>
-                    <!--el formulario tiene que bajar por POST siempre que recopile informacion sencible tiene que viajar por POST. en todo caso si los otro formularios reciban un archivo tiene que tener el enctype="multilpar/form-data-->
-                    <form method="POST" action="/users/datosUsuarios?_method=PUT" enctype="multipart/form-data" id="registro">
-                        <div class="form-row mb-2">
-                            <div class="form-group col-md-6">
-                                
-                                <label class="font-weight-bold">Nombre <span class="text-danger">*</span></label>
-                                <input type="text" 
-                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.nombre == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.nombre)?"is-invalid": ""  %>" 
-                                id="nombre"  name="nombre"  value= "<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.nombre:'' %>" placeholder="Tu nombre"/>
-                                <small id="errorNombre" class="text-danger"><%= (typeof errors != 'undefined' && errors.nombre)?errors.nombre.msg: "" %> </small>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label class="font-weight-bold">Apellido <span class="text-danger">*</span></label>
-                                <input type="text" 
-                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.apellido == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.apellido)?"is-invalid": ""  %>" 
-                                id="apellido"  name="apellido"  value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.apellido:'' %>" placeholder="Tu apellido"/>
-                                <small id="errorApellido" class="text-danger"><%= (typeof errors != 'undefined' && errors.apellido)?errors.apellido.msg: "" %> </small>
-                            </div>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label class="font-weight-bold">Correo electrónico <span class="text-danger">*</span></label>
-                            <input type="email" 
-                            class="form-control <%= (typeof inputs != 'undefined' && typeof errors.email == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.email)?"is-invalid": ""  %>" 
-                                id="email"  name="email"  value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.email:'' %>" placeholder="Tu e-mail"/>
-                                <small id="errorEmail" class="text-danger"><%= (typeof errors != 'undefined' && errors.email)?errors.email.msg: "" %> </small>
-                        </div>
-                        <div class="form-row mb-4">
-                            <div class="form-group col-md-6">
-                                <label class="font-weight-bold">Domicilio <span class="text-danger">*</span></label>
-                                <input type="text" 
-                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.calle == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.calle)?"is-invalid": ""  %>" 
-                                id="calle"  name="calle"  value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.domicilios[0].calle:'' %>"/>
-                                <small class="text-danger"><%= (typeof errors != 'undefined' && errors.calle)?errors.calle.msg: "" %> </small>
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label class="font-weight-bold">Número <span class="text-danger">*</span></label>
-                                <input type="text" 
-                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.numero == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.numero)?"is-invalid": ""  %>" 
-                                id="numero"  name="numero"  value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.domicilios[0].altura:'' %>" placeholder="Enumeración"/>
-                                <small class="text-danger"><%= (typeof errors != 'undefined' && errors.numero)?errors.numero.msg: "" %> </small>
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label class="font-weight-bold">Piso/dpto <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="detalle" name="aclaracion" value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.domicilios[0].departamento:'' %>">
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label class="font-weight-bold">Localidad <span class="text-danger">*</span></label>
-                                <input type="text" 
-                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.localidad == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.localidad)?"is-invalid": ""  %>" 
-                                id="localidad"  name="localidad"  value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.domicilios[0].localidad:'' %>" placeholder="Tu localidad"/>
-                                <small class="text-danger"><%= (typeof errors != 'undefined' && errors.localidad)?errors.localidad.msg: "" %> </small>
-                            </div>
-                        </div>
-                        <div class="form-row mb-4">
-                            <div class="form-group col-md-3">
-                                <label class="font-weight-bold">Provincia</label>
-                                <input type="text" 
-                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.provincia == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.provincia)?"is-invalid": ""  %>" 
-                                id="calle"  name="provincia"  value="<%= (typeof inputs != 'undefined' && inputs.provincia)?inputs.provincia:(typeof user != 'undefined')?user.provincia:'' %>"/>
-                                <small class="text-danger"><%= (typeof errors != 'undefined' && errors.provincia)?errors.provincia.msg: "" %> </small>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="font-weight-bold">Pais</label>
-                                <input type="text" 
-                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.pais == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.numero)?"is-invalid": ""  %>" 
-                                id="numero"  name="pais"  value="<%= (typeof inputs != 'undefined' && inputs.pais)?inputs.pais:(typeof user != 'undefined')?user.pais:'' %>" placeholder="Enumeración"/>
-                                <small class="text-danger"><%= (typeof errors != 'undefined' && errors.pais)?errors.pais.msg: "" %> </small>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="font-weight-bold">Codigo Postal <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="detalle" name="codigoPostal" value="<%= (typeof inputs != 'undefined' && inputs.codigoPostal)?inputs.codigoPostal:(typeof user.codigoPostal != 'undefined')?user.codigoPostal:'' %>">
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="font-weight-bold">Dni</label>
-                                <input type="text" 
-                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.dni == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.dni)?"is-invalid": ""  %>" 
-                                id="localidad"  name="dni"  value="<%= (typeof inputs != 'undefined' && inputs.dni)?inputs.dni:(typeof user.dni != 'undefined')?user.dni:'' %>" placeholder="Tu localidad"/>
-                                <small class="text-danger"><%= (typeof errors != 'undefined' && errors.dni)?errors.dni.msg: "" %> </small>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Seleccione una imagen de perfil</label>
-                            <input type="file" class="form-control-file" name="image" id="imagen" accept="image/jpeg, image/png, image/png, image/gif">
-                            <small id="errorFoto" class="text-danger"><%= (typeof errors != 'undefined' && errors.image)?errors.image.msg: "" %> </small>
-                        </div>
-                        <div class="form-group mb-5">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="aceptacion">
-                                <label class="form-check-label text-muted">Al seleccionar esta casilla aceptas nuestro aviso
-                            de privacidad y los términos y condiciones</label>
-                            <small id="errorBases" class="text-danger"><%= (typeof errors != 'undefined' && errors.aceptacion)?errors.aceptacion.msg: "" %> </small>
-                            </div>
-                        </div>
-                        <span id="msgError" class="text-danger col-12"></span>
-                        <br>
-                        <button type="submit" class="btn btn-primary width-100">Actulizar datos</button>
-                    </form>
-                </div>
+            <div class="mt-5">
+                <img src="/images/Logo.png" alt="imagen de logo agile foot" width="300" id="logo">
             </div>
         </div>
-    </section>
-    <script src="/js/registroUsuario.js"></script>
-    <%- include("./partials/footer.ejs") %>
+        <div class="col-xl-7 col-lg-8 d-flex">
+            <div class="container align-self-center p-6">
+                <h1 class="font-weight-bold mb-3">Actualiza tu cuenta</h1>
+                <div class="form-group">
+                    <button class="btn btn-outline-dark d-inline-block text-light mr-2 mb-3 width-100"><i
+                            class="fab fa-google"></i> Google </button>
+                    <button class="btn btn-outline-dark d-inline-block text-light mb-3 width-100"><i
+                            class="fab fa-facebook-square"></i> Facebook</button>
+                </div>
+                <p class="text-muted mb-5">Ingresa tus datos.</p>
+                <div class="col-lg-4 aling-self-center mx-auto text-center bold">
+                    <figure class="aling-self-center mx-auto text-center">
+                        <img src="/images/users/<%= user.imagen %> " id="vistaPrevia" alt=""
+                            class="img-fluid vistaPrevia  w-75" />
+                    </figure>
+                </div>
+                <!--el formulario tiene que bajar por POST siempre que recopile informacion sencible tiene que viajar por POST. en todo caso si los otro formularios reciban un archivo tiene que tener el enctype="multilpar/form-data-->
+                <form action="/users/datosUsuarios?_method=PUT" method="POST" enctype="multipart/form-data"
+                    id="registro">
+                    <div class="form-row mb-2">
+                        <div class="form-group col-md-6">
+
+                            <label class="font-weight-bold">Nombre</label>
+                            <input type="text"
+                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.nombre == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.nombre)?"is-invalid": ""  %>"
+                                id="nombre" name="nombre"
+                                value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.nombre:'' %>"
+                                placeholder="Tu nombre" />
+                            <small id="errorNombre"
+                                class="text-danger"><%= (typeof errors != 'undefined' && errors.nombre)?errors.nombre.msg: "" %>
+                            </small>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-bold">Apellido</label>
+                            <input type="text"
+                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.apellido == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.apellido)?"is-invalid": ""  %>"
+                                id="apellido" name="apellido"
+                                value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.apellido:'' %>"
+                                placeholder="Tu apellido" />
+                            <small id="errorApellido"
+                                class="text-danger"><%= (typeof errors != 'undefined' && errors.apellido)?errors.apellido.msg: "" %>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-bold">Domicilio</label>
+                            <input type="text"
+                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.calle == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.calle)?"is-invalid": ""  %>"
+                                id="calle" name="calle"
+                                value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.domicilios[0].calle:'' %>" />
+                            <small
+                                class="text-danger"><%= (typeof errors != 'undefined' && errors.calle)?errors.calle.msg: "" %>
+                            </small>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label class="font-weight-bold">Altura</label>
+                            <input type="text"
+                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.numero == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.numero)?"is-invalid": ""  %>"
+                                id="numero" name="numero"
+                                value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.domicilios[0].altura:'' %>"
+                                placeholder="Enumeración" />
+                            <small
+                                class="text-danger"><%= (typeof errors != 'undefined' && errors.numero)?errors.numero.msg: "" %>
+                            </small>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label class="font-weight-bold">Piso/dpto/detaller</label>
+                            <input type="text" class="form-control" placeholder="detalle" name="aclaracion"
+                                value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.domicilios[0].departamento:'' %>">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label class="font-weight-bold">Localidad</label>
+                            <input type="text"
+                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.localidad == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.localidad)?"is-invalid": ""  %>"
+                                id="localidad" name="localidad"
+                                value="<%= (typeof inputs != 'undefined' && inputs.nombre)?inputs.nombre:(typeof user != 'undefined')?user.domicilios[0].localidad:'' %>"
+                                placeholder="Tu localidad" />
+                            <small
+                                class="text-danger"><%= (typeof errors != 'undefined' && errors.localidad)?errors.localidad.msg: "" %>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="form-group col-md-3">
+                            <label class="font-weight-bold">Provincia</label>
+                            <input type="text"
+                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.provincia == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.provincia)?"is-invalid": ""  %>"
+                                id="calle" name="provincia" placeholder="Ingrese su provincia"
+                                value="<%= (typeof inputs != 'undefined' && inputs.provincia)?inputs.provincia:(typeof user != 'undefined')?user.domicilios[0].provincia:'' %>" />
+                            <small
+                                class="text-danger"><%= (typeof errors != 'undefined' && errors.provincia)?errors.provincia.msg: "" %>
+                            </small>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="font-weight-bold">Pais</label>
+                            <input type="text"
+                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.pais == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.numero)?"is-invalid": ""  %>"
+                                id="numero" name="pais" placeholder="Ingrese su pais"
+                                value="<%= (typeof inputs != 'undefined' && inputs.pais)?inputs.pais:(typeof user != 'undefined')?user.domicilios[0].pais:'' %>"
+                                placeholder="Enumeración" />
+                            <small
+                                class="text-danger"><%= (typeof errors != 'undefined' && errors.pais)?errors.pais.msg: "" %>
+                            </small>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="font-weight-bold">Codigo Postal</label>
+                            <input type="text" class="form-control" placeholder="Ingrese su CP" name="codigoPostal"
+                                value="<%= (typeof inputs != 'undefined' && inputs.codigoPostal)?inputs.codigoPostal:(typeof user != 'undefined')?user.domicilios[0].codigoPostal:'' %>">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="font-weight-bold">Dni</label>
+                            <input type="text"
+                                class="form-control <%= (typeof inputs != 'undefined' && typeof errors.dni == 'undefined')?"is-valid":(typeof errors != 'undefined' && errors.dni)?"is-invalid": ""  %>"
+                                id="localidad" name="dni"
+                                value="<%= (typeof inputs != 'undefined' && inputs.dni)?inputs.dni:(typeof user.dni != 'undefined')?user.dni:'' %>"
+                                placeholder="Tu localidad" />
+                            <small
+                                class="text-danger"><%= (typeof errors != 'undefined' && errors.dni)?errors.dni.msg: "" %>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="exampleFormControlFile1">Seleccione una imagen de perfil</label>
+                            <input type="file" class="form-control-file" name="image" id="imagen"
+                                accept="image/jpeg, image/png, image/png, image/gif">
+                            <small id="errorFoto"
+                                class="text-danger"><%= (typeof errors != 'undefined' && errors.image)?errors.image.msg: "" %>
+                            </small>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary width-100 mt-3">Actulizar datos</button>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/js/registroUsuario.js"></script>
+<%- include("./partials/footer.ejs") %>

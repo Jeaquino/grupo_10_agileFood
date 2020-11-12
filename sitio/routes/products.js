@@ -12,8 +12,8 @@ router.post("/create", upImagenProduct.any(), validatorProduct, controller.crear
 
 router.get("/cart", sessionUserCheck, controller.carrito) // utilizo el metodo carrito de productsController
 router.get("/:id", controller.detalle) // utilizo el metodo detalle de productsController
-router.get("/edit/:id", controller.form) // utilizo el metodo form de productsController
-router.put("/edit/:id", upImagenProduct.any(), validatorEditProduct, controller.edit) // utilizo el metodo edit de productsController
-router.delete('/delete/:id', controller.eliminar); //utilizo el metodo eliminar de productsController
+router.get("/edit/:id", sessionUserCheck, controller.form) // utilizo el metodo form de productsController
+router.put("/edit/:id", sessionUserCheck,upImagenProduct.any(), validatorEditProduct, controller.edit) // utilizo el metodo edit de productsController
+router.delete('/delete/:id',sessionUserCheck, controller.eliminar); //utilizo el metodo eliminar de productsController
 
 module.exports = router;
