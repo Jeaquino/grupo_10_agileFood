@@ -244,5 +244,31 @@ module.exports = {
         }
         console.log(typeof usuario)
         return res.redirect('/')
+    },
+
+    eliminar: function (req, res) {
+        db.domicilios.destroy({
+            where:{
+                idUsuario: req.session.usuario.id
+            }
+        })
+        db.usuarios.destroy({
+            where: {
+                idUsuario: req.session.usuario.id
+            },
+            include: {
+                association: "domicilios"
+            },
+        }).then(() => {
+            req.session.destroy();
+            if (req.cookies.userAgileFood) {
+                res.cookie('userAgileFood', '', {
+                    maxAge: -1
+                })
+            }
+            res.redirect('/')
+        }).catch(error => {
+            res.send(error)
+        })
     }
 }

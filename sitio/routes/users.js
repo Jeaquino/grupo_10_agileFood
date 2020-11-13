@@ -16,7 +16,8 @@ router.post("/", loginValidator, controller.verificarLogin)
 router.get("/registrarme", controller.registro) // renderizo la vista de registro
 router.post("/registrarme", upImagePerfil.any(), registerValidator, controller.processRegister); //valido utilizando el archivo registerValitor, luego ejecuto processRegister del controlador user
 router.get("/datosUsuarios", sessionUserCheck, controller.datosUsuarios);
-router.put("/datosUsuarios", upImagePerfil.any(), editValidator, controller.actualizarDatos)
+router.put("/datosUsuarios", upImagePerfil.any(), editValidator, controller.actualizarDatos);
+router.delete('/delete',sessionUserCheck, controller.eliminar);
 
 router.get('/Administrador',sessionUserCheck, controller.productosAdmin)
 
